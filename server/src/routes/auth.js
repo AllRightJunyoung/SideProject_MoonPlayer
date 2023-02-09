@@ -1,11 +1,16 @@
+const passport=require('passport')
 const express=require('express')
 const router = express.Router();
 
-const authRouteControllers=require('../controllers/routes/auth')
+
+router.get('/kakao',passport.authenticate('kakao'))
+
+router.get('/kakao/callback',passport.authenticate('kakao',{
+    failureRedirect:'/',
+}),(req,res)=>{
+    res.redirect('/music')
+})
 
 
-
-router.get('/kakao',authRouteControllers.kakaoLogin)
-router.get('/kakao/callback',authRouteControllers.kakaoLoginCallback)
 
 module.exports=router

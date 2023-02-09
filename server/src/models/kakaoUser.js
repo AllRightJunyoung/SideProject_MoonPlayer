@@ -5,9 +5,12 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, minlength: 6 },
+  nick: { type: String, required: true},
+  snsId: { type: Number, required: true},
+  provider: { type: String, required: true },
+  
 });
 
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('KakaoUser', userSchema);
