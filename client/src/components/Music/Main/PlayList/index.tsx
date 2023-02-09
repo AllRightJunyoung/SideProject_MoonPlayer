@@ -3,7 +3,7 @@ import Music from 'components/Music/Main/PlayList/Item/Item';
 import Text from 'components/Global/style/Text';
 import ScrollBox from 'components/Global/style/ScrollBox';
 import { useAppSelector } from 'hooks/useReduxStore';
-import PlayerHeader from '../Header/index';
+import PlayListHeader from '../Header/index';
 
 // 플레이어 메인
 export const PlayList = () => {
@@ -20,7 +20,7 @@ export const PlayList = () => {
 
   return (
     <Layout>
-      <PlayerHeader title="P L A Y L I S T" />
+      <PlayListHeader title="P L A Y L I S T" />
       {playerMusics}
     </Layout>
   );

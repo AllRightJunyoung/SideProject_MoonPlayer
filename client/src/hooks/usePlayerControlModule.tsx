@@ -11,6 +11,8 @@ import {
   handlePlaySelectedMusicModlue,
 } from 'store/feature/music/PlayerSlice';
 
+// 리액트 플레이어 모듈 커스텀훅
+
 export const usePlayerControlModule = () => {
   const dispatch = useAppDispatch();
   const playerRef = useRef<ReactPlayer>(null);
@@ -19,8 +21,10 @@ export const usePlayerControlModule = () => {
 
   const { handlePrevPlayingMusic, handleNextPlayingMusic, handleShuffleMusic } = usePlayerSelectMusic(); //음악을 고르는 훅
 
+  // 현재 재생시간
   const currentTime =
     playerRef && playerRef.current ? Math.floor(playerRef.current.getCurrentTime()).toString() : '00:00';
+  // 영상 총길이
   const endTime = playerRef && playerRef.current ? Math.floor(playerRef.current.getDuration()).toString() : '00:00';
   const volume = parseFloat((playerModuleSelector.volume / 100).toString());
 
@@ -38,23 +42,23 @@ export const usePlayerControlModule = () => {
     );
   }, [playerSelector.playingMusic.id]);
 
-  const handleRepeatMusic = () => {
+  const handleRepeatMusicHandler = () => {
     dispatch(handleRepeatMusicModule({ ...playerModuleSelector, isrepeat: !playerModuleSelector.isrepeat }));
   };
 
-  const handlePlayMusic = () => {
+  const handlePlayMusicHandler = () => {
     dispatch(handlePlayMusicModule({ ...playerModuleSelector, playing: !playerModuleSelector.playing }));
   };
 
-  const handleVolumeMusic = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMusicVolumeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(handleVolumeMusicModule({ ...playerModuleSelector, volume: +event.currentTarget.value }));
   };
 
-  const handleOnProgress = () => {
+  const handleProgressBarHandler = () => {
     dispatch(handleProgressBarModule({ ...playerModuleSelector, currentTime, endTime }));
   };
 
-  const handleEndedMusic = () => handleNextPlayingMusic();
+  const handleEndedMusicHandler = () => handleNextPlayingMusic();
 
   const musicPlayer = (
     <ReactPlayer
@@ -66,17 +70,16 @@ export const usePlayerControlModule = () => {
       url={playerModuleSelector.music && playerModuleSelector.music.source_url}
       playing={playerModuleSelector.playing}
       loop={playerModuleSelector.isrepeat}
-      // 재생이 끝나면 다음 음악재생
-      onEnded={handleEndedMusic}
-      onProgress={handleOnProgress}
+      onEnded={handleEndedMusicHandler}
+      onProgress={handleProgressBarHandler}
     ></ReactPlayer>
   );
   return {
     musicPlayer,
     playerModuleSelector,
-    handleRepeatMusic,
-    handlePlayMusic,
-    handleVolumeMusic,
+    handleRepeatMusicHandler,
+    handlePlayMusicHandler,
+    handleMusicVolumeHandler,
     handleShuffleMusic,
     handlePrevPlayingMusic,
     handleNextPlayingMusic,

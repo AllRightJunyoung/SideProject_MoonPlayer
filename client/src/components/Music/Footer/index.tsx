@@ -1,5 +1,5 @@
 import { usePlayerControlModule } from 'hooks/usePlayerControlModule';
-import { formatTime } from 'utils/app/Player';
+import { formatMusicTime } from 'utils/app/Player';
 
 import { Flex } from 'components/Global/style/Flex';
 import styled from 'styled-components';
@@ -12,18 +12,18 @@ import HideButton from './HideButton/HideButton';
 
 export const Footer = ({ player }) => {
   const {
-    handleRepeatMusic,
-    handlePlayMusic,
-    handleVolumeMusic,
+    handleRepeatMusicHandler,
+    handlePlayMusicHandler,
+    handleMusicVolumeHandler,
     handleShuffleMusic,
     handlePrevPlayingMusic,
     handleNextPlayingMusic,
   } = usePlayerControlModule();
 
   const { isOpenMusicFooterUI } = useMusicPageUIControl();
-  const currentTime = formatTime(+player.currentTime);
-  const endTime = formatTime(+player.endTime);
-  const elapsedTime = Math.floor((+player.currentTime / +player.endTime) * 100);
+  const currentTime = formatMusicTime(+player.currentTime);
+  const endTime = formatMusicTime(+player.endTime);
+  const elapsedTime = Math.floor((+player.currentTime / +player.endTime) * 100); //남은 시간
   const playerVolume = player.volume.toString();
   return (
     <Layout active={isOpenMusicFooterUI}>
@@ -31,11 +31,11 @@ export const Footer = ({ player }) => {
       <ProgressBar currentTime={currentTime} endTime={endTime} elapsedTime={elapsedTime} />
       <Info player={player}></Info>
       <Flex direction="row" justifyContent="space-between">
-        <Volume onVolume={handleVolumeMusic} volume={playerVolume} />
+        <Volume onVolume={handleMusicVolumeHandler} volume={playerVolume} />
         <Controller
           player={player}
-          onRepeat={handleRepeatMusic}
-          onPlay={handlePlayMusic}
+          onRepeat={handleRepeatMusicHandler}
+          onPlay={handlePlayMusicHandler}
           onPrevMusic={handlePrevPlayingMusic}
           onNextMusic={handleNextPlayingMusic}
           onShuffleMusic={handleShuffleMusic}

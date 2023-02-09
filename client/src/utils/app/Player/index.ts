@@ -19,19 +19,15 @@ export const shuffleMusic = (playerItems: MusicDataType[]): MusicDataType[] => {
   }
   return newPlayerItems;
 };
-// 리팩토링필요
-export const formatTime = (seconds: number): string => {
+export const formatMusicTime = (seconds: number): string => {
   if (isNaN(seconds)) {
     return '00:00';
   }
   const date = new Date(seconds * 1000);
-  const hh: number = date.getUTCHours();
-  const mm: number = date.getUTCMinutes();
-  const ss: string = pad(date.getUTCSeconds() as number);
-  if (hh) {
-    return `${hh}:${pad(mm)}:${ss}`;
-  }
-  return `${mm}:${ss}`;
+  const minute: number = date.getUTCMinutes();
+  const second: string = pad(date.getUTCSeconds() as number);
+
+  return `${minute}:${second}`;
 };
 const pad = (num: number) => ('0' + num).slice(-2);
 const swapArray = (newPlayerItems: MusicDataType[], index: number, randomIndex: number) =>

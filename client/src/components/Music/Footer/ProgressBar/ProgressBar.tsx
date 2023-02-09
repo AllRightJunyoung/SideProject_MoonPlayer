@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { Line } from 'rc-progress';
 import Flex from 'components/Global/style/Flex';
+
 interface ProgressBarProps {
   currentTime: string;
   endTime: string;
   elapsedTime: number;
 }
 
+// hover시 툴팁보이게
 export const ProgressBar = ({ currentTime, endTime, elapsedTime }: ProgressBarProps) => {
   return (
     <Layout direction="row" alignItems="center">
@@ -19,11 +21,14 @@ export const ProgressBar = ({ currentTime, endTime, elapsedTime }: ProgressBarPr
 
 export default ProgressBar;
 const Layout = styled(Flex)`
+  position: relative;
   color: rgba(255, 255, 255, 0.64);
   font-weight: 700;
   text-align: center;
+  cursor: pointer;
 `;
 const Box = styled.div`
+  /* position: absolute; */
   flex: 1;
   height: 5px;
   overflow: hidden;

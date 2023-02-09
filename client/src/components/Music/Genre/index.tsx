@@ -3,6 +3,7 @@ import { fetchmusicGenre } from 'store/feature/music/GenreSlice';
 import { useAppDispatch } from 'hooks/useReduxStore';
 import Slider from 'components/Music/Genre/Slider/Slider';
 import styled from 'styled-components';
+import './index.css';
 
 export const Genre = () => {
   const dispatch = useAppDispatch();

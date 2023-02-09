@@ -5,10 +5,14 @@ import IconButton from 'components/Global/UI/IconButton/IconButton';
 import { useAppSelector, useAppDispatch } from 'hooks/useReduxStore';
 
 import { useMusicPageUIControl } from 'hooks/useMusicPageUIControl';
-import Music from 'components/Global/UI/Music/Music';
 import { useContext } from 'react';
 import { DiaLogContext } from 'context/Dialog';
 import { MusicDataType } from 'types/app/data/index';
+import Flex from 'components/Global/style/Flex';
+import { Text } from 'components/Global/style/Text';
+import OverFlowText from 'components/Global/style/OverFlowText';
+import Image from 'components/Global/style/Image';
+import CircleTooltip from 'components/Global/UI/CircleTooltip/CircleTooltip';
 
 export const Item = ({ name, img_url, id, source_url }: MusicDataType) => {
   const dispatch = useAppDispatch();
@@ -30,26 +34,56 @@ export const Item = ({ name, img_url, id, source_url }: MusicDataType) => {
     onhandleOpenMusicFooterUI(true); // 음악재생시 footer바가 자동으로 올라오게
   };
 
-  const handleInfoMusic = () => {
-    DialogCtx.showMusicDialog(name, img_url);
-  };
   return (
-    <Layout isActive={isCurrentMusic} onClick={handlePlayMusic}>
-      <Music id={id} img_url={img_url} name={name}>
-        <div>
-          <IconButton color="rgba(255,255,255,0.64)" onClick={handleInfoMusic} size="2x" name="info" />
-          <IconButton color="rgba(255,255,255,0.64)" onClick={handleTrashButton} size="2x" name="trash" />
-        </div>
-      </Music>
+    <Layout
+      isActive={isCurrentMusic}
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      onClick={handlePlayMusic}
+    >
+      <Number>{id}</Number>
+      <StyledImage img={img_url} />
+      <CircleTooltip anchorId={'playList-title' + id} content={name} />
+      <Title id={'playList-title' + id}>{name}</Title>
+      <IconButton color="rgba(255,255,255,0.64)" onClick={handleTrashButton} size="1x" name="trash" />
     </Layout>
   );
 };
-interface RootProps {
+interface LayoutProps {
   isActive: boolean;
 }
-const Layout = styled.div<RootProps>`
+
+const Layout = styled(Flex)<LayoutProps>`
+  padding: 0px 16px;
   background-color: ${({ isActive }) => (isActive ? 'rgba(0,0,0,0.64)' : 'none')};
   border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  gap: 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  height: 84px;
+  overflow: hidden;
 `;
 
+const Number = styled(Text)`
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 16px;
+  width: 16px;
+`;
+
+const Title = styled(OverFlowText)`
+  flex: 1;
+  font-size: 14px;
+  max-height: 48px;
+  color: rgba(255, 255, 255, 0.84);
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+`;
+const StyledImage = styled(Image)`
+  width: 96px;
+`;
 export default Item;
