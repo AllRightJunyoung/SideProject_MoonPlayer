@@ -14,13 +14,13 @@ export const useSwiper = (slideitems) => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(fetchmusicList(`http://localhost:4000/api/music/genre/${idx}`));
+    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${idx}`));
   };
   const handlePrevSlide = () => {
     if (!swiperModule) return;
     swiperModule.slidePrev(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(fetchmusicList(`http://localhost:4000/api/music/genre/${idx}`));
+    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${idx}`));
   };
 
   const swiper = (

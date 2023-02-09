@@ -1,12 +1,12 @@
 const express=require('express')
 const router = express.Router();
-const musicControllers=require('../controllers/music')
+const musicRouteControllers=require('../controllers/routes/music')
 
 
 
 
-router.get('/genre',musicControllers.getMusicGenre)
-router.get('/genre/:genre_id',musicControllers.getMusicGenreById)
+router.get('/genre',musicRouteControllers.getMusicGenre)
+router.get('/genre/:genre_id',musicRouteControllers.getMusicGenreById)
 
 
 module.exports=router

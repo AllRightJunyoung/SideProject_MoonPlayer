@@ -1,8 +1,6 @@
 const path = require('path');
 const fs = require('fs')
 
-
-
 const getMusicGenre=(req,res,next)=>{
     let musicGenreData = fs.readFileSync(path.join(process.cwd(), "/server/src/files/music/music_genre.json"), 'utf-8')
     musicGenreData=JSON.parse(musicGenreData)

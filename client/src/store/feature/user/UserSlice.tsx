@@ -25,6 +25,7 @@ const fetchUserToken = createAsyncThunk('user', async (info: LoginInfo, thunkApi
     const { code, socialName } = info;
     const { REQUEST_URI, REQUEST_BODY } = getRequestForOauth(code, socialName);
     const response = await getToken(REQUEST_URI, REQUEST_BODY);
+
     if (response) {
       return response.data;
     }
