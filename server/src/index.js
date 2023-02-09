@@ -12,6 +12,7 @@ dotenv.config();
 // const passportConfig=require('./controllers/passport/index')
 // passportConfig()
 const musicRoutes=require('./routes/music')
+const authRoutes=require('./routes/auth')
 
 
 const app=express()
@@ -20,6 +21,8 @@ app.use(morgan('dev')) //에러로그 트래킹
 app.use(cors())
 app.use(bodyParser.json())
 app.use("/api/music",musicRoutes)
+app.use("/auth",authRoutes)
+
 app.use(cookieParser(process.env.COOKIE_SECRET)) // 요청에 동봉된쿠키를 해석하여 req.cookies객체로만듬
 // 세션 관리시 클라이언트에 쿠키 전송 
 app.use(session({
@@ -34,6 +37,7 @@ app.use(session({
 
 app.use(passport.initialize()) // req에 passport 설정을 심는다 
 app.use(passport.session()) // req.sesstion객체에 passport정보를 저장한다.
+
 
 
 
