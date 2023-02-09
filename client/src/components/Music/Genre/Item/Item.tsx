@@ -11,7 +11,7 @@ export const Item = ({ image_url, genre_id }: ItemProps) => {
   const isInGenre = useAppSelector((state) => state.music.playList.genre.genre_id) === genre_id ? true : false;
 
   const handleCardImage = () => {
-    dispatch(fetchmusicList(`http://localhost:4000/api/music/genre/${genre_id}`));
+    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${genre_id}`));
   };
 
   return <CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} />;

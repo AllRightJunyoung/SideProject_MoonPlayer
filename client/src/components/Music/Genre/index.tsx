@@ -8,7 +8,7 @@ import './index.css';
 export const Genre = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchmusicGenre('http://localhost:4000/api/music/genre/'));
+    dispatch(fetchmusicGenre('http://localhost:4001/api/music/genre/'));
   }, []);
   return (
     <Layout>

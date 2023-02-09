@@ -1,26 +1,22 @@
-const Koa = require('koa');
-const Router = require('koa-router')
-const cors = require('@koa/cors')
-const db=require('./db/index.js')
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-let corsOptions = {
-  origin: process.env.CLIENT_HOST,
-  credentials: true,
-}
+const musicRoutes=require('./routes/music')
 
 
-const router = new Router()
-const api = require('./api')
-// db()
-router.use('/api', api.routes())
+const app=express()
 
-const app = new Koa();
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');// 어떤 도메인을 허용하는지
+    res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization')
+    res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, DELETE');
+    next()
+})
 
-app.proxy = true
-app.use(cors(corsOptions))
-app.use(router.routes()).use(router.allowedMethods())
+app.use(bodyParser.json())
 
-const PORT = 4000
-app.listen(PORT, () => {
-  console.log('server is listening to port 4000');
-});
+app.use("/api/music",musicRoutes)
+
+
+app.listen(4001)
