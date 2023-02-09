@@ -66,7 +66,7 @@ const Title = styled(OverFlowText)`
   overflow: hidden;
 `;
 const StyledImage = styled(Image)`
-  width: 96px;
+  width: 128px;
 `;
 
 export default Item;

@@ -40,8 +40,8 @@ export const ConfirmDialog = () => {
   };
 
   return confirm.isOpen ? (
-    <Layout>
-      <FlexBox direction="column" justifyContent="center" alignItems="center">
+    <OverLay>
+      <Layout direction="column" justifyContent="center" alignItems="center">
         <StyledAvatar img="logo"></StyledAvatar>
         <StyledText color="white" textAlign="center">
           {confirm.message}
@@ -54,13 +54,13 @@ export const ConfirmDialog = () => {
             NO
           </StyledButton>
         </Flex>
-      </FlexBox>
-    </Layout>
+      </Layout>
+    </OverLay>
   ) : (
     <></>
   );
 };
-const Layout = styled.div`
+const OverLay = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
@@ -69,7 +69,7 @@ const Layout = styled.div`
   right: 0;
   z-index: 9999;
 `;
-const FlexBox = styled(Flex)`
+const Layout = styled(Flex)`
   position: relative;
   width: 300px;
   height: fit-content;
@@ -96,6 +96,6 @@ const StyledAvatar = styled(Avatar)`
   margin: 50px;
 `;
 const StyledText = styled(Text)`
-  font-size: 20px;
+  font-size: 22px;
 `;
 export default ConfirmDialog;

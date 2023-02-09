@@ -14,22 +14,28 @@ export const Item = ({ image_url, genre_id }: ItemProps) => {
     dispatch(fetchmusicList(`http://localhost:4000/api/music/genre/${genre_id}`));
   };
 
-  return <CardImage onClick={handleCardImage} img={image_url} key={genre_id} disabled={isInGenre} />;
+  return <CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} />;
 };
 
 interface CardImageProps {
   disabled: boolean;
 }
-const CardImage = styled(Image)<CardImageProps>`
-  border-radius: 7px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  opacity: ${(props) => (!props.disabled ? '0.54' : '1')};
+interface ImageProps {
+  src: string;
+}
+
+const CardImage = styled.img.attrs(({ src }: ImageProps) => ({
+  src: src,
+}))<CardImageProps>`
+  object-fit: fill;
+  max-width: 100%;
   transition-duration: 0.4s;
 
-  &:active {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  }
+  opacity: ${(props) => (!props.disabled ? '0.34' : '1')};
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 7px;
+
   cursor: pointer;
 `;
-
 export default Item;

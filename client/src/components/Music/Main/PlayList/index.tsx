@@ -40,7 +40,8 @@ const Layout = styled(ScrollBox)`
 `;
 const EmptyText = styled(Text)`
   color: rgba(255, 255, 255, 0.64);
-  font-size: 20px;
+  padding-left: 5px;
+  font-size: 18px;
 `;
 
 export default PlayList;
