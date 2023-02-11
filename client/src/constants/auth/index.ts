@@ -1,15 +1,14 @@
 const REDIRECT_URI = `http://localhost:3000`;
 const {
-  REACT_APP_KAKAO_CLIENT_ID: KAKAO_ID,
+  REACT_APP_KAKAO_CLIENT_ID: KAKAO_KEY,
   REACT_APP_GOOGLE_CLIENT_ID: GOOGLE_Client_ID,
   REACT_APP_GOOGLE_SECRET_ID: GOOGLE_SECRET_ID,
   REACT_APP_NAVER_CLIENT_ID: NAVER_ID,
   REACT_APP_NAVER_SECRET_ID: NAVER_Secret_ID,
 } = process.env;
 // eslint-disable-next-line max-len
-export const KAKAO_OAUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-export const KAKAO_REQUEST_BODY = `grant_type=authorization_code&client_id=${KAKAO_ID}&redirect_url=${REDIRECT_URI}`;
-export const KAKAO_REQUEST_URL = `https://kauth.kakao.com/oauth/token`;
+export const KAKAO_OAUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_KEY}&redirect_uri=http://localhost:3000/oauth&response_type=code`;
+
 export const GOOGLE_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_Client_ID}&
 response_type=code&
 redirect_uri=http://localhost:3000&

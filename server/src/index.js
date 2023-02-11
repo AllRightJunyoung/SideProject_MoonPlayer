@@ -4,13 +4,11 @@ const mongoose = require("mongoose");
 const cors=require('cors')
 const dotenv=require('dotenv')
 const cookieParser=require('cookie-parser')
-const passport=require('passport')
 const session=require('express-session') //세션을 구현하거나 특정 사용자를 위한 데이터를 임시적으로 저장 , req.sesstion객체에 유지
 const morgan=require('morgan')
 
-const passportConfig=require('./controllers/passport/index')
-
 dotenv.config();
+
 
 const musicRoutes=require('./routes/music')
 const authRoutes=require('./routes/auth')
@@ -19,7 +17,10 @@ const authRoutes=require('./routes/auth')
 const app=express()
 app.set('port',process.env.PORT)
 app.use(morgan('dev')) //에러로그 트래킹
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}))
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.COOKIE_SECRET)) // 요청에 동봉된쿠키를 해석하여 req.cookies객체로만듬
 // 세션 관리시 클라이언트에 쿠키 전송 
@@ -32,12 +33,9 @@ app.use(session({
         secure:false, // https가 아닌환경에서도 사용가능
     },
 }))
-passportConfig()
-app.use(passport.initialize()) // req에 passport 설정을 심는다 
-app.use(passport.session()) // req.sesstion객체에 passport정보를 저장한다.
 
 app.use("/api/music",musicRoutes)
-app.use("/auth",authRoutes)
+app.use("/api/auth",authRoutes)
 
 
 mongoose

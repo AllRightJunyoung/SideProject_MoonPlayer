@@ -6,8 +6,8 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:jest-dom/recommended',
     'plugin:testing-library/react',

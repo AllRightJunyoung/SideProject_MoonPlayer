@@ -40,7 +40,6 @@ const DEFAULT_SETTING: SwiperProps = {
   slidesPerView: 5,
   slidesPerGroup: 5,
   allowTouchMove: false,
-  loopPreventsSlide: false,
   breakpoints: {
     0: {
       slidesPerView: 1,

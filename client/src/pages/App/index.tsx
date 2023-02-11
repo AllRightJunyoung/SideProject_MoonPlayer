@@ -7,6 +7,7 @@ import GlobalStyle from 'styles/GlobalStyle';
 import { DiaLogContextProvider } from 'context/Dialog';
 import ProtectedRoute from 'Route/ProtectedRoute';
 import DiaLog from 'components/Global/UI/Dialog';
+import { RedirectPage } from '../Redirect/index';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           }
           path="/user"
         ></Route>
-        <Route element={<LoginPage />} path="/"></Route>;
+        <Route element={<LoginPage />} path="/"></Route>;<Route element={<RedirectPage />} path="/oauth"></Route>;
       </Routes>
     </DiaLogContextProvider>
   );
