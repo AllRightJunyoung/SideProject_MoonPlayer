@@ -1,34 +1,31 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { getRequestForOauth } from 'utils/auth';
 import { UserStateType } from 'types/store';
-import { getToken } from 'utils/auth';
-import { authTokenType } from 'types/app/auth/index';
+import { getToken, getCode } from 'utils/auth';
 
-interface LoginInfo {
-  code: string;
-  socialName: string;
-}
+// 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
 const initialState: UserStateType = {
-  data: {
-    access_token: '',
-    expires_in: 0,
-    id_token: '',
-    scope: '',
-    token_type: '',
+  kakao: {
+    profile_image: '',
+    nickname: '',
   },
-  info: '',
-  status: 'idle',
+  token: {
+    access_token: '',
+    expire_in: 0,
+  },
+  provider: '',
 };
-const fetchUserToken = createAsyncThunk('user', async (info: LoginInfo, thunkApi: any) => {
+
+type providerType = {
+  provider: string;
+  code: string;
+};
+
+const sendAuthCode = createAsyncThunk('user', async (obj: providerType, thunkApi: any) => {
   try {
-    const { code, socialName } = info;
-    const { REQUEST_URI, REQUEST_BODY } = getRequestForOauth(code, socialName);
-    const response = await getToken(REQUEST_URI, REQUEST_BODY);
-    if (response) {
-      return response.data;
-    }
-    throw Error;
+    const response = await getToken(`http://localhost:4001/api/auth/${obj.provider}?code=${obj.code}`);
+    if (!response) throw new Error();
+    return response.data;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
   }
@@ -40,28 +37,16 @@ export const UserSlice = createSlice({
   // 가져온 유저 토큰
   initialState,
   reducers: {
-    handleLoginInfo: (state: UserStateType, action: PayloadAction<string>) => {
-      state.info = action.payload;
+    handleSoicalLoginProvider: (state: UserStateType, action: PayloadAction<string>) => {
+      state.provider = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUserToken.pending, (state: UserStateType) => {
-      state.status = 'Loading';
+    builder.addCase(sendAuthCode.fulfilled, (state: UserStateType, action: PayloadAction<string>) => {
+      state.token.access_token = action.payload;
     });
-
-    builder.addCase(fetchUserToken.fulfilled, (state: UserStateType, action: PayloadAction<authTokenType>) => {
-      state.status = 'Complete';
-      state.data = action.payload;
-    });
-
-    builder.addCase(fetchUserToken.rejected, (state: UserStateType) => {
-      state.status = 'Fail';
-    });
-
-    // 로그아웃시 발생
-    builder.addCase(PURGE, () => initialState);
   },
 });
 export default UserSlice;
-export { fetchUserToken };
-export const { handleLoginInfo } = UserSlice.actions;
+export { sendAuthCode };
+export const { handleSoicalLoginProvider } = UserSlice.actions;
