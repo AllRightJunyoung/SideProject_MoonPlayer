@@ -4,11 +4,10 @@ import { UserStateType } from 'types/store';
 import { getToken, getCode } from 'utils/auth';
 
 // 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
-
 const initialState: UserStateType = {
   kakao: {
-    email: '',
-    nick: '',
+    profile_image: '',
+    nickname: '',
   },
   token: {
     access_token: '',
@@ -16,10 +15,7 @@ const initialState: UserStateType = {
   },
   provider: '',
 };
-type TokenType = {
-  access_token: string;
-  expire_in: number;
-};
+
 type providerType = {
   provider: string;
   code: string;
@@ -46,8 +42,8 @@ export const UserSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(sendAuthCode.fulfilled, (state: UserStateType, action: PayloadAction<TokenType>) => {
-      state.token = action.payload;
+    builder.addCase(sendAuthCode.fulfilled, (state: UserStateType, action: PayloadAction<string>) => {
+      state.token.access_token = action.payload;
     });
   },
 });

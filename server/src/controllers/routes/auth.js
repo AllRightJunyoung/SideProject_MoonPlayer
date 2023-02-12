@@ -1,51 +1,88 @@
-// const { getRequestForOauth,getOAuthToken } = require("../../utils/auth")
-const qs=require('qs')
-const jwt=require('jsonwebtoken')
 const axios=require('axios')
+const jwt=require('../../utils/jwt')
+const User=require('../../models/kakaoUser')
 
-
-const kakaoLogin=async (req,res,next)=>{
-   const {code}=req.query
+const makeFormData = params => {
+    const searchParams = new URLSearchParams()
+    Object.keys(params).forEach(key => {
+        searchParams.append(key, params[key])
+    })
+    return searchParams
+}
+const kakaoLogin = async (req, res, next) => {
+    const {code} = req.query
     let response;
     try {
-        response= await axios({
-            method:'post',
+        response = await axios({
+            method: 'POST',
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-              },
-            url:'https://kauth.kakao.com/oauth/token',
-            data:qs.stringify({
-                grant_type:'authorization_code',
-                client_id:process.env.KAKAO_ID,
-                redirect_uri:'http://localhost:3000/oauth',
-                code,
+                'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            },
+            url: 'https://kauth.kakao.com/oauth/token',
+            data: makeFormData({
+                "grant_type": "authorization_code",
+                "client_id": "dfbddbed8afe413f00d42428d65299ea",
+                "redirect_uri": "http://localhost:3000/oauth",
+                "code": code,
+                "client_secret": "NOBbZWSHqGJ3SMYaHArg8fvdVp0ZWzSV"
             })
         })
     } catch (error) {
-       console.log(error)        
+        console.log(error)
+        return
     }
 
-    const {access_token,expires_in}=response.data
+    const {access_token} = response.data
 
-    let userData;
-    // accessToken기반으로 사용자데이터 가져옴
+    let userData;     // accessToken기반으로 사용자데이터 가져옴
     try {
-        userData=await axios('https://kapi.kakao.com/v2/user/me',({
-            headers:{
+        userData = await axios('https://kapi.kakao.com/v2/user/me', ({
+            headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         }))
     } catch (error) {
         console.log(error)
     }
-    console.log(userData)
-    console.log(userData.data.id,userData.properties)
-    // 요거기반으로 식별값 사용하기
-    
-//    res.status(200).json({
-//     token:response.data.access_token,
-//     expires_in:response.data.expires_in,
-//    })
+    // console.log(userData)
+    // console.log(userData.data.id,userData.data.properties.nickname,userData.data.properties.profile_image)
+
+    let existingUser;
+    try {
+        existingUser = await User.findOne({userId: userData.data.id});
+    } catch (error) {
+        console.log(error)
+    }
+    let createdUser;
+    if(existingUser===null){ //DB에 저장
+        createdUser = new User({
+            userId:userData.data.id,
+            nickname:userData.data.properties.nickname,
+            profile_image:userData.data.properties.profile_image,
+            provider:'kakao'
+          });
+        try {
+            await createdUser.save();
+        } catch (err) {
+            const error = new HttpError('DB SAVE ERROR)',500);
+            return next(error);
+        }
+        const accessToken=jwt.createToken({
+            nickname:userData.data.properties.nickname,
+            profile_image:userData.data.properties.profile_image,
+            provider:'kakao'
+        })
+        res.status(200).json({
+            accessToken
+        })
+    }
+    else{
+        const access_token=jwt.createToken(existingUser)
+        console.log(access_token)
+        res.status(200).json({
+            access_token
+        })
+    }
 }
 
-exports.kakaoLogin=kakaoLogin
+exports.kakaoLogin = kakaoLogin

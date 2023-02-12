@@ -42,8 +42,8 @@ export interface LayoutStateType {
 
 export interface UserStateType {
   kakao: {
-    email: string;
-    nick: string;
+    profile_image: string;
+    nickname: string;
   };
   token: {
     access_token: string;

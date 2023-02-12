@@ -7,7 +7,6 @@ export const RedirectPage = () => {
   const dispatch = useAppDispatch();
   const userState = useAppSelector((state) => state.user);
   const code = getCode();
-  console.log(code);
   useEffect(() => {
     const obj = {
       provider: userState.provider,
