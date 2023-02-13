@@ -9,8 +9,7 @@ import { useAuthenticator } from 'hooks/useAuthenticator';
 import { DiaLogContext } from 'context/Dialog/index';
 import { assignAuthURL } from 'utils/auth';
 import { useAppDispatch } from 'hooks/useReduxStore';
-import { handleSoicalLoginProvider } from 'store/feature/user/userSlice';
-import axios from 'axios';
+import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 
 export const Form = () => {
   const dialogCtx = useContext(DiaLogContext);
