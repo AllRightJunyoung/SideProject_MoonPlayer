@@ -4,7 +4,7 @@ import ImageIcon from 'components/Global/style/ImageIcon';
 import Button from 'components/Global/style/Button/Button';
 import Text from 'components/Global/style/Text';
 import Flex from 'components/Global/style/Flex';
-import { assignAuthURL } from 'utils/auth';
+import { assignAuthURL, isOAuthName } from 'utils/auth';
 import { useAppDispatch } from 'hooks/useReduxStore';
 import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 
@@ -13,6 +13,7 @@ export const Form = () => {
 
   const handleLoginButton = (e) => {
     const name = e.target.dataset.name;
+    if (!isOAuthName(name)) return;
     dispatch(handleSoicalLoginProvider(name));
     assignAuthURL(name);
   };
