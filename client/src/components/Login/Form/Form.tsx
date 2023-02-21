@@ -4,27 +4,15 @@ import ImageIcon from 'components/Global/style/ImageIcon';
 import Button from 'components/Global/style/Button/Button';
 import Text from 'components/Global/style/Text';
 import Flex from 'components/Global/style/Flex';
-import { useEffect, useContext } from 'react';
-import { useAuthenticator } from 'hooks/useAuthenticator';
-import { DiaLogContext } from 'context/Dialog/index';
 import { assignAuthURL } from 'utils/auth';
 import { useAppDispatch } from 'hooks/useReduxStore';
 import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 
 export const Form = () => {
-  const dialogCtx = useContext(DiaLogContext);
   const dispatch = useAppDispatch();
-
-  const { signIn } = useAuthenticator();
-
-  useEffect(() => {
-    // signIn();
-    // dialogCtx.showAlarm('로그인 하였습니다.');
-  }, []);
 
   const handleKakaoLogin = async () => {
     dispatch(handleSoicalLoginProvider('kakao'));
-
     assignAuthURL('kakao');
   };
 

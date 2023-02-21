@@ -51,10 +51,9 @@ const kakaoLogin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
-  let createdUser;
   if (existingUser === null) {
     //DB에 저장
-    createdUser = new User({
+    const createdUser = new User({
       userId: userData.data.id,
       nickname: userData.data.properties.nickname,
       profile_image: userData.data.properties.profile_image,
@@ -66,19 +65,24 @@ const kakaoLogin = async (req, res, next) => {
       const error = new HttpError("DB SAVE ERROR)", 500);
       return next(error);
     }
-    const accessToken = jwt.createToken({
+    const access_token = jwt.createToken({
       nickname: userData.data.properties.nickname,
       profile_image: userData.data.properties.profile_image,
       provider: "kakao",
     });
     res.status(200).json({
-      accessToken,
+      access_token,
+      expire_in: 1000 * 60 * 60,
     });
   } else {
-    const access_token = jwt.createToken(existingUser);
-
+    const access_token = jwt.createToken({
+      nickname: existingUser.nickname,
+      profile_image: existingUser.profile_image,
+      provider: "kakao",
+    });
     res.status(200).json({
       access_token,
+      expire_in: 1000 * 60 * 60,
     });
   }
 };

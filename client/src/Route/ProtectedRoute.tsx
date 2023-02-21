@@ -1,14 +1,14 @@
 import { ReactElement, useContext } from 'react';
-import { useAuthenticator } from 'hooks/useAuthenticator';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/useReduxStore';
 import { DiaLogContext } from 'context/Dialog';
+import useLogin from 'hooks/useLogin';
 interface ProtectedRouteProps {
   children: ReactElement;
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const access_token = useAppSelector((state) => state.user.access_token);
+  const { access_token } = useLogin();
   const dialogCtx = useContext(DiaLogContext);
 
   if (!access_token) {

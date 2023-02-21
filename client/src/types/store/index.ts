@@ -45,8 +45,9 @@ export interface UserStateType {
     profile_image: string;
     nickname: string;
   };
-
-  access_token: string;
-  expire_in: number;
+  token: {
+    access_token: string;
+    expire_in: number;
+  };
   provider: string;
 }

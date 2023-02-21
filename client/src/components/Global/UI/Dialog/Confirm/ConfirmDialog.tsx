@@ -5,7 +5,7 @@ import Avatar from 'components/Global/style/Avatar';
 import { Text } from 'components/Global/style/Text';
 import { useContext } from 'react';
 import { DiaLogContext } from 'context/Dialog/index';
-import { useAuthenticator } from 'hooks/useAuthenticator';
+import { useLogin } from 'hooks/useLogin';
 import { ConfirMessageType } from 'types/app/UI/Dialog';
 const confirmAlarmMessage: ConfirMessageType = {
   Logout: '로그아웃되었습니다.',
@@ -14,7 +14,7 @@ const confirmAlarmMessage: ConfirMessageType = {
 };
 export const ConfirmDialog = () => {
   const dialogCtx = useContext(DiaLogContext);
-  const { signOut } = useAuthenticator();
+  const { signOut } = useLogin();
   const confirm = dialogCtx.state.confirm;
   // confirm 타입에 맞게 함수를 실행시켜준다
   const handleYesButton = () => {
