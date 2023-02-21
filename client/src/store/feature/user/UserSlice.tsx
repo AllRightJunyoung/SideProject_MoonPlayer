@@ -29,7 +29,6 @@ const getAccessToken = createAsyncThunk('user', async (obj: providerType, thunkA
   try {
     const response = await getToken(`http://localhost:4001/api/auth/${obj.provider}?code=${obj.code}`);
     if (!response) throw new Error();
-
     return response.data;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
@@ -48,7 +47,8 @@ export const UserSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getAccessToken.fulfilled, (state: UserStateType, action: PayloadAction<TokenType>) => {
-      state.token = action.payload;
+      state.token.access_token = action.payload.access_token;
+      state.token.expire_in = new Date().getTime() + action.payload.expire_in;
     });
     builder.addCase(PURGE, () => initialState);
   },
