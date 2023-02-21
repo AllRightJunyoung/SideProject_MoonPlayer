@@ -11,24 +11,29 @@ import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 export const Form = () => {
   const dispatch = useAppDispatch();
 
-  const handleKakaoLogin = async () => {
-    dispatch(handleSoicalLoginProvider('kakao'));
-    assignAuthURL('kakao');
+  const handleLoginButton = (e) => {
+    const name = e.target.dataset.name;
+    dispatch(handleSoicalLoginProvider(name));
+    assignAuthURL(name);
   };
 
   return (
     <Layout direction="column" justifyContent="center" alignItems="center">
-      {/* <StyledButton color="#5c79f1" fontColor="white" onClick={handleLoginButton} data-name="Google">
-        <SocialLoginIcon name="Google" />
-        <StyledText color="white">Google 로그인</StyledText>
+      <StyledButton color="#5c79f1" fontColor="white" onClick={handleLoginButton} data-name="google">
+        <SocialLoginIcon name="Google" data-name="google" />
+        <StyledText color="white" data-name="google">
+          Google 로그인
+        </StyledText>
       </StyledButton>
       <StyledButton color="#1cc802" fontColor="white" onClick={handleLoginButton} data-name="Naver">
         <SocialLoginIcon name="Naver" />
         <StyledText color="white">네이버 로그인</StyledText>
-      </StyledButton> */}
-      <StyledButton color="#ffeb3b" fontColor="black" onClick={handleKakaoLogin} data-name="Kakao">
-        <SocialLoginIcon name="Kakao" />
-        <StyledText color="black">카카오 로그인</StyledText>
+      </StyledButton>
+      <StyledButton color="#ffeb3b" fontColor="black" onClick={handleLoginButton} data-name="kakao">
+        <SocialLoginIcon name="Kakao" data-name="kakao" />
+        <StyledText color="black" data-name="kakao">
+          카카오 로그인
+        </StyledText>
       </StyledButton>
     </Layout>
   );

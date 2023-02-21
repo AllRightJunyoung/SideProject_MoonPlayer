@@ -27,7 +27,6 @@ module.exports = {
     'no-multiple-empty-lines': [1, { max: 1 }],
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
-    'max-len': ['error', { code: 120 }],
     'no-useless-escape': 'off',
     'testing-library/no-debugging-utils': [
       'error',

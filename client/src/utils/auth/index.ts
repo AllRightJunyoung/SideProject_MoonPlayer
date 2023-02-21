@@ -3,7 +3,6 @@ import axios from 'axios';
 import { GOOGLE_OAUTH_URL, KAKAO_OAUTH_URL, NAVER_OAUTH_URL } from '../../constants/auth';
 export const getToken = async (REQUEST_URI: string) => {
   try {
-    console.log(REQUEST_URI);
     const response = await axios.get(REQUEST_URI);
     return response;
   } catch (error) {
