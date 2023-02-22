@@ -4,44 +4,39 @@ import ImageIcon from 'components/Global/style/ImageIcon';
 import Button from 'components/Global/style/Button/Button';
 import Text from 'components/Global/style/Text';
 import Flex from 'components/Global/style/Flex';
-import { useEffect, useContext } from 'react';
-import { useAuthenticator } from 'hooks/useAuthenticator';
-import { DiaLogContext } from 'context/Dialog/index';
-import { assignAuthURL } from 'utils/auth';
+import { assignAuthURL, isOAuthName } from 'utils/auth';
 import { useAppDispatch } from 'hooks/useReduxStore';
-import { handleSoicalLoginProvider } from 'store/feature/user/userSlice';
-import axios from 'axios';
+import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 
 export const Form = () => {
-  const dialogCtx = useContext(DiaLogContext);
   const dispatch = useAppDispatch();
 
-  const { signIn } = useAuthenticator();
-
-  useEffect(() => {
-    // signIn();
-    // dialogCtx.showAlarm('로그인 하였습니다.');
-  }, []);
-
-  const handleKakaoLogin = async () => {
-    dispatch(handleSoicalLoginProvider('kakao'));
-
-    assignAuthURL('kakao');
+  const handleLoginButton = (e) => {
+    const name = e.target.dataset.name;
+    if (!isOAuthName(name)) return;
+    dispatch(handleSoicalLoginProvider(name));
+    assignAuthURL(name);
   };
 
   return (
     <Layout direction="column" justifyContent="center" alignItems="center">
-      {/* <StyledButton color="#5c79f1" fontColor="white" onClick={handleLoginButton} data-name="Google">
-        <SocialLoginIcon name="Google" />
-        <StyledText color="white">Google 로그인</StyledText>
+      <StyledButton color="#5c79f1" fontColor="white" onClick={handleLoginButton} data-name="google">
+        <SocialLoginIcon name="Google" data-name="google" />
+        <StyledText color="white" data-name="google">
+          Google 로그인
+        </StyledText>
       </StyledButton>
-      <StyledButton color="#1cc802" fontColor="white" onClick={handleLoginButton} data-name="Naver">
+      <StyledButton color="#1cc802" fontColor="white" onClick={handleLoginButton} data-name="naver">
         <SocialLoginIcon name="Naver" />
-        <StyledText color="white">네이버 로그인</StyledText>
-      </StyledButton> */}
-      <StyledButton color="#ffeb3b" fontColor="black" onClick={handleKakaoLogin} data-name="Kakao">
-        <SocialLoginIcon name="Kakao" />
-        <StyledText color="black">카카오 로그인</StyledText>
+        <StyledText color="white" data-name="naver">
+          네이버 로그인
+        </StyledText>
+      </StyledButton>
+      <StyledButton color="#ffeb3b" fontColor="black" onClick={handleLoginButton} data-name="kakao">
+        <SocialLoginIcon name="Kakao" data-name="kakao" />
+        <StyledText color="black" data-name="kakao">
+          카카오 로그인
+        </StyledText>
       </StyledButton>
     </Layout>
   );

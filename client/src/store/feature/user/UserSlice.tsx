@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
 import { UserStateType } from 'types/store';
-import { getToken, getCode } from 'utils/auth';
+import { getToken } from 'utils/auth';
 
 // 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
 const initialState: UserStateType = {
@@ -20,8 +20,12 @@ type providerType = {
   provider: string;
   code: string;
 };
+type TokenType = {
+  access_token: string;
+  expire_in: number;
+};
 
-const sendAuthCode = createAsyncThunk('user', async (obj: providerType, thunkApi: any) => {
+const getAccessToken = createAsyncThunk('user', async (obj: providerType, thunkApi: any) => {
   try {
     const response = await getToken(`http://localhost:4001/api/auth/${obj.provider}?code=${obj.code}`);
     if (!response) throw new Error();
@@ -42,11 +46,12 @@ export const UserSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(sendAuthCode.fulfilled, (state: UserStateType, action: PayloadAction<string>) => {
-      state.token.access_token = action.payload;
+    builder.addCase(getAccessToken.fulfilled, (state: UserStateType, action: PayloadAction<TokenType>) => {
+      state.token.access_token = action.payload.access_token;
+      state.token.expire_in = new Date().getTime() + action.payload.expire_in;
     });
+    builder.addCase(PURGE, () => initialState);
   },
 });
-export default UserSlice;
-export { sendAuthCode };
+export { getAccessToken };
 export const { handleSoicalLoginProvider } = UserSlice.actions;

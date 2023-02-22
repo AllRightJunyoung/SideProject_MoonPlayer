@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { UserSlice } from 'store/feature/user/userSlice';
+import { UserSlice } from 'store/feature/user/UserSlice';
 import { LayoutSlice } from 'store/feature/layout/LayoutSlice';
 import { music } from './music';
 import { persistReducer } from 'redux-persist';
