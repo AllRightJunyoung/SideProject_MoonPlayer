@@ -26,9 +26,11 @@ export const Form = () => {
           Google 로그인
         </StyledText>
       </StyledButton>
-      <StyledButton color="#1cc802" fontColor="white" onClick={handleLoginButton} data-name="Naver">
+      <StyledButton color="#1cc802" fontColor="white" onClick={handleLoginButton} data-name="naver">
         <SocialLoginIcon name="Naver" />
-        <StyledText color="white">네이버 로그인</StyledText>
+        <StyledText color="white" data-name="naver">
+          네이버 로그인
+        </StyledText>
       </StyledButton>
       <StyledButton color="#ffeb3b" fontColor="black" onClick={handleLoginButton} data-name="kakao">
         <SocialLoginIcon name="Kakao" data-name="kakao" />
