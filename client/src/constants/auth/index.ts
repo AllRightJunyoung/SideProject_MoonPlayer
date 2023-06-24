@@ -10,6 +10,6 @@ export const GOOGLE_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?cl
 
 // eslint-disable-next-line max-len
 export const NAVER_OAUTH_URL = `https://nid.naver.com/oauth2.0/authorize?&response_type=code&client_id=${NAVER_ID}&redirect_uri=${REDIRECT_URI}&state=MoonPlayer`;
-export const NAVER_REQUEST_URL = `https://nid.naver.com/oauth2.0/token`;
+// export const NAVER_REQUEST_URL = `https://nid.naver.com/oauth2.0/token`;
 // eslint-disable-next-line max-len
-export const NAVER_REQUEST_BODY = `grant_type=authorization_code&client_id=${NAVER_ID}&client_secret=${NAVER_Secret_ID}`;
+// export const NAVER_REQUEST_BODY = `grant_type=authorization_code&client_id=${NAVER_ID}&client_secret=${NAVER_Secret_ID}`;
