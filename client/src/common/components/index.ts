@@ -5,3 +5,5 @@ export { default as HiddenText } from './styles/HiddenText';
 export { default as Image } from './styles/Image';
 export { default as ScrollBox } from './styles/ScrollBox';
 export { default as Text } from './styles/Text';
+export { default as Icon } from './ui/Icon';
+export { default as CircleTooltip } from './ui/CircleTooltip';
