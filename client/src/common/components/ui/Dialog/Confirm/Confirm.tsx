@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Flex } from 'common/components/';
 import * as Styled from './Confirm.styled';
-import { DiaLogContext } from 'context/Dialog';
-import { confirmMessage } from '../../constants';
+import { DiaLogContext } from 'common/context/dialog';
+import { confirmMessage } from 'common/constants/dialog';
 import useLogin from 'hooks/useLogin';
 
 const Confirm = () => {

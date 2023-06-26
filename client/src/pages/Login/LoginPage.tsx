@@ -1,4 +1,4 @@
-import { LoginForm } from 'components/Login/LoginForm';
+import { LoginForm } from 'Login/components/LoginForm';
 
 import * as Styled from './LoginPage.styled';
 

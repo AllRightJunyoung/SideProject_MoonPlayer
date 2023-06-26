@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
 import { UserStateType } from 'types/store';
-import { getToken } from 'utils/auth';
+import { getToken } from 'Login/utils/auth';
 
 // 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
 const initialState: UserStateType = {

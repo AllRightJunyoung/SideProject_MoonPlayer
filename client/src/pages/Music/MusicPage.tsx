@@ -1,12 +1,7 @@
-import Navigation from 'components/Music/Navigation';
-import Genre from 'components/Music/Genre';
-import CustomPlayList from 'components/Music/CustomPlayList';
-import Footer from 'components/Music/Footer';
+import * as Styled from './MusicPage.styled';
 import { usePlayerControlModule } from 'hooks/usePlayerControlModule';
 import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
-import Main from 'components/Music/Main';
-
-import * as Styled from './MusicPage.styled';
+import { Navigation, Genre, Main, Footer, CustomPlayList } from 'Music/components';
 
 const MusicPage = () => {
   const { musicPlayer, playerModuleSelector } = usePlayerControlModule();

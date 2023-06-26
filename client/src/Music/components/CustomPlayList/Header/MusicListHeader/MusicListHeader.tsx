@@ -1,0 +1,32 @@
+import * as Styled from './MusicListHeader.styled';
+import { useContext } from 'react';
+import { DiaLogContext } from 'common/context/dialog';
+import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
+import { IconButton } from 'common/components';
+
+export const MusicListHeader = ({ title }) => {
+  const dialogCtx = useContext(DiaLogContext);
+  const { onhandleMyPlayListOptionUI } = useMusicPageUIControl();
+  const handleSpinnerButton = () => {
+    dialogCtx.showConfirm('Load');
+  };
+
+  return (
+    <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
+      <Styled.Title>{title}</Styled.Title>
+      <Styled.IconButtonBox direction="row">
+        <IconButton name="spinner" size="2x" color="white" onClick={handleSpinnerButton} />
+        <IconButton
+          name="home"
+          size="2x"
+          color="white"
+          onClick={() => {
+            onhandleMyPlayListOptionUI(true);
+          }}
+        />
+      </Styled.IconButtonBox>
+    </Styled.Layout>
+  );
+};
+
+export default MusicListHeader;

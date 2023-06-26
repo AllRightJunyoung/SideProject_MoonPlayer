@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import type { CSSObject } from 'styled-components';
-
-export const ScrollBox = styled.div<CSSObject>(
+import { ScrollBoxProps } from './ScrollBox.types';
+export const ScrollBox = styled.div<ScrollBoxProps>(
   ({ color = 'rgba(255,255,255,0.24)', radius = '7px' }) => `
   overflow-y: scroll;
   &::-webkit-scrollbar {

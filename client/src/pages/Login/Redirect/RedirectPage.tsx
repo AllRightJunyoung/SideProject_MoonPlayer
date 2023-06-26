@@ -1,4 +1,4 @@
-import { getCode } from 'utils/auth';
+import { getCode } from 'Login/utils/auth';
 import { useEffect } from 'react';
 import { getAccessToken } from 'store/feature/user/UserSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';

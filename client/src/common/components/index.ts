@@ -7,3 +7,5 @@ export { default as ScrollBox } from './styles/ScrollBox';
 export { default as Text } from './styles/Text';
 export { default as Icon } from './ui/Icon';
 export { default as CircleTooltip } from './ui/CircleTooltip';
+export { default as IconButton } from './ui/IconButton';
+export { default as Music } from './ui/Music';

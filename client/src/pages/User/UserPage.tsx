@@ -1,4 +1,4 @@
-import Nav from 'components/User/Nav';
+import Nav from 'User/components/Nav';
 import { useRef } from 'react';
 import * as Styled from './UserPage.styled';
 

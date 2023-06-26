@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';
 import { useEffect, useContext } from 'react';
-import { DiaLogContext } from '../context/Dialog/index';
+import { DiaLogContext } from '../common/context/dialog';
 
 let signOutTimer;
 export const useLogin = () => {
