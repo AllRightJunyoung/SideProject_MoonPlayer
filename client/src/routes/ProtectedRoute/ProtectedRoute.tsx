@@ -1,6 +1,6 @@
 import { ReactElement, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import useLogin from 'hooks/useLogin';
+import useLogin from 'Login/hooks/useLogin';
 interface ProtectedRouteProps {
   children: ReactElement;
 }

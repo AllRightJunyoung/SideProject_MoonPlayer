@@ -1,10 +1,11 @@
 import * as Styled from './Layout.styled';
-import { usePlayerControlModule } from 'hooks/usePlayerControlModule';
-import { formatMusicTime } from 'utils/app/Player';
+
+import { formatMusicTime } from 'Music/utils/player';
 
 import { Flex } from 'common/components';
-import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
+import { usePlayerController } from 'Music/hooks';
 
 const Footer = ({ player }) => {
   const {
@@ -14,7 +15,7 @@ const Footer = ({ player }) => {
     handleShuffleMusic,
     handlePrevPlayingMusic,
     handleNextPlayingMusic,
-  } = usePlayerControlModule();
+  } = usePlayerController();
 
   const { isOpenMusicFooterUI } = useMusicPageUIControl();
   const currentTime = formatMusicTime(+player.currentTime);

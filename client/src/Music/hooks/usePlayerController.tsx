@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 import ReactPlayer from 'react-player/lazy';
-import { usePlayerSelectMusic } from './usePlayerSelectMusic';
-import { useAppSelector, useAppDispatch } from 'hooks/useReduxStore';
+import useSelectMusicPlayer from './useSelectMusicPlayer';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import {
   handleRepeatMusicModule,
   handlePlayMusicModule,
@@ -11,15 +11,13 @@ import {
   handlePlaySelectedMusicModlue,
 } from 'store/feature/music/PlayerSlice';
 
-// 리액트 플레이어 모듈 커스텀훅
-
-export const usePlayerControlModule = () => {
+const usePlayerController = () => {
   const dispatch = useAppDispatch();
   const playerRef = useRef<ReactPlayer>(null);
   const playerSelector = useAppSelector((state) => state.music.player);
   const playerModuleSelector = useAppSelector((state) => state.music.player.playerControlModuleState);
 
-  const { handlePrevPlayingMusic, handleNextPlayingMusic, handleShuffleMusic } = usePlayerSelectMusic(); //음악을 고르는 훅
+  const { handlePrevPlayingMusic, handleNextPlayingMusic, handleShuffleMusic } = useSelectMusicPlayer(); //음악을 고르는 훅
 
   // 현재 재생시간
   const currentTime =
@@ -85,3 +83,5 @@ export const usePlayerControlModule = () => {
     handleNextPlayingMusic,
   };
 };
+
+export default usePlayerController;

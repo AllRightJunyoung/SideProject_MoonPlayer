@@ -1,7 +1,7 @@
 import { getCode } from 'Login/utils/auth';
 import { useEffect } from 'react';
 import { getAccessToken } from 'store/feature/user/UserSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 
 export const RedirectPage = () => {
   const dispatch = useAppDispatch();

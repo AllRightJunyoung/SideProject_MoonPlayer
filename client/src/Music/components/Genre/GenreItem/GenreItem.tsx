@@ -1,5 +1,5 @@
 import { fetchmusicList } from 'store/feature/music/PlayListSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import type { GenreItemProps } from './GernreItem.types';
 
 import * as Styled from './GenreItem.styled';

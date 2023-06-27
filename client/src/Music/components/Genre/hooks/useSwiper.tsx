@@ -6,7 +6,7 @@ import { useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperProps } from 'swiper/react';
 import { fetchmusicList } from 'store/feature/music/PlayListSlice';
-import { useAppDispatch } from 'hooks/useReduxStore';
+import { useAppDispatch } from 'common/hooks/useReduxStore';
 export const useSwiper = (slideitems) => {
   const dispatch = useAppDispatch();
   const [swiperModule, setSwiperModule] = useState<SwiperCore>();

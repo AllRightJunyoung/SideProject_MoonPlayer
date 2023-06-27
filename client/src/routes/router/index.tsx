@@ -1,7 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { LoginPage, MusicPage, UserPage, RedirectPage } from 'pages';
+
 import ProtectedRoute from 'routes/ProtectedRoute/ProtectedRoute';
 import App from 'App';
+import { LoginPage, Redirect } from 'Login/page/';
+import { UserPage } from 'User/page';
+import { MusicPage } from 'Music/page';
+
 export const ROUTE_URL = {
   LOGIN: '/login',
   OAUTH: '/oauth',
@@ -17,7 +21,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <LoginPage /> },
       { path: ROUTE_URL.LOGIN, element: <LoginPage /> },
-      { path: ROUTE_URL.OAUTH, element: <RedirectPage /> },
+      { path: ROUTE_URL.OAUTH, element: <Redirect /> },
       {
         path: ROUTE_URL.USER,
         element: (

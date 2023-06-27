@@ -10,7 +10,6 @@ export const nextSelctedMusic = (playerItems: readonly MusicDataType[], music: M
   return nextMusicIndex < playerItems.length ? playerItems[nextMusicIndex] : playerItems[0];
 };
 
-// 불변타입?
 export const shuffleMusic = (playerItems: MusicDataType[]): MusicDataType[] => {
   const newPlayerItems = cloneDeep(playerItems);
   for (let index = newPlayerItems.length - 1; index > 0; index--) {

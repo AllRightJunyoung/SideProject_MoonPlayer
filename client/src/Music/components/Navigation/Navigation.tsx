@@ -1,16 +1,16 @@
-import { useContext } from 'react';
-
 import * as Styled from './Navigation.styled';
 
+import { useContext } from 'react';
+
 import { IconButton } from 'common/components';
-import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
 import { DiaLogContext } from 'common/context/dialog';
-import { removeStoreItems } from 'utils/redux-persist';
+import { useMusicPageController } from 'Music/hooks';
+import { removeStoreItems } from 'common/utils/redux-persist';
 
 export const Navigation = () => {
   const dialogCtx = useContext(DiaLogContext);
+  const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageController();
 
-  const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIControl();
   const handleLogOut = () => {
     dialogCtx.showAlarm('로그아웃 되었습니다.');
     removeStoreItems();

@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { useAppSelector, useAppDispatch } from 'hooks/useReduxStore';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import {
   handleOpenAddPlayListUI,
   handleOpenMusicFooterUI,
@@ -8,7 +8,7 @@ import {
   handleMyPlayListOptionUI,
 } from 'store/feature/layout/LayoutSlice';
 
-export const useMusicPageUIControl = () => {
+const useMusicPageController = () => {
   const dispatch = useAppDispatch();
   const isOpenCustomPlayListUI = useAppSelector((state) => state.layout.customPlayList.isOpen);
   const isOpenAddMusicListUI = useAppSelector((state) => state.layout.customPlayList.addPlayList.isOpen);
@@ -53,4 +53,4 @@ export const useMusicPageUIControl = () => {
   };
 };
 
-export default useMusicPageUIControl;
+export default useMusicPageController;

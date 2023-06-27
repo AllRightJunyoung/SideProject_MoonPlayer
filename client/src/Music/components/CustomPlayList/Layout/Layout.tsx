@@ -1,7 +1,7 @@
 import * as Styled from './Layout.styled';
 
 import { useRef } from 'react';
-import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageController';
 import { AddPlayList } from '../AddPlayList';
 import { MyPlayList } from '../MyPlayList/Layout';
 

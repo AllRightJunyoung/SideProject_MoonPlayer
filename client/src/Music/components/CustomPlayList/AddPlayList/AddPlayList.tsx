@@ -1,6 +1,6 @@
 import * as Styled from './AddPlayList.styled';
 
-import { useAppSelector } from 'hooks/useReduxStore';
+import { useAppSelector } from 'common/hooks/useReduxStore';
 import { useContext } from 'react';
 import AddPlayListHeader from '../Header/MainHeader/MainHeader';
 import { DiaLogContext } from 'common/context/dialog';

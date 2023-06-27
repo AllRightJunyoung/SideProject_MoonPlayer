@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { fetchmusicGenre } from 'store/feature/music/GenreSlice';
-import { useAppDispatch } from 'hooks/useReduxStore';
+import { useAppDispatch } from 'common/hooks/useReduxStore';
 
 import './index.css';
 
 import * as Styled from './Layout.styled';
 import GenreSlider from '../GenreSlider/GenreSlider';
 
-export const Genre = () => {
+export const GenreLayout = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchmusicGenre('http://localhost:4001/api/music/genre/'));
@@ -20,4 +20,4 @@ export const Genre = () => {
   );
 };
 
-export default Genre;
+export default GenreLayout;

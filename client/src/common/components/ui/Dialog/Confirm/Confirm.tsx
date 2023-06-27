@@ -3,7 +3,7 @@ import { Flex } from 'common/components/';
 import * as Styled from './Confirm.styled';
 import { DiaLogContext } from 'common/context/dialog';
 import { confirmMessage } from 'common/constants/dialog';
-import useLogin from 'hooks/useLogin';
+import useLogin from 'Login/hooks/useLogin';
 
 const Confirm = () => {
   const dialogCtx = useContext(DiaLogContext);

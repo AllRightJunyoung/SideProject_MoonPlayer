@@ -1,11 +1,11 @@
 import * as Styled from './MusicPage.styled';
-import { usePlayerControlModule } from 'hooks/usePlayerControlModule';
-import useMusicPageUIControl from 'hooks/useMusicPageUIControl';
+
 import { Navigation, Genre, Main, Footer, CustomPlayList } from 'Music/components';
+import { usePlayerController, useMusicPageController } from 'Music/hooks';
 
 const MusicPage = () => {
-  const { musicPlayer, playerModuleSelector } = usePlayerControlModule();
-  const { isOpenCustomPlayListUI } = useMusicPageUIControl();
+  const { musicPlayer, playerModuleSelector } = usePlayerController();
+  const { isOpenCustomPlayListUI } = useMusicPageController();
 
   return (
     <Styled.Layout direction="column">

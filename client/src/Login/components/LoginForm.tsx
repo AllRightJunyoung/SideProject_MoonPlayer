@@ -1,7 +1,7 @@
 import * as Styled from './LoginForm.styled';
 
 import { assignAuthURL, isOAuthName } from 'Login/utils/auth';
-import { useAppDispatch } from 'hooks/useReduxStore';
+import { useAppDispatch } from 'common/hooks/useReduxStore';
 import { handleSoicalLoginProvider } from 'store/feature/user/UserSlice';
 
 export const LoginForm = () => {

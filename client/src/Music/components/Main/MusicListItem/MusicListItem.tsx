@@ -2,7 +2,7 @@ import * as Styled from './MusicListItem.styled';
 import { IconButton, CircleTooltip } from 'common/components';
 
 import { handleAddPlayer } from 'store/feature/music/PlayerSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import { MusicDataType } from 'types/app/data/index';
 
 const MusicListItem = ({ id, name, img_url, source_url }: MusicDataType) => {

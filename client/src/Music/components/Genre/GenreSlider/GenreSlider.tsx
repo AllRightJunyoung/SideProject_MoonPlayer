@@ -1,7 +1,7 @@
 import * as Styled from './GenreSlider.styled';
 
-import { useSwiper } from 'hooks/useSwiper';
-import { useAppSelector } from 'hooks/useReduxStore';
+import { useSwiper } from 'Music/components/Genre/hooks/useSwiper';
+import { useAppSelector } from 'common/hooks/useReduxStore';
 import { SwiperSlide } from 'swiper/react';
 import { GenreItem } from '../GenreItem';
 

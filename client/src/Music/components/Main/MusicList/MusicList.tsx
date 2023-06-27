@@ -2,7 +2,7 @@ import * as Styled from './MusicList.styled';
 
 import { useEffect } from 'react';
 import { fetchmusicList } from 'store/feature/music/PlayListSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import { MainHeader } from '../Header/MainHeader';
 import { MusicListItem } from '../MusicListItem';
 

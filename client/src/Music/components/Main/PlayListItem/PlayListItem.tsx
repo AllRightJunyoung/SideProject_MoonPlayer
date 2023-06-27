@@ -1,16 +1,16 @@
 import * as Styled from './PlayListItem.styled';
 
 import { handleRemoveMusic, handleAddMusic } from 'store/feature/music/PlayerSlice';
-import { useAppSelector, useAppDispatch } from 'hooks/useReduxStore';
-import { useMusicPageUIControl } from 'hooks/useMusicPageUIControl';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
 import { MusicDataType } from 'types/app/data/index';
 import { CircleTooltip, IconButton } from 'common/components';
+import { useMusicPageController } from 'Music/hooks';
 
 export const PlayListItem = ({ name, img_url, id, source_url }: MusicDataType) => {
   const dispatch = useAppDispatch();
-  const { onhandleOpenMusicFooterUI } = useMusicPageUIControl();
+  const { onhandleOpenMusicFooterUI } = useMusicPageController();
   const DialogCtx = useContext(DiaLogContext);
 
   const playerSelector = useAppSelector((state) => state.music.player);
