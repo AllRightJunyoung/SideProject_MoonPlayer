@@ -23,7 +23,7 @@ const fetchmusicList = createAsyncThunk('musicList', async (url: string, thunkAp
 });
 
 // Reducer
-export const musicPlayListSlice = createSlice({
+export const playListSlice = createSlice({
   name: 'musicPlayList',
   initialState,
   reducers: {},
@@ -44,5 +44,5 @@ export const musicPlayListSlice = createSlice({
     builder.addCase(PURGE, () => initialState);
   },
 });
-export default musicPlayListSlice;
+export default playListSlice;
 export { fetchmusicList };

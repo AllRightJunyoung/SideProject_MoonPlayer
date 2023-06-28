@@ -1,8 +1,8 @@
-import { useMusicPageController } from 'Music/hooks';
+import { useMusicPageUIController } from 'Music/components/hooks';
 import * as Styled from './MainHeader.styled';
 
 export const MainHeader = ({ title }) => {
-  const { isOpenAddMusicListUI, onhandleOpenAddPlayListUI } = useMusicPageController();
+  const { isOpenAddMusicListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
 
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">

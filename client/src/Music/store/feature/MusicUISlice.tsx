@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { LayoutStateType } from 'common/types/store';
-export const initialState: LayoutStateType = {
+import { MusicUIStateType } from 'common/types/store';
+export const initialState: MusicUIStateType = {
   main: {
     isOpenMusicList: true,
   },
@@ -21,23 +21,23 @@ export const initialState: LayoutStateType = {
   },
 };
 
-export const LayoutSlice = createSlice({
-  name: 'layout',
+export const MusicUISlice = createSlice({
+  name: 'MusicUI',
   initialState,
   reducers: {
-    handleOpenCustomPlayListUI: (state: LayoutStateType, action: PayloadAction<boolean>) => {
+    handleCustomPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.isOpen = action.payload;
     },
-    handleOpenAddPlayListUI: (state: LayoutStateType, action: PayloadAction<boolean>) => {
+    handlePlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.addPlayList.isOpen = action.payload;
     },
-    handleMyPlayListOptionUI: (state: LayoutStateType, action: PayloadAction<boolean>) => {
+    handleMyPlayListOptionUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.myPlayList.option.isOpen = action.payload;
     },
-    handleMusicListUI: (state: LayoutStateType, action: PayloadAction<boolean>) => {
+    handleMusicListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.main.isOpenMusicList = action.payload;
     },
-    handleOpenMusicFooterUI: (state: LayoutStateType, action: PayloadAction<boolean>) => {
+    handleMusicFooterUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.footer.isOpen = action.payload;
     },
   },
@@ -46,9 +46,9 @@ export const LayoutSlice = createSlice({
   },
 });
 export const {
-  handleOpenAddPlayListUI,
-  handleOpenMusicFooterUI,
-  handleOpenCustomPlayListUI,
+  handleCustomPlayListUI,
+  handlePlayListUI,
   handleMusicListUI,
+  handleMusicFooterUI,
   handleMyPlayListOptionUI,
-} = LayoutSlice.actions;
+} = MusicUISlice.actions;

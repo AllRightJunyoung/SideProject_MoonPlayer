@@ -1,16 +1,16 @@
 import * as Styled from './PlayListItem.styled';
 import type { MusicItemType } from 'Music/types';
 
-import { handleRemoveMusic, handleAddMusic } from 'store/feature/music/PlayerSlice';
+import { handleRemoveMusic, handleAddMusic } from 'Music/store/feature/PlayerSlice';
 import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
 import { CircleTooltip, IconButton } from 'common/components';
-import { useMusicPageController } from 'Music/hooks';
+import { useMusicPageUIController } from 'Music/components/hooks';
 
 export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
   const dispatch = useAppDispatch();
-  const { onhandleOpenMusicFooterUI } = useMusicPageController();
+  const { onhandleMusicFooterUI } = useMusicPageUIController();
   const DialogCtx = useContext(DiaLogContext);
 
   const playerSelector = useAppSelector((state) => state.music.player);
@@ -25,7 +25,7 @@ export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) =
   const handlePlayMusic = () => {
     const currentMusic = { name, img_url, id, source_url };
     dispatch(handleAddMusic(currentMusic));
-    onhandleOpenMusicFooterUI(true); // 음악재생시 footer바가 자동으로 올라오게
+    onhandleMusicFooterUI(true); // 음악재생시 footer바가 자동으로 올라오게
   };
 
   return (

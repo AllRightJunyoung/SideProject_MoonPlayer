@@ -2,11 +2,11 @@ import * as Styled from './Layout.styled';
 import { useEffect } from 'react';
 import { MusicList } from '../MusicList';
 import { PlayList } from '../PlayList';
-import { useMusicPageController } from 'Music/hooks';
+import { useMusicPageUIController } from 'Music/components/hooks';
 import { useResolution } from 'common/hooks';
 
 const Layout = () => {
-  const { isOpenMusicList } = useMusicPageController();
+  const { isOpenMusicList } = useMusicPageUIController();
   const { resolution, setResolution } = useResolution();
 
   useEffect(() => {

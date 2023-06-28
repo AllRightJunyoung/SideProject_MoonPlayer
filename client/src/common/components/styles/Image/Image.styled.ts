@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { CSSObject } from 'styled-components';
 
 const Image = styled.img`
   object-fit: fill;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import { store } from 'store/store';
+import { store } from 'common/store/store';
 import App from 'App';
 
 import { PersistGate } from 'redux-persist/integration/react';

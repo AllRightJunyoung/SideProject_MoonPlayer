@@ -1,7 +1,7 @@
 import * as Styled from './MusicListHeader.styled';
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
-import useMusicPageUIControl from 'Music/hooks/useMusicPageController';
+import useMusicPageUIControl from 'Music/components/hooks/useMusicPageUIController';
 import { IconButton } from 'common/components';
 
 export const MusicListHeader = ({ title }) => {

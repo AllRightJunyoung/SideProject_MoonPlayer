@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'common/hooks/useReduxStore';
 import { useEffect, useContext } from 'react';
-import { DiaLogContext } from '../../common/context/dialog';
+import { DiaLogContext } from 'common/context/dialog';
 
 let signOutTimer;
 export const useLogin = () => {
   const navigate = useNavigate();
   const dialogCtx = useContext(DiaLogContext);
-  const userState = useAppSelector((state) => state.user);
-  const access_token = userState.token.access_token;
-  const tokenExpirationTime = userState.token.expire_in;
+  const loginState = useAppSelector((state) => state.login);
+  const access_token = loginState.token.access_token;
+  const tokenExpirationTime = loginState.token.expire_in;
 
   // 1. 토큰이 존재할때 로그인
 

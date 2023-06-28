@@ -3,19 +3,13 @@ import * as Styled from './Layout.styled';
 import { formatMusicTime } from 'Music/utils/player';
 
 import { Flex } from 'common/components';
-import useMusicPageUIControl from 'Music/hooks/useMusicPageController';
+import useMusicPageUIControl from 'Music/components/hooks/useMusicPageUIController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
-import { usePlayerController } from 'Music/hooks';
+import { usePlayerController } from 'Music/components/hooks';
 
 const Footer = ({ player }) => {
-  const {
-    handleRepeatMusicHandler,
-    handlePlayMusicHandler,
-    handleMusicVolumeHandler,
-    handleShuffleMusic,
-    handlePrevPlayingMusic,
-    handleNextPlayingMusic,
-  } = usePlayerController();
+  const { repeatMusic, playMusic, volumeControl, shuffleMusics, selectPrevMusic, selectNextMusic } =
+    usePlayerController();
 
   const { isOpenMusicFooterUI } = useMusicPageUIControl();
   const currentTime = formatMusicTime(+player.currentTime);
@@ -28,14 +22,14 @@ const Footer = ({ player }) => {
       <ProgressBar currentTime={currentTime} endTime={endTime} elapsedTime={elapsedTime} />
       <Info player={player}></Info>
       <Flex direction="row" justifyContent="space-between">
-        <Volume onVolume={handleMusicVolumeHandler} volume={playerVolume} />
+        <Volume onVolume={volumeControl} volume={playerVolume} />
         <Controller
           player={player}
-          onRepeat={handleRepeatMusicHandler}
-          onPlay={handlePlayMusicHandler}
-          onPrevMusic={handlePrevPlayingMusic}
-          onNextMusic={handleNextPlayingMusic}
-          onShuffleMusic={handleShuffleMusic}
+          onRepeat={repeatMusic}
+          onPlay={playMusic}
+          onPrevMusic={selectPrevMusic}
+          onNextMusic={selectNextMusic}
+          onShuffleMusic={shuffleMusics}
         />
       </Flex>
     </Styled.Layout>

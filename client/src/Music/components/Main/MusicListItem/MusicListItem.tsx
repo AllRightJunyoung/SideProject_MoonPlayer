@@ -1,7 +1,7 @@
 import * as Styled from './MusicListItem.styled';
 import { IconButton, CircleTooltip } from 'common/components';
 
-import { handleAddPlayer } from 'store/feature/music/PlayerSlice';
+import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import type { MusicListItemProps } from './MusicListItem.types';
 import type { MusicItemType } from 'Music/types';

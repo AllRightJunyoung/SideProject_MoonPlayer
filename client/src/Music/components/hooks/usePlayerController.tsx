@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import ReactPlayer from 'react-player/lazy';
-import useSelectMusicPlayer from './useSelectMusicPlayer';
+import { nextSelctedMusic, prevSelctedMusic, shuffleMusic } from 'Music/utils/player';
 import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import {
   handleRepeatMusicModule,
@@ -9,15 +9,16 @@ import {
   handleVolumeMusicModule,
   handleProgressBarModule,
   handlePlaySelectedMusicModlue,
-} from 'store/feature/music/PlayerSlice';
+  handleNextPlayMusic,
+  handlePrevPlayMusic,
+  handleShuffleMusics,
+} from 'Music/store/feature/PlayerSlice';
 
 const usePlayerController = () => {
   const dispatch = useAppDispatch();
   const playerRef = useRef<ReactPlayer>(null);
   const playerSelector = useAppSelector((state) => state.music.player);
   const playerModuleSelector = useAppSelector((state) => state.music.player.playerControlModuleState);
-
-  const { handlePrevPlayingMusic, handleNextPlayingMusic, handleShuffleMusic } = useSelectMusicPlayer(); //음악을 고르는 훅
 
   // 현재 재생시간
   const currentTime =
@@ -40,23 +41,30 @@ const usePlayerController = () => {
     );
   }, [playerSelector.playingMusic.id]);
 
-  const handleRepeatMusicHandler = () => {
+  const repeatMusic = () => {
     dispatch(handleRepeatMusicModule({ ...playerModuleSelector, isrepeat: !playerModuleSelector.isrepeat }));
   };
 
-  const handlePlayMusicHandler = () => {
+  const playMusic = () => {
     dispatch(handlePlayMusicModule({ ...playerModuleSelector, playing: !playerModuleSelector.playing }));
   };
 
-  const handleMusicVolumeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const volumeControl = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(handleVolumeMusicModule({ ...playerModuleSelector, volume: +event.currentTarget.value }));
   };
 
-  const handleProgressBarHandler = () => {
+  const progressBarControl = () => {
     dispatch(handleProgressBarModule({ ...playerModuleSelector, currentTime, endTime }));
   };
 
-  const handleEndedMusicHandler = () => handleNextPlayingMusic();
+  const selectPrevMusic = () =>
+    dispatch(handlePrevPlayMusic(prevSelctedMusic(playerSelector.list, playerSelector.playingMusic)));
+
+  const selectNextMusic = () =>
+    dispatch(handleNextPlayMusic(nextSelctedMusic(playerSelector.list, playerSelector.playingMusic)));
+  const shuffleMusics = () => dispatch(handleShuffleMusics(shuffleMusic(playerSelector.list)));
+
+  const handleEndedMusicHandler = () => selectNextMusic();
 
   const musicPlayer = (
     <ReactPlayer
@@ -69,18 +77,18 @@ const usePlayerController = () => {
       playing={playerModuleSelector.playing}
       loop={playerModuleSelector.isrepeat}
       onEnded={handleEndedMusicHandler}
-      onProgress={handleProgressBarHandler}
+      onProgress={progressBarControl}
     ></ReactPlayer>
   );
   return {
     musicPlayer,
     playerModuleSelector,
-    handleRepeatMusicHandler,
-    handlePlayMusicHandler,
-    handleMusicVolumeHandler,
-    handleShuffleMusic,
-    handlePrevPlayingMusic,
-    handleNextPlayingMusic,
+    repeatMusic,
+    playMusic,
+    volumeControl,
+    shuffleMusics,
+    selectPrevMusic,
+    selectNextMusic,
   };
 };
 

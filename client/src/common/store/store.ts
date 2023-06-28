@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers/index';
+import rootReducer from './reducer/index';
 import { PERSIST, PURGE } from 'redux-persist';
 
 export const store = configureStore({

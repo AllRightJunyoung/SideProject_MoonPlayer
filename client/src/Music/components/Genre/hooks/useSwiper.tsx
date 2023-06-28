@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import { useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperProps } from 'swiper/react';
-import { fetchmusicList } from 'store/feature/music/PlayListSlice';
+import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
 export const useSwiper = (slideitems) => {
   const dispatch = useAppDispatch();

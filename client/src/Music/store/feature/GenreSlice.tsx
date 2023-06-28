@@ -19,7 +19,7 @@ const fetchmusicGenre = createAsyncThunk('genre', async (url: string, thunkApi: 
   }
 });
 // Reducer
-export const musicGenreSlice = createSlice({
+export const genreSlice = createSlice({
   name: 'genre',
   initialState,
   reducers: {},
@@ -38,5 +38,5 @@ export const musicGenreSlice = createSlice({
     builder.addCase(PURGE, () => initialState);
   },
 });
-export default musicGenreSlice;
+export default genreSlice;
 export { fetchmusicGenre };

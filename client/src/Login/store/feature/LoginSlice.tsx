@@ -36,7 +36,7 @@ const getAccessToken = createAsyncThunk('user', async (obj: providerType, thunkA
 });
 
 // Reducer
-export const UserSlice = createSlice({
+export const LoginSlice = createSlice({
   name: 'user',
   // 가져온 유저 토큰
   initialState,
@@ -54,4 +54,4 @@ export const UserSlice = createSlice({
   },
 });
 export { getAccessToken };
-export const { handleSoicalLoginProvider } = UserSlice.actions;
+export const { handleSoicalLoginProvider } = LoginSlice.actions;

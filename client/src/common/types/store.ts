@@ -16,7 +16,7 @@ export interface PlayListStateType {
   status: string;
 }
 
-export interface LayoutStateType {
+export interface MusicUIStateType {
   main: {
     isOpenMusicList: boolean;
   };

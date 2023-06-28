@@ -23,7 +23,7 @@ const initialState: PlayerStateType = {
 };
 
 // Reducer
-export const musicPlayerSlice = createSlice({
+export const playerSlice = createSlice({
   name: 'musicPlayer',
   initialState,
   // 동기적인 액션 처리
@@ -70,7 +70,7 @@ export const musicPlayerSlice = createSlice({
     builder.addCase(PURGE, () => initialState);
   },
 });
-export default musicPlayerSlice;
+export default playerSlice;
 export const {
   handleAddPlayer,
   handleAddMusic,
@@ -83,4 +83,4 @@ export const {
   handleVolumeMusicModule,
   handleProgressBarModule,
   handlePlaySelectedMusicModlue,
-} = musicPlayerSlice.actions;
+} = playerSlice.actions;
