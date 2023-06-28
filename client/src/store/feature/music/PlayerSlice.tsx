@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { PlayerStateType } from 'types/store';
-
-import { PlayerControlModuleType } from 'types/app/player';
-import { MusicDataType } from 'types/app/data/index';
+import { PlayerStateType } from 'common/types/store';
+import type { PlayerControlModuleType, MusicItemType } from 'Music/types';
 
 const initialState: PlayerStateType = {
   list: [],
@@ -31,23 +29,23 @@ export const musicPlayerSlice = createSlice({
   // 동기적인 액션 처리
   reducers: {
     // 플레이어에 add 해주는 함수
-    handleAddPlayer: (state: PlayerStateType, action: PayloadAction<MusicDataType>) => {
+    handleAddPlayer: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
       state.list = [...state.list, Object.assign({}, action.payload)];
     },
-    handleShuffleMusics: (state: PlayerStateType, action: PayloadAction<MusicDataType[]>) => {
+    handleShuffleMusics: (state: PlayerStateType, action: PayloadAction<MusicItemType[]>) => {
       state.list = action.payload;
     },
     // string바꿔야할듯
     handleRemoveMusic: (state: PlayerStateType, action: PayloadAction<string>) => {
       state.list = state.list.filter((music) => music.name !== action.payload);
     },
-    handleAddMusic: (state: PlayerStateType, action: PayloadAction<MusicDataType>) => {
+    handleAddMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
       state.playingMusic = action.payload;
     },
-    handlePrevPlayMusic: (state: PlayerStateType, action: PayloadAction<MusicDataType>) => {
+    handlePrevPlayMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
       state.playingMusic = action.payload;
     },
-    handleNextPlayMusic: (state: PlayerStateType, action: PayloadAction<MusicDataType>) => {
+    handleNextPlayMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
       state.playingMusic = action.payload;
     },
     handleRepeatMusicModule: (state: PlayerStateType, action: PayloadAction<PlayerControlModuleType>) => {

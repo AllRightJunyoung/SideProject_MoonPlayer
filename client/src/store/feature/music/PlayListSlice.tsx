@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchData } from 'common/utils/axios';
 import { PURGE } from 'redux-persist';
-import { PlayListStateType } from 'types/store';
-import { PlayListType } from 'types/app/playList/index';
+import { PlayListStateType } from 'common/types/store';
+import type { PlayListType } from 'Music/types';
+
 export const initialState: PlayListStateType = {
   genre: {
     genre_title: '',

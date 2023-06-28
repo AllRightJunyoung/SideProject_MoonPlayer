@@ -1,4 +1,4 @@
-import type { PlayerControlModuleType } from 'types/app/player';
+import type { PlayerControlModuleType } from 'Music/types';
 export interface ControllerProps {
   player: PlayerControlModuleType;
   onRepeat: React.MouseEventHandler<HTMLButtonElement>;

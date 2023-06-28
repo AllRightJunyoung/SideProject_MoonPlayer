@@ -3,13 +3,14 @@ import { IconButton, CircleTooltip } from 'common/components';
 
 import { handleAddPlayer } from 'store/feature/music/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
-import { MusicDataType } from 'types/app/data/index';
+import type { MusicListItemProps } from './MusicListItem.types';
+import type { MusicItemType } from 'Music/types';
 
-const MusicListItem = ({ id, name, img_url, source_url }: MusicDataType) => {
+const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) => {
   const dispatch = useAppDispatch();
 
   const playerSelector = useAppSelector((state) => state.music.player);
-  const isInPlayer = playerSelector.list.find((music: MusicDataType) => music.name === name) ? true : false;
+  const isInPlayer = playerSelector.list.find((music: MusicItemType) => music.name === name) ? true : false;
   const handleAddMusic = () => {
     if (isInPlayer) return;
     const selectedMusic = { id, name, img_url, source_url };

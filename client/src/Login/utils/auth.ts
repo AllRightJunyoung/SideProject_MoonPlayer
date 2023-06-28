@@ -2,16 +2,16 @@
 import axios from 'axios';
 import { GOOGLE_OAUTH_URL, KAKAO_OAUTH_URL, NAVER_OAUTH_URL } from '../constants/auth';
 
-type OAUTH_TYPE = 'google' | 'kakao' | 'naver';
-type OAUTH_LOOKUP_TABLE_TYPE = { [K in OAUTH_TYPE]: string };
-const OAUTH_NAME_LOOKUP_TABLE: OAUTH_LOOKUP_TABLE_TYPE = {
+import type { Oauth_LOOKUP_TABLE_type, Oauth_type } from 'Login/types';
+
+const OAUTH_NAME_LOOKUP_TABLE: Oauth_LOOKUP_TABLE_type = {
   google: 'google',
   kakao: 'kakao',
   naver: 'naver',
 };
 const OAUTH_NAME = [OAUTH_NAME_LOOKUP_TABLE.google, OAUTH_NAME_LOOKUP_TABLE.kakao, OAUTH_NAME_LOOKUP_TABLE.naver];
 
-const OAUTH_URL_LOOKUP_TABLE: OAUTH_LOOKUP_TABLE_TYPE = {
+const OAUTH_URL_LOOKUP_TABLE: Oauth_LOOKUP_TABLE_type = {
   google: GOOGLE_OAUTH_URL,
   kakao: KAKAO_OAUTH_URL,
   naver: NAVER_OAUTH_URL,
@@ -34,10 +34,10 @@ export const getCode = (): string => {
   return code;
 };
 
-export const isOAuthName = (name: OAUTH_TYPE): name is OAUTH_TYPE => {
+export const isOAuthName = (name: Oauth_type): name is Oauth_type => {
   return OAUTH_NAME.includes(name);
 };
-export const assignAuthURL = (name: OAUTH_TYPE) => {
+export const assignAuthURL = (name: Oauth_type) => {
   const oAuthURL = OAUTH_URL_LOOKUP_TABLE[name];
   window.location.assign(oAuthURL);
 };

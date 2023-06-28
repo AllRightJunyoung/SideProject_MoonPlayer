@@ -1,2 +1,3 @@
-import { GenreDataType } from 'types/app/genre';
-export type GenreItemProps = Pick<GenreDataType, 'image_url' | 'genre_id'>;
+import type { GenreItemType } from 'Music/types';
+
+export type GenreItemProps = Pick<GenreItemType, 'image_url' | 'genre_id'>;

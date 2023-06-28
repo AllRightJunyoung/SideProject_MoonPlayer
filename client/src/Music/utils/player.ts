@@ -1,16 +1,16 @@
 import { cloneDeep } from 'lodash';
-import { MusicDataType } from 'types/app/data/index';
+import type { MusicItemType } from 'Music/types';
 
-export const prevSelctedMusic = (playerItems: readonly MusicDataType[], music: MusicDataType): MusicDataType => {
+export const prevSelctedMusic = (playerItems: readonly MusicItemType[], music: MusicItemType) => {
   const prevMusicIndex = playerItems.findIndex((item) => music.name === item.name) - 1;
   return prevMusicIndex < 0 ? playerItems[playerItems.length - 1] : playerItems[prevMusicIndex];
 };
-export const nextSelctedMusic = (playerItems: readonly MusicDataType[], music: MusicDataType): MusicDataType => {
+export const nextSelctedMusic = (playerItems: readonly MusicItemType[], music: MusicItemType) => {
   const nextMusicIndex = playerItems.findIndex((item) => music.name === item.name) + 1;
   return nextMusicIndex < playerItems.length ? playerItems[nextMusicIndex] : playerItems[0];
 };
 
-export const shuffleMusic = (playerItems: MusicDataType[]): MusicDataType[] => {
+export const shuffleMusic = (playerItems: MusicItemType[]) => {
   const newPlayerItems = cloneDeep(playerItems);
   for (let index = newPlayerItems.length - 1; index > 0; index--) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
@@ -18,7 +18,7 @@ export const shuffleMusic = (playerItems: MusicDataType[]): MusicDataType[] => {
   }
   return newPlayerItems;
 };
-export const formatMusicTime = (seconds: number): string => {
+export const formatMusicTime = (seconds: number) => {
   if (isNaN(seconds)) {
     return '00:00';
   }
@@ -29,5 +29,5 @@ export const formatMusicTime = (seconds: number): string => {
   return `${minute}:${second}`;
 };
 const pad = (num: number) => ('0' + num).slice(-2);
-const swapArray = (newPlayerItems: MusicDataType[], index: number, randomIndex: number) =>
+const swapArray = (newPlayerItems: MusicItemType[], index: number, randomIndex: number) =>
   ([newPlayerItems[index], newPlayerItems[randomIndex]] = [newPlayerItems[randomIndex], newPlayerItems[index]]);

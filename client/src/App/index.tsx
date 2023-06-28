@@ -1,4 +1,4 @@
-import GlobalStyle from 'styles/GlobalStyle';
+import GlobalStyle from 'common/styles/GlobalStyle';
 
 import { Outlet } from 'react-router-dom';
 import Alarm from 'common/components/ui/Dialog/Alarm/Alarm';

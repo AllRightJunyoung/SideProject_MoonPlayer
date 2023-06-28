@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { LayoutStateType } from 'types/store';
+import { LayoutStateType } from 'common/types/store';
 export const initialState: LayoutStateType = {
   main: {
     isOpenMusicList: true,

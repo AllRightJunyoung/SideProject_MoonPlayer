@@ -1,17 +1,13 @@
-import { PlayerControlModuleType } from '../app/player/index';
-import { GenreDataType } from 'types/app/genre';
-import { MusicDataType } from '../app/data/index';
-import { PlayListType } from '../app/playList/index';
-
+import type { MusicItemType, GenreItemType, PlayerControlModuleType, PlayListType } from 'Music/types';
 export interface PlayerStateType {
-  list: Array<MusicDataType>;
-  playingMusic: MusicDataType;
+  list: MusicItemType[];
+  playingMusic: MusicItemType;
   playerControlModuleState: PlayerControlModuleType;
 }
 
 //  비동기 데이터
 export interface GenreStateType {
-  list: Array<GenreDataType>;
+  list: GenreItemType[];
   status: string;
 }
 
@@ -38,16 +34,4 @@ export interface LayoutStateType {
   footer: {
     isOpen: boolean;
   };
-}
-
-export interface UserStateType {
-  kakao: {
-    profile_image: string;
-    nickname: string;
-  };
-  token: {
-    access_token: string;
-    expire_in: number;
-  };
-  provider: string;
 }
