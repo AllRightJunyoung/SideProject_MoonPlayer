@@ -1,22 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'common/hooks/useReduxStore';
-import { useEffect, useContext } from 'react';
-import { DiaLogContext } from 'common/context/dialog';
+import { useEffect } from 'react';
+import { useDialog } from 'common/hooks';
+import { removeStoreItems } from 'common/utils/redux-persist';
 
 let signOutTimer;
 export const useLogin = () => {
   const navigate = useNavigate();
-  const dialogCtx = useContext(DiaLogContext);
+  const { showAlarmMessage } = useDialog();
+
   const loginState = useAppSelector((state) => state.login);
   const access_token = loginState.token.access_token;
   const tokenExpirationTime = loginState.token.expire_in;
 
   const signIn = () => {
     navigate('/music');
-    dialogCtx.showAlarm('로그인 하였습니다.');
+    showAlarmMessage('로그인 하였습니다.');
   };
   const signOut = () => {
     localStorage.clear();
+    removeStoreItems();
+    showAlarmMessage('로그아웃 되었습니다.');
   };
   // 2. 토근 유효시간이 종료되면 로그아웃
   useEffect(() => {

@@ -6,14 +6,14 @@ import { IconButton } from 'common/components';
 import { DiaLogContext } from 'common/context/dialog';
 import { useMusicPageUIController } from 'Music/components/hooks';
 import { removeStoreItems } from 'common/utils/redux-persist';
+import useLogin from 'Login/hooks/useLogin';
 
 export const Navigation = () => {
-  const dialogCtx = useContext(DiaLogContext);
   const { onhandleCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
+  const { signOut } = useLogin();
 
   const handleLogOut = () => {
-    dialogCtx.showAlarm('로그아웃 되었습니다.');
-    removeStoreItems();
+    signOut();
   };
   const handleOpenCustomPlayListUI = () => {
     onhandleCustomPlayListUI(true);

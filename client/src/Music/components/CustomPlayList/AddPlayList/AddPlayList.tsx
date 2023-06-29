@@ -1,18 +1,17 @@
 import * as Styled from './AddPlayList.styled';
 
 import { useAppSelector } from 'common/hooks/useReduxStore';
-import { useContext } from 'react';
 import AddPlayListHeader from '../Header/MainHeader/MainHeader';
-import { DiaLogContext } from 'common/context/dialog';
 
 import { Music, Flex, IconButton } from 'common/components';
+import { useDialog } from 'common/hooks';
 
 export const AddPlayList = () => {
   const playerSelector = useAppSelector((state) => state.music.player);
-  const dialogCtx = useContext(DiaLogContext);
+  const { showConfirmMessage } = useDialog();
 
   const handleSaveButton = () => {
-    dialogCtx.showConfirm('Save');
+    showConfirmMessage('Save');
   };
 
   const currentPlayerMusics =
