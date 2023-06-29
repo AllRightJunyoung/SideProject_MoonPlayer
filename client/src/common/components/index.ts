@@ -10,3 +10,4 @@ export { default as CircleTooltip } from './ui/CircleTooltip';
 export { default as IconButton } from './ui/IconButton';
 export { default as Music } from './ui/Music';
 export { default as Spinner } from './ui/Spinner';
+export { default as Dialog } from './ui/Dialog/index';

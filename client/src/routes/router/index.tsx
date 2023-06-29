@@ -5,6 +5,7 @@ import App from 'common';
 import { LoginPage, Redirect } from 'Login/page/';
 import { UserPage } from 'User/page';
 import { MusicPage } from 'Music/page';
+import { Dialog } from 'common/components';
 
 export const ROUTE_URL = {
   LOGIN: '/login',

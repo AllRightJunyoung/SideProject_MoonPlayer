@@ -26,6 +26,7 @@ export const Box = styled(Flex)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 7px;
 `;
 
 export const AlarmButton = styled(Button)`

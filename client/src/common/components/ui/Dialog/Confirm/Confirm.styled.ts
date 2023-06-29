@@ -26,6 +26,7 @@ export const Layout = styled(Flex)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 7px;
 `;
 export const ConfirmButton = styled(Button)`
   font-size: 20px;

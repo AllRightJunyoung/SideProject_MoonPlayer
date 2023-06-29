@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { DiaLogContextProvider } from 'common/context/dialog';
 import { router } from 'routes/router';
 import { persistor } from 'common/utils/redux-persist';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
