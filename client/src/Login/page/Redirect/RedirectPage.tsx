@@ -2,7 +2,9 @@ import { getCode } from 'Login/utils/auth';
 import { useEffect } from 'react';
 import { getAccessToken } from 'Login/store/feature/LoginSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+
 import useLogin from 'Login/hooks/useLogin';
+import { Spinner } from 'common/components';
 
 export const RedirectPage = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +23,9 @@ export const RedirectPage = () => {
 
   if (access_token) {
     signIn();
+    return <></>;
   } else {
-    return <div>로딩중..</div>;
+    return <Spinner />;
   }
 };
 export default RedirectPage;
