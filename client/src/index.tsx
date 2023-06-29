@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { store } from 'common/store/store';
-import App from 'App';
+import App from 'common';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { DiaLogContextProvider } from 'common/context/dialog';

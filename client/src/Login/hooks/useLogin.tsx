@@ -11,15 +11,10 @@ export const useLogin = () => {
   const access_token = loginState.token.access_token;
   const tokenExpirationTime = loginState.token.expire_in;
 
-  // 1. 토큰이 존재할때 로그인
-
-  useEffect(() => {
-    if (!access_token) return;
+  const signIn = () => {
     navigate('/music');
     dialogCtx.showAlarm('로그인 하였습니다.');
-  }, [access_token]);
-
-  // 로그아웃
+  };
   const signOut = () => {
     localStorage.clear();
   };
@@ -33,6 +28,6 @@ export const useLogin = () => {
     }
   }, [access_token, signOut]);
 
-  return { access_token, signOut };
+  return { access_token, signOut, signIn };
 };
 export default useLogin;

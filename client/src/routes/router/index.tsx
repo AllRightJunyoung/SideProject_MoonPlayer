@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import ProtectedRoute from 'routes/ProtectedRoute/ProtectedRoute';
-import App from 'App';
+import App from 'common';
 import { LoginPage, Redirect } from 'Login/page/';
 import { UserPage } from 'User/page';
 import { MusicPage } from 'Music/page';
@@ -20,7 +20,14 @@ export const router = createBrowserRouter([
     errorElement: <div>404 Not Found</div>,
     children: [
       { path: '/', element: <LoginPage /> },
-      { path: ROUTE_URL.LOGIN, element: <LoginPage /> },
+      {
+        path: ROUTE_URL.LOGIN,
+        element: (
+          <ProtectedRoute>
+            <LoginPage />
+          </ProtectedRoute>
+        ),
+      },
       { path: ROUTE_URL.OAUTH, element: <Redirect /> },
       {
         path: ROUTE_URL.USER,

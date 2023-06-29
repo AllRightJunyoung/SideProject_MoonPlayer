@@ -1,15 +1,14 @@
-import { Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import { useState } from 'react';
 import SwiperCore from 'swiper';
-import { Swiper, SwiperProps } from 'swiper/react';
+import { Swiper } from 'swiper/react';
+import { SWIPER_SETTING } from '../constants';
 import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
+
 export const useSwiper = (slideitems) => {
   const dispatch = useAppDispatch();
   const [swiperModule, setSwiperModule] = useState<SwiperCore>();
+
   const handleNextSlide = () => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
@@ -24,40 +23,10 @@ export const useSwiper = (slideitems) => {
   };
 
   const swiper = (
-    <Swiper {...DEFAULT_SETTING} onSwiper={setSwiperModule}>
+    <Swiper {...SWIPER_SETTING} onSwiper={setSwiperModule}>
       {slideitems}
     </Swiper>
   );
 
   return { swiper, handleNextSlide, handlePrevSlide };
-};
-const DEFAULT_SETTING: SwiperProps = {
-  modules: [Pagination],
-  pagination: {
-    el: '.pagination',
-    type: 'bullets',
-  },
-  slidesPerView: 5,
-  slidesPerGroup: 5,
-  allowTouchMove: false,
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-    },
-    480: {
-      slidesPerView: 2,
-      slidesPerGroup: 2,
-    },
-    768: {
-      slidesPerView: 3,
-      slidesPerGroup: 3,
-      spaceBetween: 15,
-    },
-    1200: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
-      spaceBetween: 15,
-    },
-  },
 };

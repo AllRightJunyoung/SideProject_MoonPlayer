@@ -11,14 +11,14 @@ import { useMusicPageUIController } from 'Music/components/hooks';
 export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
   const dispatch = useAppDispatch();
   const { onhandleMusicFooterUI } = useMusicPageUIController();
-  const DialogCtx = useContext(DiaLogContext);
+  const dialogCtx = useContext(DiaLogContext);
 
   const playerSelector = useAppSelector((state) => state.music.player);
   const isCurrentMusic = playerSelector.playingMusic.name === name ? true : false;
 
   const handleTrashButton = () => {
     return isCurrentMusic
-      ? DialogCtx.showAlarm('현재 재생중인 음악은 삭제할수없습니다.')
+      ? dialogCtx.showAlarm('현재 재생중인 음악은 삭제할수없습니다.')
       : dispatch(handleRemoveMusic(name));
   };
 
