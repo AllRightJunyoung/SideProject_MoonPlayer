@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
-import DataList from '../DataList/DataList';
 import { useMusicPageUIController } from 'Music/components/hooks';
 import { MusicList } from '../MusicList/MusicList';
+import MyPlayList from '../MyPlayList';
+
 export const MyPlayListLayout = () => {
   // DataList를 렌더링할지 MusicList 렌더링할지 결정한다
-  const { isOpenMyPlayListOptionUI } = useMusicPageUIController();
-  return <>{isOpenMyPlayListOptionUI ? <DataList /> : <MusicList />}</>;
+  const { isOpenMyPlayListUI } = useMusicPageUIController();
+  return <>{isOpenMyPlayListUI ? <MyPlayList /> : <MusicList />}</>;
 };
 export default MyPlayListLayout;

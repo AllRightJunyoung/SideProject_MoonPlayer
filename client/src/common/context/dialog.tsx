@@ -35,6 +35,7 @@ export const DiaLogContext = createContext({
 });
 export const DiaLogContextProvider = (props) => {
   const [activeDialog, setActiveDialog] = useState<DialogState>(DEFAULT_STATE);
+
   const showAlarmHandler = (message: string) => {
     setActiveDialog((prev) => ({
       ...prev,

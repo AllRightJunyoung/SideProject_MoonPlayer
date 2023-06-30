@@ -9,11 +9,10 @@ export const initialState: MusicUIStateType = {
     isOpen: false,
     addPlayList: {
       isOpen: false,
+      input: '',
     },
     myPlayList: {
-      option: {
-        isOpen: true,
-      },
+      isOpen: true,
     },
   },
   footer: {
@@ -25,19 +24,19 @@ export const MusicUISlice = createSlice({
   name: 'MusicUI',
   initialState,
   reducers: {
-    handleCustomPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+    handleOpenCustomPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.isOpen = action.payload;
     },
-    handlePlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+    handleOpenAddPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.addPlayList.isOpen = action.payload;
     },
-    handleMyPlayListOptionUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
-      state.customPlayList.myPlayList.option.isOpen = action.payload;
+    handleOpenMyPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+      state.customPlayList.myPlayList.isOpen = action.payload;
     },
-    handleMusicListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+    handleOpenMusicListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.main.isOpenMusicList = action.payload;
     },
-    handleMusicFooterUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+    handleOpenMusicFooterUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.footer.isOpen = action.payload;
     },
   },
@@ -46,9 +45,9 @@ export const MusicUISlice = createSlice({
   },
 });
 export const {
-  handleCustomPlayListUI,
-  handlePlayListUI,
-  handleMusicListUI,
-  handleMusicFooterUI,
-  handleMyPlayListOptionUI,
+  handleOpenCustomPlayListUI,
+  handleOpenAddPlayListUI,
+  handleOpenMyPlayListUI,
+  handleOpenMusicListUI,
+  handleOpenMusicFooterUI,
 } = MusicUISlice.actions;

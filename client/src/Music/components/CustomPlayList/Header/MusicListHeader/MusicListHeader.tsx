@@ -6,7 +6,7 @@ import { IconButton } from 'common/components';
 
 export const MusicListHeader = ({ title }) => {
   const dialogCtx = useContext(DiaLogContext);
-  const { onhandleMyPlayListOptionUI } = useMusicPageUIControl();
+  const { onhandleMyPlayListUI } = useMusicPageUIControl();
   const handleSpinnerButton = () => {
     dialogCtx.showConfirm('Load');
   };
@@ -21,7 +21,7 @@ export const MusicListHeader = ({ title }) => {
           size="2x"
           color="white"
           onClick={() => {
-            onhandleMyPlayListOptionUI(true);
+            onhandleMyPlayListUI(true);
           }}
         />
       </Styled.IconButtonBox>

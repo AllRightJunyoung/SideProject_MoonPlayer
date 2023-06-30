@@ -3,10 +3,10 @@ import { IconButton } from 'common/components';
 import { useMusicPageUIController } from 'Music/components/hooks';
 
 export const HideButton = () => {
-  const { onhandleMusicFooterUI, isOpenMusicFooterUI } = useMusicPageUIController();
+  const { onhandleOpenMusicFooterUI, isOpenMusicFooterUI } = useMusicPageUIController();
 
   return (
-    <Styled.Layout onClick={() => onhandleMusicFooterUI(!isOpenMusicFooterUI)}>
+    <Styled.Layout onClick={() => onhandleOpenMusicFooterUI(!isOpenMusicFooterUI)}>
       {!isOpenMusicFooterUI ? (
         <IconButton name="up" color="white" size="1x" />
       ) : (

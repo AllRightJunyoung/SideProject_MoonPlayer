@@ -24,11 +24,10 @@ export interface MusicUIStateType {
     isOpen: boolean;
     addPlayList: {
       isOpen: boolean;
+      input: string;
     };
     myPlayList: {
-      option: {
-        isOpen: boolean;
-      };
+      isOpen: boolean;
     };
   };
   footer: {

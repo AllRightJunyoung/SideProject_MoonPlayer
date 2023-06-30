@@ -1,10 +1,10 @@
 import useMusicPageUIControl from 'Music/components/hooks/useMusicPageUIController';
-import * as Styled from './DataListItem.styled';
+import * as Styled from './MyPlayListItem.styled';
 import { IconButton } from 'common/components';
 
-const DataListItem = ({ title, id }) => {
+const MyPlayListItem = ({ title, id }) => {
   // onClick을하면 MusicList UI로 전환시킨다.
-  const { onhandleMyPlayListOptionUI } = useMusicPageUIControl();
+  const { onhandleMyPlayListUI } = useMusicPageUIControl();
 
   return (
     <Styled.Layout
@@ -12,7 +12,7 @@ const DataListItem = ({ title, id }) => {
       justifyContent="space-between"
       alignItems="center"
       onClick={() => {
-        onhandleMyPlayListOptionUI(false);
+        onhandleMyPlayListUI(false);
       }}
     >
       <Styled.Number>{id}</Styled.Number>
@@ -22,4 +22,4 @@ const DataListItem = ({ title, id }) => {
   );
 };
 
-export default DataListItem;
+export default MyPlayListItem;

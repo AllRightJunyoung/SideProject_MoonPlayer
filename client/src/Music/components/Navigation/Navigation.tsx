@@ -9,14 +9,14 @@ import { removeStoreItems } from 'common/utils/redux-persist';
 import useLogin from 'Login/hooks/useLogin';
 
 export const Navigation = () => {
-  const { onhandleCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
+  const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
   const { signOut } = useLogin();
 
   const handleLogOut = () => {
     signOut();
   };
   const handleOpenCustomPlayListUI = () => {
-    onhandleCustomPlayListUI(true);
+    onhandleOpenCustomPlayListUI(true);
     onhandleOpenAddPlayListUI(true);
   };
 

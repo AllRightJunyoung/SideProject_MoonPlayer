@@ -2,14 +2,14 @@ import * as Styled from './MobileHeader.styled';
 import { useMusicPageUIController } from 'Music/components/hooks';
 
 export const MobileHeader = () => {
-  const { onhandleMusicListUI, isOpenMusicList } = useMusicPageUIController();
+  const { onhandleOpenMusicListUI, isOpenMusicList } = useMusicPageUIController();
 
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.Title
         active={isOpenMusicList}
         onClick={() => {
-          onhandleMusicListUI(true);
+          onhandleOpenMusicListUI(true);
         }}
       >
         M U S I C L I S T
@@ -17,7 +17,7 @@ export const MobileHeader = () => {
       <Styled.Title
         active={!isOpenMusicList}
         onClick={() => {
-          onhandleMusicListUI(false);
+          onhandleOpenMusicListUI(false);
         }}
       >
         P L A Y L I S T

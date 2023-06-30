@@ -10,7 +10,7 @@ import { useMusicPageUIController } from 'Music/components/hooks';
 
 export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
   const dispatch = useAppDispatch();
-  const { onhandleMusicFooterUI } = useMusicPageUIController();
+  const { onhandleOpenMusicFooterUI } = useMusicPageUIController();
   const dialogCtx = useContext(DiaLogContext);
 
   const playerSelector = useAppSelector((state) => state.music.player);
@@ -25,7 +25,7 @@ export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) =
   const handlePlayMusic = () => {
     const currentMusic = { name, img_url, id, source_url };
     dispatch(handleAddMusic(currentMusic));
-    onhandleMusicFooterUI(true); // 음악재생시 footer바가 자동으로 올라오게
+    onhandleOpenMusicFooterUI(true); // 음악재생시 footer바가 자동으로 올라오게
   };
 
   return (
