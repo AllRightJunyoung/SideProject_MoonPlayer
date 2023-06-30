@@ -1,13 +1,14 @@
 import * as Styled from './AddPlayListLayout.styled';
 
-import { useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import AddPlayListHeader from '../Header/MainHeader/MainHeader';
-
 import { Music, Flex, IconButton } from 'common/components';
 import { useDialog } from 'common/hooks';
 import { useRef } from 'react';
+import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 
 export const AddPlayListLayout = () => {
+  const dispatch = useAppDispatch();
   const playerSelector = useAppSelector((state) => state.music.player);
   const { showConfirmMessage } = useDialog();
 
@@ -15,8 +16,9 @@ export const AddPlayListLayout = () => {
 
   const handleSaveButton = () => {
     if (!inputRef.current?.value) return;
+    const inputValue = inputRef.current.value;
+    dispatch(handleAddPlayListInput(inputValue));
     showConfirmMessage('Save');
-    console.log(inputRef);
   };
 
   const currentPlayerMusics =

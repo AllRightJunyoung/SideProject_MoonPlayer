@@ -11,6 +11,7 @@ const useDialog = () => {
   const showConfirmMessage = (type: ConfirmType) => {
     dialogCtx.showConfirm(type);
   };
+
   return { showAlarmMessage, showConfirmMessage };
 };
 export default useDialog;

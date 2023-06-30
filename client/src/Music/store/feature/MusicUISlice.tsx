@@ -39,6 +39,9 @@ export const MusicUISlice = createSlice({
     handleOpenMusicFooterUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.footer.isOpen = action.payload;
     },
+    handleAddPlayListInput: (state: MusicUIStateType, action: PayloadAction<string>) => {
+      state.customPlayList.addPlayList.input = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(PURGE, () => initialState);
@@ -50,4 +53,5 @@ export const {
   handleOpenMyPlayListUI,
   handleOpenMusicListUI,
   handleOpenMusicFooterUI,
+  handleAddPlayListInput,
 } = MusicUISlice.actions;
