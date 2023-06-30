@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper } from 'swiper/react';
-import { SWIPER_SETTING } from '../constants';
+import { SWIPER_SETTING } from '../components/Genre/constants';
 import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
 
-export const useSwiper = (slideitems) => {
+const useSwiper = (slideitems) => {
   const dispatch = useAppDispatch();
   const [swiperModule, setSwiperModule] = useState<SwiperCore>();
 
@@ -30,3 +30,4 @@ export const useSwiper = (slideitems) => {
 
   return { swiper, handleNextSlide, handlePrevSlide };
 };
+export default useSwiper;

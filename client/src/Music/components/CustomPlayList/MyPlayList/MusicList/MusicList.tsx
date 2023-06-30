@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Music } from 'common/components';
-import MusicListHeader from '../../Header/MusicListHeader/MusicListHeader';
 import * as Styled from './MusicList.styled';
+import { MusicListHeader } from '../MusicListHeader';
 
 const playerDatas = [
   {

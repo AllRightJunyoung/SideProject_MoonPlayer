@@ -1,4 +1,4 @@
-import useMusicPageUIControl from 'Music/components/hooks/useMusicPageUIController';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import * as Styled from './MyPlayListItem.styled';
 import { IconButton } from 'common/components';
 

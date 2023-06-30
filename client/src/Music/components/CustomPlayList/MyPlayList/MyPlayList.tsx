@@ -1,6 +1,6 @@
 import * as Styled from './MyPlayList.styled';
 
-import { MainHeader } from '../Header/MainHeader';
+import { MainHeader } from '../MainHeader';
 import { MyPlayListItem } from './MyPlayListItem';
 
 const datas = [

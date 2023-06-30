@@ -1,9 +1,9 @@
 import * as Styled from './GenreSlider.styled';
 
-import { useSwiper } from 'Music/components/Genre/hooks/useSwiper';
 import { useAppSelector } from 'common/hooks/useReduxStore';
 import { SwiperSlide } from 'swiper/react';
 import { GenreItem } from '../GenreItem';
+import { useSwiper } from 'Music/hooks';
 
 export const GenreSlider = () => {
   const genreItems = useAppSelector((state) => state.music.genre.list);

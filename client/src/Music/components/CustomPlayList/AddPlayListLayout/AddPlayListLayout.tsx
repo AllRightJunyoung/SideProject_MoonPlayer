@@ -1,7 +1,7 @@
 import * as Styled from './AddPlayListLayout.styled';
 
 import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
-import AddPlayListHeader from '../Header/MainHeader/MainHeader';
+import AddPlayListHeader from '../MainHeader/MainHeader';
 import { Music, Flex, IconButton } from 'common/components';
 import { useDialog } from 'common/hooks';
 import { useRef } from 'react';

@@ -1,6 +1,6 @@
 import * as Styled from './HideButton.styled';
 import { IconButton } from 'common/components';
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 
 export const HideButton = () => {
   const { onhandleOpenMusicFooterUI, isOpenMusicFooterUI } = useMusicPageUIController();

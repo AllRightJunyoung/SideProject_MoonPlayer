@@ -3,9 +3,9 @@ import * as Styled from './Layout.styled';
 import { formatMusicTime } from 'Music/utils/player';
 
 import { Flex } from 'common/components';
-import useMusicPageUIControl from 'Music/components/hooks/useMusicPageUIController';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
-import { usePlayerController } from 'Music/components/hooks';
+import { usePlayerController } from 'Music/hooks';
 
 const Footer = ({ player }) => {
   const { repeatMusic, playMusic, volumeControl, shuffleMusics, selectPrevMusic, selectNextMusic } =

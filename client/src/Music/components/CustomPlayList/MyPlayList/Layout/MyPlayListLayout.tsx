@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 import { MusicList } from '../MusicList/MusicList';
 import MyPlayList from '../MyPlayList';
 

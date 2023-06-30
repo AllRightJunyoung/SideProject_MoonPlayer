@@ -1,7 +1,7 @@
 import * as Styled from './MusicPage.styled';
 
 import { Navigation, Genre, Main, Footer, CustomPlayList } from 'Music/components';
-import { usePlayerController, useMusicPageUIController } from 'Music/components/hooks';
+import { usePlayerController, useMusicPageUIController } from 'Music/hooks';
 import { Dialog } from 'common/components';
 
 const MusicPage = () => {

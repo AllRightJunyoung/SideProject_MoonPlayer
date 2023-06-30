@@ -1,4 +1,4 @@
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 import * as Styled from './MainHeader.styled';
 
 export const MainHeader = ({ title }) => {
@@ -15,7 +15,7 @@ export const MainHeader = ({ title }) => {
           onClick={() => {
             onhandleOpenAddPlayListUI(true);
           }}
-          active={isOpenAddMusicListUI ? true : false}
+          active={isOpenAddMusicListUI}
         />
         <Styled.CustomIconButton
           name="music"
@@ -24,7 +24,7 @@ export const MainHeader = ({ title }) => {
           onClick={() => {
             onhandleOpenAddPlayListUI(false);
           }}
-          active={!isOpenAddMusicListUI ? true : false}
+          active={!isOpenAddMusicListUI}
         />
       </Styled.IconButtonBox>
     </Styled.Layout>

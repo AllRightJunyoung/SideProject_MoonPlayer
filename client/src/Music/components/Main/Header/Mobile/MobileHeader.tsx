@@ -1,5 +1,5 @@
 import * as Styled from './MobileHeader.styled';
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 
 export const MobileHeader = () => {
   const { onhandleOpenMusicListUI, isOpenMusicList } = useMusicPageUIController();

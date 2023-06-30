@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 import { IconButton } from 'common/components';
 import { DiaLogContext } from 'common/context/dialog';
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 import { removeStoreItems } from 'common/utils/redux-persist';
 import useLogin from 'Login/hooks/useLogin';
 

@@ -2,7 +2,7 @@ import * as Styled from './Layout.styled';
 import { useEffect } from 'react';
 import { MusicList } from '../MusicList';
 import { PlayList } from '../PlayList';
-import { useMusicPageUIController } from 'Music/components/hooks';
+import { useMusicPageUIController } from 'Music/hooks';
 import { useResolution } from 'common/hooks';
 
 const Layout = () => {

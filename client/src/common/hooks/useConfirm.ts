@@ -35,7 +35,6 @@ const useConfirm = () => {
   };
   const saveMusic = () => {
     if (!myPlayListValidation(addPlayListInput)) return;
-
     dialogCtx.showAlarm(confirmMessage.Save);
   };
   const close = () => {
