@@ -46,21 +46,18 @@ const kakaoLogin = async (req, res, next) => {
     console.log(error);
   }
 
+  const userId = String(userData.data.id);
   let existingUser;
   try {
-    existingUser = await User.findOne({ userId: userData.data.id });
+    existingUser = await User.findOne({ userId });
   } catch (error) {
     console.log(error);
   }
 
-  // 몽고디비에 유저가 존재하지않으면
-  if (existingUser === null) {
-    //DB에 저장
+  // 몽고디비에 유저가 존재하지않으면 DB에 저장
+  if (existingUser === null && userId) {
     const createdUser = new User({
-      userId: userData.data.id,
-      nickname: userData.data.properties.nickname,
-      profile_image: userData.data.properties.profile_image,
-      provider: "kakao",
+      userId,
     });
     try {
       await createdUser.save();
@@ -69,9 +66,7 @@ const kakaoLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      nickname: userData.data.properties.nickname,
-      profile_image: userData.data.properties.profile_image,
-      provider: "kakao",
+      userId,
     });
     res.status(200).json({
       access_token,
@@ -80,9 +75,7 @@ const kakaoLogin = async (req, res, next) => {
   } else {
     // 존재하면 토큰을 만들어서  액세스 토큰을 전송
     const access_token = jwt.createToken({
-      nickname: existingUser.nickname,
-      profile_image: existingUser.profile_image,
-      provider: "kakao",
+      userId,
     });
     res.status(200).json({
       access_token,
@@ -92,7 +85,6 @@ const kakaoLogin = async (req, res, next) => {
 };
 const googleLogin = async (req, res, next) => {
   const { code } = req.query;
-  console.log(code);
   let response;
   try {
     response = await axios({
@@ -115,7 +107,6 @@ const googleLogin = async (req, res, next) => {
   }
 
   const { access_token } = response.data;
-  console.log(response.data);
 
   let userData; // accessToken기반으로 사용자데이터 가져옴
   try {
@@ -127,21 +118,17 @@ const googleLogin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(userData.data);
+  const userId = String(userData.data.id);
 
   let existingUser;
   try {
-    existingUser = await User.findOne({ userId: userData.data.id });
+    existingUser = await User.findOne({ userId });
   } catch (error) {
     console.log(error);
   }
-  if (existingUser === null) {
-    //DB에 저장
+  if (existingUser === null && userId) {
     const createdUser = new User({
-      userId: userData.data.id,
-      nickname: userData.data.name,
-      profile_image: userData.data.picture,
-      provider: "google",
+      userId,
     });
     try {
       await createdUser.save();
@@ -150,9 +137,7 @@ const googleLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      nickname: userData.data.name,
-      profile_image: userData.data.picture,
-      provider: "google",
+      userId,
     });
     res.status(200).json({
       access_token,
@@ -160,9 +145,7 @@ const googleLogin = async (req, res, next) => {
     });
   } else {
     const access_token = jwt.createToken({
-      nickname: userData.data.name,
-      profile_image: userData.data.picture,
-      provider: "google",
+      userId,
     });
     res.status(200).json({
       access_token,
@@ -209,16 +192,21 @@ const NaverLogin = async (req, res, next) => {
     console.log(error);
   }
 
+  let userId;
+  if (userData) {
+    userId = String(userData.data.response.id);
+  }
+
   let existingUser;
   try {
-    existingUser = await User.findOne({ userId: userData.response.id });
+    existingUser = await User.findOne({ userId });
   } catch (error) {
     console.log(error);
   }
-  if (existingUser === null) {
+  if (existingUser === null && userId) {
     //DB에 저장
     const createdUser = new User({
-      userId: userData.response.id,
+      userId,
       provider: "naver",
     });
     try {
@@ -228,7 +216,7 @@ const NaverLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      userId: userData.response.id,
+      userId,
       provider: "naver",
     });
     res.status(200).json({
@@ -237,7 +225,7 @@ const NaverLogin = async (req, res, next) => {
     });
   } else {
     const access_token = jwt.createToken({
-      userId: userData.response.id,
+      userId,
       provider: "naver",
     });
     res.status(200).json({
