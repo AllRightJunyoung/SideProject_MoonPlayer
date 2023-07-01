@@ -40,6 +40,8 @@ app.use(
 app.use("/api/music", musicRoutes);
 app.use("/api/auth", authRoutes);
 
+// app.listen(app.get("port"));
+
 mongoose
   .connect(
     process.env.MONGODB_CONNECTION_URI,

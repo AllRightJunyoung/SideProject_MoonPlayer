@@ -52,6 +52,8 @@ const kakaoLogin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
+
+  // 몽고디비에 유저가 존재하지않으면
   if (existingUser === null) {
     //DB에 저장
     const createdUser = new User({
@@ -76,6 +78,7 @@ const kakaoLogin = async (req, res, next) => {
       expire_in: 1000 * 60 * 60,
     });
   } else {
+    // 존재하면 토큰을 만들어서  액세스 토큰을 전송
     const access_token = jwt.createToken({
       nickname: existingUser.nickname,
       profile_image: existingUser.profile_image,
@@ -194,7 +197,6 @@ const NaverLogin = async (req, res, next) => {
   }
 
   const { access_token } = response.data;
-  console.log(response.data);
 
   let userData; // accessToken기반으로 사용자데이터 가져옴
   try {
@@ -206,48 +208,43 @@ const NaverLogin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
-  console.log(userData);
 
-  // let existingUser;
-  // try {
-  //   existingUser = await User.findOne({ userId: userData.data.id });
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // if (existingUser === null) {
-  //   //DB에 저장
-  //   const createdUser = new User({
-  //     userId: userData.data.id,
-  //     nickname: userData.data.name,
-  //     profile_image: userData.data.picture,
-  //     provider: "google",
-  //   });
-  //   try {
-  //     await createdUser.save();
-  //   } catch (err) {
-  //     const error = new HttpError("DB SAVE ERROR)", 500);
-  //     return next(error);
-  //   }
-  //   const access_token = jwt.createToken({
-  //     nickname: userData.data.name,
-  //     profile_image: userData.data.picture,
-  //     provider: "google",
-  //   });
-  //   res.status(200).json({
-  //     access_token,
-  //     expire_in: 1000 * 60 * 60,
-  //   });
-  // } else {
-  //   const access_token = jwt.createToken({
-  //     nickname: userData.data.name,
-  //     profile_image: userData.data.picture,
-  //     provider: "google",
-  //   });
-  //   res.status(200).json({
-  //     access_token,
-  //     expire_in: 1000 * 60 * 60,
-  //   });
-  // }
+  let existingUser;
+  try {
+    existingUser = await User.findOne({ userId: userData.response.id });
+  } catch (error) {
+    console.log(error);
+  }
+  if (existingUser === null) {
+    //DB에 저장
+    const createdUser = new User({
+      userId: userData.response.id,
+      provider: "naver",
+    });
+    try {
+      await createdUser.save();
+    } catch (err) {
+      const error = new HttpError("DB SAVE ERROR)", 500);
+      return next(error);
+    }
+    const access_token = jwt.createToken({
+      userId: userData.response.id,
+      provider: "naver",
+    });
+    res.status(200).json({
+      access_token,
+      expire_in: 1000 * 60 * 60,
+    });
+  } else {
+    const access_token = jwt.createToken({
+      userId: userData.response.id,
+      provider: "naver",
+    });
+    res.status(200).json({
+      access_token,
+      expire_in: 1000 * 60 * 60,
+    });
+  }
 };
 
 exports.kakaoLogin = kakaoLogin;
