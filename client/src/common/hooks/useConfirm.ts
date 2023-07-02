@@ -5,10 +5,15 @@ import { confirmMessage } from 'common/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppSelector } from './useReduxStore';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
+import { useDispatch } from 'react-redux';
+import { saveMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
 const useConfirm = () => {
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
   const playerList = useAppSelector((state) => state.music.player.list);
+  const accessToken = useAppSelector((state) => state.login.token.access_token);
+
+  const dispatch = useDispatch();
 
   const dialogCtx = useContext(DiaLogContext);
   const { signOut } = useLogin();
@@ -36,6 +41,14 @@ const useConfirm = () => {
   };
   const saveMusic = () => {
     if (!myPlayListInputValidation(addPlayListInput) || !myPlayListLengthValidation(playerList)) return;
+
+    console.log(accessToken, playerList);
+    const obj = {
+      accessToken,
+      playerList,
+    };
+
+    dispatch(saveMyPlayList(obj));
     dialogCtx.showAlarm(confirmMessage.Save);
   };
   const close = () => {

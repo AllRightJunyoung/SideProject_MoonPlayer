@@ -9,7 +9,6 @@ import { CircleTooltip, IconButton } from 'common/components';
 import { useMusicPageUIController } from 'Music/hooks';
 
 export const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
-  console.log(source_url);
   const dispatch = useAppDispatch();
   const { onhandleOpenMusicFooterUI } = useMusicPageUIController();
   const dialogCtx = useContext(DiaLogContext);
