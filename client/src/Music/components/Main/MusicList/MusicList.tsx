@@ -1,7 +1,7 @@
 import * as Styled from './MusicList.styled';
 
 import { useEffect } from 'react';
-import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
+import { getMusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import { MainHeader } from '../Header/MainHeader';
 import { MusicListItem } from '../MusicListItem';
@@ -12,7 +12,7 @@ export const MusicList = () => {
 
   useEffect(() => {
     if (music_list.length) return;
-    dispatch(fetchmusicList('http://localhost:4001/api/music/genre/1'));
+    dispatch(getMusicList('http://localhost:4001/api/music/genre/1'));
   }, []);
 
   return (

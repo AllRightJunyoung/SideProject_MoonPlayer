@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchData } from 'common/utils/axios';
+import { getData } from 'common/utils/axios';
 import { PURGE } from 'redux-persist';
 import { PlayListStateType } from 'common/types/store';
 import type { PlayListType } from 'Music/types';
@@ -13,9 +13,9 @@ export const initialState: PlayListStateType = {
   status: '',
 };
 
-const fetchmusicList = createAsyncThunk('musicList', async (url: string, thunkApi) => {
+const getMusicList = createAsyncThunk('musicList', async (url: string, thunkApi) => {
   try {
-    const response = await fetchData(url);
+    const response = await getData(url);
     return response.music as PlayListType;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
@@ -28,21 +28,21 @@ export const playListSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchmusicList.pending, (state: PlayListStateType) => {
+    builder.addCase(getMusicList.pending, (state: PlayListStateType) => {
       state.status = 'Loading';
     });
 
     // 비동기로 가져올떄 PlayList에 렌더링 할 아이템 속성 변경
-    builder.addCase(fetchmusicList.fulfilled, (state: PlayListStateType, action: PayloadAction<PlayListType>) => {
+    builder.addCase(getMusicList.fulfilled, (state: PlayListStateType, action: PayloadAction<PlayListType>) => {
       state.status = 'Complete';
       state.genre = action.payload;
     });
 
-    builder.addCase(fetchmusicList.rejected, (state: PlayListStateType) => {
+    builder.addCase(getMusicList.rejected, (state: PlayListStateType) => {
       state.status = 'Fail';
     });
     builder.addCase(PURGE, () => initialState);
   },
 });
 export default playListSlice;
-export { fetchmusicList };
+export { getMusicList };

@@ -15,6 +15,10 @@ export interface PlayListStateType {
   genre: PlayListType;
   status: string;
 }
+export interface MyPlayListStateType {
+  myPlayList: any[];
+  status: string;
+}
 
 export interface MusicUIStateType {
   main: {

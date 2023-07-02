@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper } from 'swiper/react';
 import { SWIPER_SETTING } from '../components/Genre/constants';
-import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
+import { getMusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
 
 const useSwiper = (slideitems) => {
@@ -13,13 +13,13 @@ const useSwiper = (slideitems) => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${idx}`));
+    dispatch(getMusicList(`http://localhost:4001/api/music/genre/${idx}`));
   };
   const handlePrevSlide = () => {
     if (!swiperModule) return;
     swiperModule.slidePrev(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${idx}`));
+    dispatch(getMusicList(`http://localhost:4001/api/music/genre/${idx}`));
   };
 
   const swiper = (

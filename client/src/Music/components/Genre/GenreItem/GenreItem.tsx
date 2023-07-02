@@ -1,4 +1,4 @@
-import { fetchmusicList } from 'Music/store/feature/PlayListSlice';
+import { getMusicList } from 'Music/store/feature/PlayListSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import type { GenreItemProps } from './GernreItem.types';
 
@@ -9,7 +9,7 @@ export const GenreItem = ({ image_url, genre_id }: GenreItemProps) => {
   const isInGenre = useAppSelector((state) => state.music.playList.genre.genre_id) === genre_id ? true : false;
 
   const handleCardImage = () => {
-    dispatch(fetchmusicList(`http://localhost:4001/api/music/genre/${genre_id}`));
+    dispatch(getMusicList(`http://localhost:4001/api/music/genre/${genre_id}`));
   };
 
   return <Styled.CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} />;

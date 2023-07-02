@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
 import { MusicUIStateType } from 'common/types/store';
+
 export const initialState: MusicUIStateType = {
   main: {
     isOpenMusicList: true,
