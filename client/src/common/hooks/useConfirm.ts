@@ -4,10 +4,11 @@ import { confirmMessage } from 'common/constants/dialog';
 
 import useLogin from 'Login/hooks/useLogin';
 import { useAppSelector } from './useReduxStore';
-import { myPlayListValidation } from 'Music/utils/validation';
+import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 
 const useConfirm = () => {
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
+  const playerList = useAppSelector((state) => state.music.player.list);
 
   const dialogCtx = useContext(DiaLogContext);
   const { signOut } = useLogin();
@@ -34,7 +35,7 @@ const useConfirm = () => {
     dialogCtx.showAlarm(confirmMessage.Load);
   };
   const saveMusic = () => {
-    if (!myPlayListValidation(addPlayListInput)) return;
+    if (!myPlayListInputValidation(addPlayListInput) || !myPlayListLengthValidation(playerList)) return;
     dialogCtx.showAlarm(confirmMessage.Save);
   };
   const close = () => {
