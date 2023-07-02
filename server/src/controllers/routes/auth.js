@@ -58,6 +58,7 @@ const kakaoLogin = async (req, res, next) => {
   if (existingUser === null && userId) {
     const createdUser = new User({
       userId,
+      playList: [],
     });
     try {
       await createdUser.save();
@@ -67,6 +68,7 @@ const kakaoLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
+      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -76,6 +78,7 @@ const kakaoLogin = async (req, res, next) => {
     // 존재하면 토큰을 만들어서  액세스 토큰을 전송
     const access_token = jwt.createToken({
       userId,
+      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -129,6 +132,7 @@ const googleLogin = async (req, res, next) => {
   if (existingUser === null && userId) {
     const createdUser = new User({
       userId,
+      playList: [],
     });
     try {
       await createdUser.save();
@@ -138,7 +142,9 @@ const googleLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
+      playList: [],
     });
+
     res.status(200).json({
       access_token,
       expire_in: 1000 * 60 * 60,
@@ -146,6 +152,7 @@ const googleLogin = async (req, res, next) => {
   } else {
     const access_token = jwt.createToken({
       userId,
+      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -207,7 +214,7 @@ const NaverLogin = async (req, res, next) => {
     //DB에 저장
     const createdUser = new User({
       userId,
-      provider: "naver",
+      playList: [],
     });
     try {
       await createdUser.save();
@@ -217,7 +224,7 @@ const NaverLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
-      provider: "naver",
+      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -226,7 +233,7 @@ const NaverLogin = async (req, res, next) => {
   } else {
     const access_token = jwt.createToken({
       userId,
-      provider: "naver",
+      playList: [],
     });
     res.status(200).json({
       access_token,
