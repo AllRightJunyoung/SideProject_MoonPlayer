@@ -29,8 +29,7 @@ const kakaoLogin = async (req, res, next) => {
       }),
     });
   } catch (error) {
-    console.log(error);
-    return;
+    return res.status(500).send({ error: error.message });
   }
 
   const { access_token } = response.data;
@@ -43,7 +42,7 @@ const kakaoLogin = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
 
   const userId = String(userData.data.id);
@@ -51,14 +50,13 @@ const kakaoLogin = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ userId });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
 
   // 몽고디비에 유저가 존재하지않으면 DB에 저장
   if (existingUser === null && userId) {
     const createdUser = new User({
       userId,
-      playList: [],
     });
     try {
       await createdUser.save();
@@ -68,7 +66,6 @@ const kakaoLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -78,7 +75,6 @@ const kakaoLogin = async (req, res, next) => {
     // 존재하면 토큰을 만들어서  액세스 토큰을 전송
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -105,8 +101,7 @@ const googleLogin = async (req, res, next) => {
       }),
     });
   } catch (error) {
-    console.log(error);
-    return;
+    return res.status(500).send({ error: error.message });
   }
 
   const { access_token } = response.data;
@@ -119,7 +114,7 @@ const googleLogin = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
   const userId = String(userData.data.id);
 
@@ -127,12 +122,11 @@ const googleLogin = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ userId });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
   if (existingUser === null && userId) {
     const createdUser = new User({
       userId,
-      playList: [],
     });
     try {
       await createdUser.save();
@@ -142,7 +136,6 @@ const googleLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
 
     res.status(200).json({
@@ -152,7 +145,6 @@ const googleLogin = async (req, res, next) => {
   } else {
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -182,8 +174,7 @@ const NaverLogin = async (req, res, next) => {
       }),
     });
   } catch (error) {
-    console.log(error);
-    return;
+    return res.status(500).send({ error: error.message });
   }
 
   const { access_token } = response.data;
@@ -196,7 +187,7 @@ const NaverLogin = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
 
   let userId;
@@ -208,13 +199,12 @@ const NaverLogin = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ userId });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ error: error.message });
   }
   if (existingUser === null && userId) {
     //DB에 저장
     const createdUser = new User({
       userId,
-      playList: [],
     });
     try {
       await createdUser.save();
@@ -224,7 +214,6 @@ const NaverLogin = async (req, res, next) => {
     }
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
     res.status(200).json({
       access_token,
@@ -233,7 +222,6 @@ const NaverLogin = async (req, res, next) => {
   } else {
     const access_token = jwt.createToken({
       userId,
-      playList: [],
     });
     res.status(200).json({
       access_token,

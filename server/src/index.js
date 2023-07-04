@@ -6,13 +6,11 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const session = require("express-session"); //세션을 구현하거나 특정 사용자를 위한 데이터를 임시적으로 저장 , req.sesstion객체에 유지
 const morgan = require("morgan");
-
 dotenv.config();
-
 const musicRoutes = require("./routes/music");
 const authRoutes = require("./routes/auth");
-
 const app = express();
+
 app.set("port", process.env.PORT);
 app.use(morgan("dev")); //에러로그 트래킹
 app.use(
@@ -40,12 +38,10 @@ app.use(
 app.use("/api/music", musicRoutes);
 app.use("/api/auth", authRoutes);
 
-// app.listen(app.get("port"));
-
 mongoose
   .connect(
     process.env.MONGODB_CONNECTION_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true } //https://mongodb.github.io/node-mongodb-native/3.3/reference/unified-topology/ 참고하기 나중에
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } //https://mongodb.github.io/node-mongodb-native/3.3/reference/unified-topology/ 참고하기 나중에
   )
   .then(() => {
     app.listen(app.get("port"), () => {
