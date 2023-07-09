@@ -1,30 +1,9 @@
-const path = require("path");
-const fs = require("fs");
 const { validationResult } = require("express-validator");
 const HttpError = require("../../models/error");
 const User = require("../../models/user");
 const PlayList = require("../../models/PlayList");
 
 const { decodeToken } = require("../../utils/jwt");
-
-const getMusicGenre = (req, res, next) => {
-  let musicGenreData = fs.readFileSync(path.join(process.cwd(), "src/files/music/music_genre.json"), "utf-8");
-  musicGenreData = JSON.parse(musicGenreData);
-  res.status(200).json({
-    status: "success",
-    music: musicGenreData,
-  });
-};
-
-const getMusicGenreById = (req, res, next) => {
-  const genre_id = req.params.genre_id;
-  let genreData = fs.readFileSync(path.join(process.cwd(), `src/files/music/${genre_id}.json`), "utf-8");
-  genreData = JSON.parse(genreData);
-  res.status(200).json({
-    status: "success",
-    music: genreData,
-  });
-};
 
 const createPlayList = async (req, res, next) => {
   const errors = validationResult(req);
@@ -45,7 +24,7 @@ const createPlayList = async (req, res, next) => {
   }
 
   if (!userKey) {
-    const error = new HttpError("몽고디비에 등록되지 않은 id 입니다.", 404);
+    const error = new HttpError("DB에 등록되지 않은 사용자 Key 입니다.", 404);
     return next(error);
   }
 
@@ -74,6 +53,4 @@ const createPlayList = async (req, res, next) => {
   return res.status(200).send(newPlayList.playList);
 };
 
-exports.getMusicGenre = getMusicGenre;
-exports.getMusicGenreById = getMusicGenreById;
 exports.createPlayList = createPlayList;

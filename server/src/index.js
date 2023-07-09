@@ -7,8 +7,11 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session"); //세션을 구현하거나 특정 사용자를 위한 데이터를 임시적으로 저장 , req.sesstion객체에 유지
 const morgan = require("morgan");
 dotenv.config();
-const musicRoutes = require("./routes/music");
+
+const genreRoutes = require("./routes/genre");
 const authRoutes = require("./routes/auth");
+const myPlayListRoutes = require("./routes/myPlayList");
+
 const app = express();
 
 app.set("port", process.env.PORT);
@@ -35,8 +38,9 @@ app.use(
   })
 );
 
-app.use("/api/music", musicRoutes);
+app.use("/api/music", genreRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/myPlayList,", myPlayListRoutes);
 
 mongoose
   .connect(
