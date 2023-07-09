@@ -31,8 +31,9 @@ const createPlayList = async (req, res, next) => {
   if (!errors.isEmpty()) {
     return next(new HttpError("유효하지 않은 Input 입니다", 422));
   }
-  const { accessToken, playerList } = req.body;
+  const { accessToken, playerList, title } = req.body;
   // Todo , accessToken 기반으로 userID를 가져오고 해당 userID에 PlayList를 저장
+
   let user;
 
   const info = decodeToken(accessToken);
@@ -57,12 +58,14 @@ const createPlayList = async (req, res, next) => {
         order: 1,
         playList: playerList,
         userId,
+        title,
       });
     } else {
       newPlayList = new PlayList({
         order: userPlayList.length + 1,
         playList: playerList,
         userId,
+        title,
       });
     }
     await newPlayList.save();

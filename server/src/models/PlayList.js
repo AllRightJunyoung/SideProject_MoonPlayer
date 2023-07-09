@@ -7,7 +7,8 @@ const PlayListSchema = new Schema(
   {
     order: { type: Number, required: true },
     playList: [MusicSchema],
-    userId: { type: String, required: true, ref: "User" },
+    userId: { type: String, required: true },
+    title: { type: String, required: true },
   },
   { timestamps: true }
 );
