@@ -3,6 +3,8 @@ const fs = require("fs");
 const { validationResult } = require("express-validator");
 const HttpError = require("../../models/error");
 const User = require("../../models/user");
+const PlayList = require("../../models/PlayList");
+
 const { decodeToken } = require("../../utils/jwt");
 
 const getMusicGenre = (req, res, next) => {
@@ -35,20 +37,39 @@ const createPlayList = async (req, res, next) => {
 
   const info = decodeToken(accessToken);
   const { userId } = info;
-  console.log(userId);
 
   try {
     user = await User.findOne({ userId });
   } catch (err) {
-    const error = new HttpError("몽고 DB에서 에러가 발생하였습니다.", 500);
-    return next(error);
+    return next(error.meessage);
   }
 
   if (!userId) {
     const error = new HttpError("몽고디비에 등록되지 않은 id 입니다.", 404);
     return next(error);
   }
-  console.log(user.playList);
+
+  let newPlayList;
+  try {
+    const userPlayList = await PlayList.find({ userId });
+    if (!userPlayList.length) {
+      newPlayList = new PlayList({
+        order: 1,
+        playList: playerList,
+        userId,
+      });
+    } else {
+      newPlayList = new PlayList({
+        order: userPlayList.length + 1,
+        playList: playerList,
+        userId,
+      });
+    }
+    await newPlayList.save();
+  } catch (error) {
+    return next(error.meessage);
+  }
+  return res.status(200).send(newPlayList.playList);
 };
 
 exports.getMusicGenre = getMusicGenre;

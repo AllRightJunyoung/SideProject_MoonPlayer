@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const MusicSchema = new Schema({
   source_url: String,
@@ -7,5 +8,6 @@ const MusicSchema = new Schema({
   id: Number,
 });
 
-const Music = model("Music", musicSchema);
+const Music = model("Music", MusicSchema);
+MusicSchema.plugin(uniqueValidator);
 module.exports = { Music, MusicSchema };

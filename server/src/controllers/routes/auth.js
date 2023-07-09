@@ -8,6 +8,7 @@ const makeFormData = (params) => {
   Object.keys(params).forEach((key) => {
     searchParams.append(key, params[key]);
   });
+
   return searchParams;
 };
 const kakaoLogin = async (req, res, next) => {
@@ -29,6 +30,7 @@ const kakaoLogin = async (req, res, next) => {
       }),
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).send({ error: error.message });
   }
 
@@ -46,6 +48,7 @@ const kakaoLogin = async (req, res, next) => {
   }
 
   const userId = String(userData.data.id);
+
   let existingUser;
   try {
     existingUser = await User.findOne({ userId });
