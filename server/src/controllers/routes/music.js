@@ -32,39 +32,38 @@ const createPlayList = async (req, res, next) => {
     return next(new HttpError("유효하지 않은 Input 입니다", 422));
   }
   const { accessToken, playerList, title } = req.body;
-  // Todo , accessToken 기반으로 userID를 가져오고 해당 userID에 PlayList를 저장
 
   let user;
 
   const info = decodeToken(accessToken);
-  const { userId } = info;
+  const { userKey } = info;
 
   try {
-    user = await User.findOne({ userId });
+    user = await User.findOne({ userKey });
   } catch (err) {
     return next(error.meessage);
   }
 
-  if (!userId) {
+  if (!userKey) {
     const error = new HttpError("몽고디비에 등록되지 않은 id 입니다.", 404);
     return next(error);
   }
 
   let newPlayList;
   try {
-    const userPlayList = await PlayList.find({ userId });
+    const userPlayList = await PlayList.find({ userKey });
     if (!userPlayList.length) {
       newPlayList = new PlayList({
         order: 1,
         playList: playerList,
-        userId,
+        userKey,
         title,
       });
     } else {
       newPlayList = new PlayList({
         order: userPlayList.length + 1,
         playList: playerList,
-        userId,
+        userKey,
         title,
       });
     }

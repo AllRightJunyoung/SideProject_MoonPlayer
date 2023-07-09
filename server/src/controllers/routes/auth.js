@@ -1,3 +1,4 @@
+const uuid = require("uuid");
 const axios = require("axios");
 const jwt = require("../../utils/jwt");
 const User = require("../../models/user");
@@ -58,8 +59,10 @@ const kakaoLogin = async (req, res, next) => {
 
   // 몽고디비에 유저가 존재하지않으면 DB에 저장
   if (existingUser === null && userId) {
+    const userKey = uuid();
     const createdUser = new User({
       userId,
+      userKey,
     });
     try {
       await createdUser.save();
@@ -68,25 +71,31 @@ const kakaoLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      userId,
+      userKey,
     });
     res.status(200).json({
       access_token,
       expire_in: 1000 * 60 * 60,
     });
   } else {
-    // 존재하면 토큰을 만들어서  액세스 토큰을 전송
-    const access_token = jwt.createToken({
-      userId,
-    });
-    res.status(200).json({
-      access_token,
-      expire_in: 1000 * 60 * 60,
-    });
+    try {
+      const user = await User.findOne({ userId });
+      const userKey = user.userKey;
+      const access_token = jwt.createToken({
+        userKey,
+      });
+      return res.status(200).json({
+        access_token,
+        expire_in: 1000 * 60 * 60,
+      });
+    } catch (error) {
+      return next(error.message);
+    }
   }
 };
 const googleLogin = async (req, res, next) => {
   const { code } = req.query;
+
   let response;
   try {
     response = await axios({
@@ -119,6 +128,7 @@ const googleLogin = async (req, res, next) => {
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
+
   const userId = String(userData.data.id);
 
   let existingUser;
@@ -128,8 +138,10 @@ const googleLogin = async (req, res, next) => {
     return res.status(500).send({ error: error.message });
   }
   if (existingUser === null && userId) {
+    const userKey = uuid();
     const createdUser = new User({
       userId,
+      userKey,
     });
     try {
       await createdUser.save();
@@ -138,21 +150,27 @@ const googleLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      userId,
+      userKey,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       access_token,
       expire_in: 1000 * 60 * 60,
     });
   } else {
-    const access_token = jwt.createToken({
-      userId,
-    });
-    res.status(200).json({
-      access_token,
-      expire_in: 1000 * 60 * 60,
-    });
+    try {
+      const user = await User.findOne({ userId });
+      const userKey = user.userKey;
+      const access_token = jwt.createToken({
+        userKey,
+      });
+      return res.status(200).json({
+        access_token,
+        expire_in: 1000 * 60 * 60,
+      });
+    } catch (error) {
+      return next(error.message);
+    }
   }
 };
 
@@ -205,9 +223,10 @@ const NaverLogin = async (req, res, next) => {
     return res.status(500).send({ error: error.message });
   }
   if (existingUser === null && userId) {
-    //DB에 저장
+    const userKey = uuid();
     const createdUser = new User({
       userId,
+      userKey,
     });
     try {
       await createdUser.save();
@@ -216,20 +235,26 @@ const NaverLogin = async (req, res, next) => {
       return next(error);
     }
     const access_token = jwt.createToken({
-      userId,
+      userKey,
     });
     res.status(200).json({
       access_token,
       expire_in: 1000 * 60 * 60,
     });
   } else {
-    const access_token = jwt.createToken({
-      userId,
-    });
-    res.status(200).json({
-      access_token,
-      expire_in: 1000 * 60 * 60,
-    });
+    try {
+      const user = await User.findOne({ userId });
+      const userKey = user.userKey;
+      const access_token = jwt.createToken({
+        userKey,
+      });
+      return res.status(200).json({
+        access_token,
+        expire_in: 1000 * 60 * 60,
+      });
+    } catch (error) {
+      return next(error.message);
+    }
   }
 };
 

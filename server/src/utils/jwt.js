@@ -7,8 +7,7 @@ const createToken = (user) => {
   try {
     token = jwt.sign(
       {
-        userId: user.userId,
-        playList: user.playList,
+        userKey: user.userKey,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
