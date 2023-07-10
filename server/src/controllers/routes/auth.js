@@ -1,8 +1,7 @@
 const uuid = require("uuid");
 const axios = require("axios");
 const jwt = require("../../utils/jwt");
-const User = require("../../models/user");
-const HttpError = require("../../models/error");
+const { User, HttpError } = require("../../models");
 
 const makeFormData = (params) => {
   const searchParams = new URLSearchParams();

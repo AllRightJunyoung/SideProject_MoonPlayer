@@ -14,4 +14,7 @@ const PlayListSchema = new Schema(
 );
 
 PlayListSchema.plugin(uniqueValidator);
-module.exports = model("PlayList", PlayListSchema);
+
+const PlayList = model("PlayList", PlayListSchema);
+
+module.exports = { PlayList };

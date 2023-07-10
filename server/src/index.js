@@ -8,9 +8,11 @@ const session = require("express-session"); //세션을 구현하거나 특정 �
 const morgan = require("morgan");
 dotenv.config();
 
-const genreRoutes = require("./routes/genre");
-const authRoutes = require("./routes/auth");
-const myPlayListRoutes = require("./routes/myPlayList");
+// const genreRoutes = require("./routes/genre");
+// const authRoutes = require("./routes/auth");
+// const myPlayListRoutes = require("./routes/myPlayList");
+
+const { genreRoutes, authRoutes, myPlayListRoutes } = require("./routes");
 
 const app = express();
 
@@ -40,7 +42,7 @@ app.use(
 
 app.use("/api/music", genreRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/myPlayList,", myPlayListRoutes);
+app.use("/api/myPlayList", myPlayListRoutes);
 
 mongoose
   .connect(

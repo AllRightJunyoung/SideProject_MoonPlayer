@@ -1,7 +1,5 @@
 const { validationResult } = require("express-validator");
-const HttpError = require("../../models/error");
-const User = require("../../models/user");
-const PlayList = require("../../models/PlayList");
+const { PlayList, User, HttpError } = require("../../models");
 
 const { decodeToken } = require("../../utils/jwt");
 

@@ -1,8 +1,9 @@
-const express = require("express");
-const router = express.Router();
+const { Router } = require("express");
+const authRoutes = Router();
 const authController = require("../controllers/routes/auth");
 
-router.get("/kakao", authController.kakaoLogin);
-router.get("/google", authController.googleLogin);
-router.get("/naver", authController.NaverLogin);
-module.exports = router;
+authRoutes.get("/kakao", authController.kakaoLogin);
+authRoutes.get("/google", authController.googleLogin);
+authRoutes.get("/naver", authController.NaverLogin);
+
+module.exports = { authRoutes };
