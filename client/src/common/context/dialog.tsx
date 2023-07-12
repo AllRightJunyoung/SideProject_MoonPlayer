@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState } from 'react';
-import { DialogState, ConfirmType, ConfirMessageType } from '../types/dialog';
+import { DialogState, ConfirmType, ConfirmMessageType } from '../types/dialog';
 
 const DEFAULT_STATE: DialogState = {
   alarm: {
@@ -18,10 +18,10 @@ const DEFAULT_STATE: DialogState = {
     img_url: '',
   },
 };
-const confirmMessage: ConfirMessageType = {
+const confirmMessage: ConfirmMessageType = {
   Logout: '로그아웃 하시겠습니까?',
-  Load: '재생목록을 가져오시겠습니까?',
-  Save: '현재 재생목록을 저장하시겠습니까?',
+  PlayListLoad: '재생목록을 가져오시겠습니까?',
+  PlayListSave: '현재 재생목록을 저장하시겠습니까?',
 };
 
 export const DiaLogContext = createContext({
@@ -72,7 +72,7 @@ export const DiaLogContextProvider = (props) => {
       confirm: {
         isOpen: false,
         message: '',
-        type: prev.confirm.type,
+        type: '',
       },
     }));
   };

@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
-import { confirmMessage } from 'common/constants/dialog';
+import { confirmMessage, confirmFailMessage } from 'common/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppSelector } from './useReduxStore';
-import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import { postMyPlayList } from 'Music/api';
 
 const useConfirm = () => {
@@ -20,7 +19,7 @@ const useConfirm = () => {
     dialogCtx.closeConfirm();
     const confirmType = dialogCtx.state.confirm.type;
     if (confirmType === '') return;
-    return confirmType === 'Logout' ? logOut() : confirmType === 'Load' ? loadMusic() : saveMusic();
+    return confirmType === 'Logout' ? logOut() : confirmType === 'PlayListLoad' ? loadMusic() : saveMusic();
   };
 
   const handleNoButton = () => {
@@ -36,14 +35,12 @@ const useConfirm = () => {
     dialogCtx.showAlarm(confirmMessage.PlayListLoad);
   };
   const saveMusic = async () => {
-    if (!myPlayListInputValidation(addPlayListInput) || !myPlayListLengthValidation(playerList)) return;
-
     try {
       const result = await postMyPlayList({ accessToken, playerList, title: addPlayListInput });
       if (!result.length) throw new Error();
       dialogCtx.showAlarm(confirmMessage.PlayListSave);
     } catch (err) {
-      dialogCtx.showAlarm(confirmMessage.PlayListSaveFail);
+      dialogCtx.showAlarm(confirmFailMessage.PlayListSaveFail);
     }
   };
   const close = () => {

@@ -6,10 +6,11 @@ import { Music, Flex, IconButton } from 'common/components';
 import { useDialog } from 'common/hooks';
 import { useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
+import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 
 export const AddPlayListLayout = () => {
   const dispatch = useAppDispatch();
-  const playerSelector = useAppSelector((state) => state.music.player);
+  const playerList = useAppSelector((state) => state.music.player.list);
   const { showConfirmMessage } = useDialog();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,15 +18,15 @@ export const AddPlayListLayout = () => {
   const handleSaveButton = () => {
     if (!inputRef.current?.value) return;
     const inputValue = inputRef.current.value;
+    if (!myPlayListInputValidation(inputValue) || !myPlayListLengthValidation(playerList)) return;
+
     dispatch(handleAddPlayListInput(inputValue));
-    showConfirmMessage('Save');
+    showConfirmMessage('PlayListSave');
   };
 
   const currentPlayerMusics =
-    playerSelector.list.length > 0 ? (
-      playerSelector.list.map(({ name, img_url }, index) => (
-        <Music name={name} url={img_url} key={index} id={++index} />
-      ))
+    playerList.length > 0 ? (
+      playerList.map(({ name, img_url }, index) => <Music name={name} url={img_url} key={index} id={++index} />)
     ) : (
       <Styled.EmptyText>재생 목록이 비어있습니다.</Styled.EmptyText>
     );
@@ -36,7 +37,7 @@ export const AddPlayListLayout = () => {
       <Styled.Layout direction="column" justifyContent="center">
         <Flex direction="row" justifyContent="space-between" alignItems="center">
           <Styled.InputBox direction="row" alignItems="center" gap="15px">
-            <Styled.Input placeholder="최소 4자~10자이내에 입력해주세요." ref={inputRef} />
+            <Styled.Input placeholder="30자 이내에서 입력해주세요!" ref={inputRef} />
             <IconButton name="save" size="2x" color="white" onClick={handleSaveButton}></IconButton>
           </Styled.InputBox>
         </Flex>

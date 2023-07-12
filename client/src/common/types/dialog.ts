@@ -1,5 +1,8 @@
-export type ConfirmType = 'Logout' | 'PlayListLoad' | 'PlayListSave' | 'PlayListSaveFail';
-export type ConfirMessageType = { [K in ConfirmType]: string };
+export type ConfirmType = 'Logout' | 'PlayListLoad' | 'PlayListSave';
+export type ConfirmMessageType = { [K in ConfirmType]: string };
+
+export type ConfirmFailType = 'PlayListSaveFail';
+export type ConfirMessageFailType = { [K in ConfirmFailType]: string };
 
 export type DialogState = {
   alarm: {
@@ -9,7 +12,7 @@ export type DialogState = {
   confirm: {
     isOpen: boolean;
     message: string;
-    type: 'Logout' | 'Load' | 'Save' | '';
+    type: ConfirmType | '';
   };
   music: {
     isOpen: boolean;
