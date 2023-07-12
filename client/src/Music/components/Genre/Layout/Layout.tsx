@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getMusicGenre } from 'Music/store/feature/GenreSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
+import { GenreList_GET_URI } from 'Music/constants/api';
 
 import './index.css';
 
@@ -10,7 +11,7 @@ import GenreSlider from '../GenreSlider/GenreSlider';
 export const GenreLayout = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getMusicGenre('http://localhost:4001/api/music/genre/'));
+    dispatch(getMusicGenre(`${GenreList_GET_URI}`));
   }, []);
   return (
     <div>

@@ -1,21 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getData } from 'common/utils/axios';
+import type { ThunkApiType } from 'common/store/store';
 import { PURGE } from 'redux-persist';
 import { GenreStateType } from 'common/types/store';
 import type { GenreItemType } from 'Music/types';
-
+import { getGenreData } from 'Music/api';
 const initialState: GenreStateType = {
   list: [],
   status: '',
 };
 
-// 액션 생성
-const getMusicGenre = createAsyncThunk('genre', async (url: string, thunkApi: any) => {
+const getMusicGenre = createAsyncThunk<GenreItemType[], string, ThunkApiType>('genre', async (url, thunkApi) => {
   try {
-    const response = await getData(url);
-    return response.music as GenreItemType;
+    const response = await getGenreData(url);
+    return response;
   } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message); //  Alert Store 생성해서 오류 발생시 addAlert() action 호출하는 방식으로 UI 노출 가능
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 // Reducer

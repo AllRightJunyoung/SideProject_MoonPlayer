@@ -12,7 +12,7 @@ export const MusicList = () => {
 
   useEffect(() => {
     if (music_list.length) return;
-    dispatch(getMusicList('http://localhost:4001/api/music/genre/1'));
+    dispatch(getMusicList(1));
   }, []);
 
   return (

@@ -3,7 +3,6 @@ const {
   REACT_APP_KAKAO_CLIENT_ID: KAKAO_KEY,
   REACT_APP_GOOGLE_CLIENT_ID: GOOGLE_Client_ID,
   REACT_APP_NAVER_CLIENT_ID: NAVER_ID,
-  REACT_APP_NAVER_SECRET_ID: NAVER_Secret_ID,
 } = process.env;
 export const KAKAO_OAUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 export const GOOGLE_OAUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_Client_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=openid%20profile%20email`;

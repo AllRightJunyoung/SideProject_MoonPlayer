@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
 import { confirmMessage } from 'common/constants/dialog';
-
 import useLogin from 'Login/hooks/useLogin';
 import { useAppSelector } from './useReduxStore';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import { useDispatch } from 'react-redux';
-import { saveMyPlayList } from 'Music/store/feature/MyPlayListSlice';
+import { postMyPlayList } from 'Music/api';
 
 const useConfirm = () => {
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
@@ -37,19 +36,18 @@ const useConfirm = () => {
   };
 
   const loadMusic = () => {
-    dialogCtx.showAlarm(confirmMessage.Load);
+    dialogCtx.showAlarm(confirmMessage.PlayListLoad);
   };
-  const saveMusic = () => {
+  const saveMusic = async () => {
     if (!myPlayListInputValidation(addPlayListInput) || !myPlayListLengthValidation(playerList)) return;
 
-    console.log(accessToken, playerList);
-    const obj = {
-      accessToken,
-      playerList,
-    };
-
-    dispatch(saveMyPlayList(obj));
-    dialogCtx.showAlarm(confirmMessage.Save);
+    try {
+      const result = await postMyPlayList({ accessToken, playerList, title: addPlayListInput });
+      if (!result.length) throw new Error();
+      dialogCtx.showAlarm(confirmMessage.PlayListSave);
+    } catch (err) {
+      dialogCtx.showAlarm(confirmMessage.PlayListSaveFail);
+    }
   };
   const close = () => {
     dialogCtx.closeConfirm();

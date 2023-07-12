@@ -1,9 +1,9 @@
-interface APIDataResponse<T> {
+interface APIResponse<T> {
   result: T;
 }
 
 export interface CommonResponse<T> {
-  data: APIDataResponse<T>;
+  data: APIResponse<T>;
   status: number;
   statusText: string;
 }

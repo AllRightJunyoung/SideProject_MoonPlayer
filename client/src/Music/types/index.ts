@@ -30,3 +30,9 @@ export interface PlayListType {
   genre_id: number;
   music_list: MusicItemType[];
 }
+
+export interface RequestMyPlayListType {
+  accessToken: string;
+  playerList: MusicItemType[];
+  title: string;
+}

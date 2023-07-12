@@ -1,4 +1,4 @@
-export type ConfirmType = 'Logout' | 'Load' | 'Save';
+export type ConfirmType = 'Logout' | 'PlayListLoad' | 'PlayListSave' | 'PlayListSaveFail';
 export type ConfirMessageType = { [K in ConfirmType]: string };
 
 export type DialogState = {

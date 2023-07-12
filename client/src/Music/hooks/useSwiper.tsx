@@ -13,13 +13,13 @@ const useSwiper = (slideitems) => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(getMusicList(`http://localhost:4001/api/music/genre/${idx}`));
+    dispatch(getMusicList(Number(idx)));
   };
   const handlePrevSlide = () => {
     if (!swiperModule) return;
     swiperModule.slidePrev(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(getMusicList(`http://localhost:4001/api/music/genre/${idx}`));
+    dispatch(getMusicList(Number(idx)));
   };
 
   const swiper = (

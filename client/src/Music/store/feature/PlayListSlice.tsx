@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getData } from 'common/utils/axios';
+import { ThunkApiType } from 'common/store/store';
 import { PURGE } from 'redux-persist';
-import { PlayListStateType } from 'common/types/store';
+import type { PlayListStateType } from 'common/types/store';
 import type { PlayListType } from 'Music/types';
+import { getByMusicListId } from 'Music/api';
 
 export const initialState: PlayListStateType = {
   genre: {
@@ -13,10 +14,10 @@ export const initialState: PlayListStateType = {
   status: '',
 };
 
-const getMusicList = createAsyncThunk('musicList', async (url: string, thunkApi) => {
+const getMusicList = createAsyncThunk<PlayListType, number, ThunkApiType>('musicList', async (id, thunkApi) => {
   try {
-    const response = await getData(url);
-    return response.music as PlayListType;
+    const response = await getByMusicListId(id);
+    return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
   }
