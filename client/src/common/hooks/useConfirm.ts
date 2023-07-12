@@ -3,7 +3,7 @@ import { DiaLogContext } from 'common/context/dialog';
 import { confirmMessage, confirmFailMessage } from 'common/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppSelector } from './useReduxStore';
-import { postMyPlayList } from 'Music/api';
+import { registerMyPlayList } from 'Music/api';
 
 const useConfirm = () => {
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
@@ -36,7 +36,7 @@ const useConfirm = () => {
   };
   const saveMusic = async () => {
     try {
-      const result = await postMyPlayList({ accessToken, playerList, title: addPlayListInput });
+      const result = await registerMyPlayList({ accessToken, playerList, title: addPlayListInput });
       if (!result.length) throw new Error();
       dialogCtx.showAlarm(confirmMessage.PlayListSave);
     } catch (err) {

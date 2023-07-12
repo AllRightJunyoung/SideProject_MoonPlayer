@@ -31,8 +31,18 @@ export interface PlayListType {
   music_list: MusicItemType[];
 }
 
-export interface RequestMyPlayListType {
+export interface RegisterMyPlayListType {
   accessToken: string;
   playerList: MusicItemType[];
+  title: string;
+}
+
+export interface RequestMyPlayListType {
+  accessToken: string;
+}
+
+export interface MyPlayListType {
+  order: Number;
+  playList: MusicItemType[];
   title: string;
 }

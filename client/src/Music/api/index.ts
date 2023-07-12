@@ -1,11 +1,22 @@
-import type { RequestMyPlayListType, MusicItemType, GenreItemType, PlayListType } from 'Music/types';
-import { MyPLAYLIST_POST_URI, GenreList_GET_URI } from 'Music/constants/api';
+import type {
+  RegisterMyPlayListType,
+  MusicItemType,
+  GenreItemType,
+  PlayListType,
+  MyPlayListType,
+  RequestMyPlayListType,
+} from 'Music/types';
+import { MyPLAYLIST_CREATE_URI, GenreList_GET_URI, MyPLAYLIST_GET_URI } from 'Music/constants/api';
 import { Get, Post } from 'common/utils/axios';
 
-export const postMyPlayList = async (data: RequestMyPlayListType): Promise<MusicItemType[]> => {
-  const playList = await Post<MusicItemType[]>(`${MyPLAYLIST_POST_URI}`, data);
-  console.log(playList);
+export const registerMyPlayList = async (data: RegisterMyPlayListType): Promise<MusicItemType[]> => {
+  const playList = await Post<MusicItemType[]>(`${MyPLAYLIST_CREATE_URI}`, data);
   return playList;
+};
+
+export const getMyPlayList = async (token: RequestMyPlayListType): Promise<MyPlayListType[]> => {
+  const myPlayListNameList = await Post<MyPlayListType[]>(MyPLAYLIST_GET_URI, token);
+  return myPlayListNameList;
 };
 
 export const getGenreData = async (url: string): Promise<GenreItemType[]> => {

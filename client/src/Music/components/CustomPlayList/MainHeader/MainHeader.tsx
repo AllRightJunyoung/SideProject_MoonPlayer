@@ -1,8 +1,22 @@
 import { useMusicPageUIController } from 'Music/hooks';
 import * as Styled from './MainHeader.styled';
+import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+import { fetchMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
 export const MainHeader = ({ title }) => {
   const { isOpenAddMusicListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
+  const accessToken = useAppSelector((state) => state.login.token.access_token);
+
+  const dispatch = useAppDispatch();
+
+  const handlePlusButton = () => {
+    onhandleOpenAddPlayListUI(true);
+  };
+
+  const handleMusicButton = () => {
+    onhandleOpenAddPlayListUI(false);
+    dispatch(fetchMyPlayList({ accessToken }));
+  };
 
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
@@ -12,18 +26,14 @@ export const MainHeader = ({ title }) => {
           name="plus"
           size="2x"
           color="white"
-          onClick={() => {
-            onhandleOpenAddPlayListUI(true);
-          }}
+          onClick={handlePlusButton}
           active={isOpenAddMusicListUI}
         />
         <Styled.CustomIconButton
           name="music"
           size="2x"
           color="white"
-          onClick={() => {
-            onhandleOpenAddPlayListUI(false);
-          }}
+          onClick={handleMusicButton}
           active={!isOpenAddMusicListUI}
         />
       </Styled.IconButtonBox>
