@@ -48,7 +48,7 @@ const createPlayList = async (req, res, next) => {
   } catch (error) {
     return next(error.meessage);
   }
-  return res.status(200).send(newPlayList.playList);
+  return res.status(200).json({ result: newPlayList.playList });
 };
 
 exports.createPlayList = createPlayList;
