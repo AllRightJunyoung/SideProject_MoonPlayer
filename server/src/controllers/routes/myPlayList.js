@@ -3,7 +3,7 @@ const { PlayList, User, HttpError } = require("../../models");
 
 const { decodeToken } = require("../../utils/jwt");
 
-const createPlayList = async (req, res, next) => {
+const createMyPlayList = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(new HttpError("유효하지 않은 Input 입니다", 422));
@@ -51,4 +51,14 @@ const createPlayList = async (req, res, next) => {
   return res.status(200).json({ result: newPlayList.playList });
 };
 
-exports.createPlayList = createPlayList;
+const getMyPlayListNameList = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("유효하지 않은 Input 입니다", 422));
+  }
+  const { accessToken } = req.body;
+  console.log(accessToken);
+};
+
+exports.createMyPlayList = createMyPlayList;
+exports.getMyPlayListNameList = getMyPlayListNameList;
