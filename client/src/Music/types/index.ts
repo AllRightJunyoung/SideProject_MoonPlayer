@@ -46,3 +46,7 @@ export interface MyPlayListType {
   playList: MusicItemType[];
   title: string;
 }
+export interface SelectedMyPlayListType {
+  playList: MusicItemType[];
+  title: string;
+}

@@ -1,14 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { MyPlayListStateType } from 'common/types/store';
 import type { ThunkApiType } from 'common/store/store';
-import type { MyPlayListType, RequestMyPlayListType } from 'Music/types';
+import type { MyPlayListType, RequestMyPlayListType, SelectedMyPlayListType } from 'Music/types';
 import { getMyPlayList } from 'Music/api';
 
 import { PURGE } from 'redux-persist';
 
 const initialState: MyPlayListStateType = {
   status: '',
-  playList: [],
+  totalPlayList: [],
+  selected: {
+    playList: [],
+    title: '',
+  },
 };
 
 const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType, ThunkApiType>(
@@ -26,7 +30,11 @@ const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType
 export const MyPlayListSlice = createSlice({
   name: 'myPlayList',
   initialState,
-  reducers: {},
+  reducers: {
+    selectMyPlayList: (state: MyPlayListStateType, action: PayloadAction<SelectedMyPlayListType>) => {
+      state.selected = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchMyPlayList.pending, (state: MyPlayListStateType) => {
       state.status = 'Loading';
@@ -35,7 +43,7 @@ export const MyPlayListSlice = createSlice({
       fetchMyPlayList.fulfilled,
       (state: MyPlayListStateType, action: PayloadAction<MyPlayListType[]>) => {
         state.status = 'Complete';
-        state.playList = action.payload;
+        state.totalPlayList = action.payload;
       }
     );
 
@@ -47,3 +55,4 @@ export const MyPlayListSlice = createSlice({
 });
 export default MyPlayListSlice;
 export { fetchMyPlayList };
+export const { selectMyPlayList } = MyPlayListSlice.actions;

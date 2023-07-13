@@ -2,70 +2,18 @@
 import { Music } from 'common/components';
 import * as Styled from './MusicList.styled';
 import { MusicListHeader } from '../MusicListHeader';
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
-
-const playerDatas = [
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 101,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 102,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 103,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      // eslint-disable-next-line max-len
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 104,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 105,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 106,
-  },
-  {
-    source_url: 'https://www.youtube.com/watch?v=0-q1KafFCLU',
-    name: '[MV] IU(아이유) _ Celebrity',
-    img_url:
-      'https://i.ytimg.com/vi/0-q1KafFCLU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6XIEo8_GZamiAXdYO90c7fx7WTg',
-    id: 107,
-  },
-];
+import { useAppSelector } from 'common/hooks/useReduxStore';
+import uuid from 'react-uuid';
 export const MusicList = () => {
-  const MyPlayListTitles = useAppSelector((state) => state.music.myPlayList.playList);
-  console.log(MyPlayListTitles);
-
+  const selectedPlayListStore = useAppSelector((state) => state.music.myPlayList.selected);
+  const selectedTitle = selectedPlayListStore.title;
+  const selectedPlayList = selectedPlayListStore.playList;
   return (
     <>
-      <MusicListHeader title="나만의 플레이리스트" />
+      <MusicListHeader title={selectedTitle} />
       <Styled.Layout>
-        {playerDatas.map((data) => (
-          <Music name={data.name} url={data.img_url} id={data.id} key={data.id} />
+        {selectedPlayList.map((music, idx) => (
+          <Music name={music.name} url={music.img_url} order={idx + 1} key={uuid()} />
         ))}
       </Styled.Layout>
     </>

@@ -26,7 +26,7 @@ export const AddPlayListLayout = () => {
 
   const currentPlayerMusics =
     playerList.length > 0 ? (
-      playerList.map(({ name, img_url }, index) => <Music name={name} url={img_url} key={index} id={++index} />)
+      playerList.map(({ name, img_url }, index) => <Music name={name} url={img_url} key={index} order={++index} />)
     ) : (
       <Styled.EmptyText>재생 목록이 비어있습니다.</Styled.EmptyText>
     );
