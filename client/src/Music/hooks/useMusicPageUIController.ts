@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import {
   handleOpenCustomPlayListUI,
   handleOpenAddPlayListUI,
-  handleOpenMyPlayListUI,
+  handleOpenMyPlayListTitleListUI,
   handleOpenMusicListUI,
   handleOpenMusicFooterUI,
 } from 'Music/store/feature/MusicUISlice';
@@ -14,7 +14,9 @@ const useMusicPageUIController = () => {
   const isOpenAddMusicListUI = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.isOpen);
   const isOpenMusicFooterUI = useAppSelector((state) => state.music.musicUI.footer.isOpen);
   const isOpenMusicList = useAppSelector((state) => state.music.musicUI.main.isOpenMusicList);
-  const isOpenMyPlayListUI = useAppSelector((state) => state.music.musicUI.customPlayList.myPlayList.isOpen);
+  const isOpenMyPlayListTitleListUI = useAppSelector(
+    (state) => state.music.musicUI.customPlayList.myPlayListTitleList.isOpen
+  );
 
   const onhandleOpenMusicListUI = (isActive: boolean) => {
     dispatch(handleOpenMusicListUI(isActive));
@@ -33,16 +35,16 @@ const useMusicPageUIController = () => {
   const onhandleCloseCustomPlayListUI = () => {
     onhandleOpenCustomPlayListUI(false);
     onhandleOpenAddPlayListUI(false);
-    dispatch(handleOpenMyPlayListUI(true));
+    dispatch(handleOpenMyPlayListTitleListUI(true));
   };
   const onhandleMyPlayListUI = (isActive: boolean) => {
-    dispatch(handleOpenMyPlayListUI(isActive));
+    dispatch(handleOpenMyPlayListTitleListUI(isActive));
   };
   return {
     isOpenMusicFooterUI,
     isOpenAddMusicListUI,
     isOpenCustomPlayListUI,
-    isOpenMyPlayListUI,
+    isOpenMyPlayListTitleListUI,
     isOpenMusicList,
     onhandleOpenMusicFooterUI,
     onhandleOpenAddPlayListUI,

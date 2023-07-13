@@ -1,10 +1,10 @@
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
-import * as Styled from './MyPlayListItem.styled';
+import * as Styled from './MyPlayListTitleItem.styled';
 import { IconButton } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
-const MyPlayListItem = ({ title, order }) => {
+const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
 
@@ -29,4 +29,4 @@ const MyPlayListItem = ({ title, order }) => {
   );
 };
 
-export default MyPlayListItem;
+export default MyPlayListTitleItem;

@@ -34,7 +34,7 @@ export interface MusicUIStateType {
       isOpen: boolean;
       input: string;
     };
-    myPlayList: {
+    myPlayListTitleList: {
       isOpen: boolean;
     };
   };

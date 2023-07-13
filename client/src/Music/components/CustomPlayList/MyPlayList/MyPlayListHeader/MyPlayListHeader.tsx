@@ -1,10 +1,10 @@
-import * as Styled from './MusicListHeader.styled';
+import * as Styled from './MyPlayListHeader.styled';
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { IconButton } from 'common/components';
 
-export const MusicListHeader = ({ title }) => {
+const MyPlayListHeader = ({ title }) => {
   const dialogCtx = useContext(DiaLogContext);
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
 
@@ -30,4 +30,4 @@ export const MusicListHeader = ({ title }) => {
   );
 };
 
-export default MusicListHeader;
+export default MyPlayListHeader;

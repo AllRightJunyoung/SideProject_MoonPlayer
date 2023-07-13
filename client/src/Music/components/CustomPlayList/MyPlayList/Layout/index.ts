@@ -1,1 +1,1 @@
-export { default as MyPlayListLayout } from './MyPlayListLayout';
+export { default } from './MyPlayListLayout';

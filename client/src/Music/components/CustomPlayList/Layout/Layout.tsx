@@ -2,10 +2,10 @@ import * as Styled from './Layout.styled';
 
 import { useRef } from 'react';
 import useMusicPageUIController from 'Music/hooks/useMusicPageUIController';
-import { AddPlayListLayout } from '../AddPlayListLayout';
-import { MyPlayListLayout } from '../MyPlayList/Layout';
+import { AddPlayListLayout } from '../AddPlayList/Layout';
+import { MyPlayListLayout } from '../MyPlayList';
 
-export const CustomPlayList = () => {
+export const CustomPlayListLayout = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const { isOpenAddMusicListUI, onhandleCloseCustomPlayListUI } = useMusicPageUIController();
 
@@ -18,4 +18,4 @@ export const CustomPlayList = () => {
     </Styled.Overlay>
   );
 };
-export default CustomPlayList;
+export default CustomPlayListLayout;

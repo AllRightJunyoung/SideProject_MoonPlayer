@@ -1,9 +1,9 @@
 import { useMusicPageUIController } from 'Music/hooks';
-import * as Styled from './MainHeader.styled';
+import * as Styled from './CustomPlayListHeader.styled';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
 import { fetchMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
-export const MainHeader = ({ title }) => {
+const CustomPlayListHeader = ({ title }) => {
   const { isOpenAddMusicListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
   const accessToken = useAppSelector((state) => state.login.token.access_token);
 
@@ -41,4 +41,4 @@ export const MainHeader = ({ title }) => {
   );
 };
 
-export default MainHeader;
+export default CustomPlayListHeader;

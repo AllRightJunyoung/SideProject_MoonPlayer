@@ -12,7 +12,7 @@ export const initialState: MusicUIStateType = {
       isOpen: false,
       input: '',
     },
-    myPlayList: {
+    myPlayListTitleList: {
       isOpen: true,
     },
   },
@@ -31,8 +31,8 @@ export const MusicUISlice = createSlice({
     handleOpenAddPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.customPlayList.addPlayList.isOpen = action.payload;
     },
-    handleOpenMyPlayListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
-      state.customPlayList.myPlayList.isOpen = action.payload;
+    handleOpenMyPlayListTitleListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
+      state.customPlayList.myPlayListTitleList.isOpen = action.payload;
     },
     handleOpenMusicListUI: (state: MusicUIStateType, action: PayloadAction<boolean>) => {
       state.main.isOpenMusicList = action.payload;
@@ -51,7 +51,7 @@ export const MusicUISlice = createSlice({
 export const {
   handleOpenCustomPlayListUI,
   handleOpenAddPlayListUI,
-  handleOpenMyPlayListUI,
+  handleOpenMyPlayListTitleListUI,
   handleOpenMusicListUI,
   handleOpenMusicFooterUI,
   handleAddPlayListInput,
