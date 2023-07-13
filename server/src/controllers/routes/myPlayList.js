@@ -20,9 +20,8 @@ const createMyPlayList = async (req, res, next) => {
   } catch (err) {
     return next(error.meessage);
   }
-
-  if (!userKey) {
-    const error = new HttpError("DB에 등록되지 않은 사용자 Key 입니다.", 404);
+  if (!user) {
+    const error = new HttpError("DB에 등록되지 않은 사용자 입니다.", 404);
     return next(error);
   }
 
@@ -57,7 +56,25 @@ const getMyPlayListNameList = async (req, res, next) => {
     return next(new HttpError("유효하지 않은 Input 입니다", 422));
   }
   const { accessToken } = req.body;
-  console.log(accessToken);
+  const info = decodeToken(accessToken);
+  const { userKey } = info;
+
+  let userPlayList;
+  try {
+    userPlayList = await PlayList.find({ userKey });
+  } catch (err) {
+    return next(error.meessage);
+  }
+  const newUserPlayList = userPlayList.map((playList, idx) => {
+    return {
+      order: idx + 1,
+      playList: playList.playList,
+      title: playList.title,
+    };
+  });
+  return res.status(200).json({
+    result: newUserPlayList,
+  });
 };
 
 exports.createMyPlayList = createMyPlayList;
