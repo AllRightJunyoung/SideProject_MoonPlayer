@@ -2,6 +2,7 @@
 import { Music } from 'common/components';
 import * as Styled from './MusicList.styled';
 import { MusicListHeader } from '../MusicListHeader';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 
 const playerDatas = [
   {
@@ -56,7 +57,8 @@ const playerDatas = [
   },
 ];
 export const MusicList = () => {
-  // 서버로부터 가져온 데이터 렌더링해야함
+  const MyPlayListTitles = useAppSelector((state) => state.music.myPlayList.playList);
+  console.log(MyPlayListTitles);
 
   return (
     <>

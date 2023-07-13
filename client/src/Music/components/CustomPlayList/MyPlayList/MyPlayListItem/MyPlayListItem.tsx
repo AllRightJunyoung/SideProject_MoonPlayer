@@ -2,8 +2,7 @@ import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import * as Styled from './MyPlayListItem.styled';
 import { IconButton } from 'common/components';
 
-const MyPlayListItem = ({ title, id }) => {
-  // onClick을하면 MusicList UI로 전환시킨다.
+const MyPlayListItem = ({ title, order }) => {
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
 
   return (
@@ -15,7 +14,7 @@ const MyPlayListItem = ({ title, id }) => {
         onhandleMyPlayListUI(false);
       }}
     >
-      <Styled.Number>{id}</Styled.Number>
+      <Styled.Number>{order}</Styled.Number>
       <Styled.Title>{title}</Styled.Title>
       <IconButton color="rgba(255,255,255,0.64)" size="1x" name="trash" />
     </Styled.Layout>

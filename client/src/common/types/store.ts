@@ -17,7 +17,7 @@ export interface PlayListStateType {
 }
 export interface MyPlayListStateType {
   status: string;
-  myPlayList: MyPlayListType[];
+  playList: MyPlayListType[];
 }
 
 export interface MusicUIStateType {

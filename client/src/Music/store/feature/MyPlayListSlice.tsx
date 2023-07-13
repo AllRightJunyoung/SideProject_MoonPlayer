@@ -8,7 +8,7 @@ import { PURGE } from 'redux-persist';
 
 const initialState: MyPlayListStateType = {
   status: '',
-  myPlayList: [],
+  playList: [],
 };
 
 const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType, ThunkApiType>(
@@ -35,7 +35,7 @@ export const MyPlayListSlice = createSlice({
       fetchMyPlayList.fulfilled,
       (state: MyPlayListStateType, action: PayloadAction<MyPlayListType[]>) => {
         state.status = 'Complete';
-        state.myPlayList = action.payload;
+        state.playList = action.payload;
       }
     );
 
