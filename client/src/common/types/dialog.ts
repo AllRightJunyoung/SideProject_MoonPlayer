@@ -1,4 +1,4 @@
-export type ConfirmType = 'Logout' | 'PlayListLoad' | 'PlayListSave';
+export type ConfirmType = 'Logout' | 'PlayListLoad' | 'PlayListSave' | 'PlayListDelete';
 export type ConfirmMessageType = { [K in ConfirmType]: string };
 
 export type ConfirmFailType = 'PlayListSaveFail';
@@ -18,5 +18,8 @@ export type DialogState = {
     isOpen: boolean;
     name: string;
     img_url: string;
+  };
+  deletePlayList: {
+    title: string;
   };
 };

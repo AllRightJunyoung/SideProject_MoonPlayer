@@ -5,6 +5,7 @@ import useLogin from 'Login/hooks/useLogin';
 import { useAppDispatch, useAppSelector } from './useReduxStore';
 import { registerMyPlayList } from 'Music/api';
 import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
+import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
 const useConfirm = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +22,26 @@ const useConfirm = () => {
   const handleYesButton = () => {
     dialogCtx.closeConfirm();
     const confirmType = dialogCtx.state.confirm.type;
+    const deleteMyPlayListTitle = dialogCtx.state.deletePlayList.title;
     if (confirmType === '') return;
-    return confirmType === 'Logout' ? logOut() : confirmType === 'PlayListLoad' ? loadMusic() : saveMusic();
+
+    switch (confirmType) {
+      case 'Logout':
+        logOut();
+        break;
+      case 'PlayListLoad':
+        loadMusic();
+        break;
+      case 'PlayListSave':
+        saveMusic();
+        break;
+      case 'PlayListDelete':
+        deletePlayList(deleteMyPlayListTitle);
+        break;
+      default:
+        break;
+    }
+    return;
   };
 
   const handleNoButton = () => {
@@ -47,10 +66,14 @@ const useConfirm = () => {
       dialogCtx.showAlarm(confirmFailMessage.PlayListSaveFail);
     }
   };
+  const deletePlayList = (title: string) => {
+    dispatch(deleteMyPlayList(title));
+    dialogCtx.showAlarm(confirmMessage.PlayListDelete);
+  };
   const close = () => {
     dialogCtx.closeConfirm();
   };
-  return { close, loadMusic, saveMusic, isOpen, handleYesButton, handleNoButton, confirmState };
+  return { close, loadMusic, saveMusic, isOpen, handleYesButton, handleNoButton, confirmState, deletePlayList };
 };
 
 export default useConfirm;

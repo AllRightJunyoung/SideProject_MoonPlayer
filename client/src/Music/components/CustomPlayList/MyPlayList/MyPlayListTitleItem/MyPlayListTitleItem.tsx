@@ -1,14 +1,16 @@
-import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import * as Styled from './MyPlayListTitleItem.styled';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { IconButton } from 'common/components';
-import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
-import { selectMyPlayList, deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
+import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
+import { useContext } from 'react';
+import { DiaLogContext } from 'common/context/dialog';
 
 const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
-
   const dispatch = useAppDispatch();
+  const dialogCtx = useContext(DiaLogContext);
 
   const handleMyPlayListItem = () => {
     onhandleMyPlayListUI(false);
@@ -20,7 +22,8 @@ const MyPlayListTitleItem = ({ title, order }) => {
     dispatch(selectMyPlayList(newCurrentPlayList));
   };
   const handleRemoveButton = () => {
-    dispatch(deleteMyPlayList(title));
+    dialogCtx.showConfirm('PlayListDelete');
+    dialogCtx.setDeletePlayListDialog(title);
   };
 
   return (
