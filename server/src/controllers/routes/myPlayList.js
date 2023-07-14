@@ -1,4 +1,4 @@
-const { validationResult } = require("express-validator");
+const { validationResult, param } = require("express-validator");
 const { PlayList, User, HttpError } = require("../../models");
 
 const { decodeToken } = require("../../utils/jwt");
@@ -76,6 +76,24 @@ const getMyPlayListNameList = async (req, res, next) => {
     result: newUserPlayList,
   });
 };
+const deleteMyPlayList = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("유효하지 않은 Input 입니다", 422));
+  }
+  const { title } = req.params;
+
+  let userPlayList;
+  try {
+    userPlayList = await PlayList.findOneAndDelete({ title });
+  } catch (err) {
+    return next(error.meessage);
+  }
+  return res.status(200).json({
+    result: userPlayList.title,
+  });
+};
 
 exports.createMyPlayList = createMyPlayList;
 exports.getMyPlayListNameList = getMyPlayListNameList;
+exports.deleteMyPlayList = deleteMyPlayList;
