@@ -21,9 +21,9 @@ const MyPlayListTitleItem = ({ title, order }) => {
   };
 
   return (
-    <Styled.Layout direction="row" justifyContent="space-between" alignItems="center" onClick={handleMyPlayListItem}>
+    <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.Number>{order}</Styled.Number>
-      <Styled.Title>{title}</Styled.Title>
+      <Styled.Title onClick={handleMyPlayListItem}>{title}</Styled.Title>
       <IconButton color="rgba(255,255,255,0.64)" size="1x" name="trash" />
     </Styled.Layout>
   );

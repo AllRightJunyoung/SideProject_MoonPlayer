@@ -63,6 +63,9 @@ export const playerSlice = createSlice({
     handlePlaySelectedMusicModlue: (state: PlayerStateType, action: PayloadAction<PlayerControlModuleType>) => {
       state.playerControlModuleState = action.payload;
     },
+    handleSelectMyPlayList: (state: PlayerStateType, action: PayloadAction<MusicItemType[]>) => {
+      state.list = action.payload;
+    },
   },
 
   // 로그아웃시 발생하는 액션
@@ -83,4 +86,5 @@ export const {
   handleVolumeMusicModule,
   handleProgressBarModule,
   handlePlaySelectedMusicModlue,
+  handleSelectMyPlayList,
 } = playerSlice.actions;

@@ -2,13 +2,16 @@ import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
 import { confirmMessage, confirmFailMessage } from 'common/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
-import { useAppSelector } from './useReduxStore';
+import { useAppDispatch, useAppSelector } from './useReduxStore';
 import { registerMyPlayList } from 'Music/api';
+import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 
 const useConfirm = () => {
+  const dispatch = useAppDispatch();
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
   const playerList = useAppSelector((state) => state.music.player.list);
   const accessToken = useAppSelector((state) => state.login.token.access_token);
+  const selectedMyPlayList = useAppSelector((state) => state.music.myPlayList.selected.playList);
 
   const dialogCtx = useContext(DiaLogContext);
   const { signOut } = useLogin();
@@ -32,6 +35,7 @@ const useConfirm = () => {
   };
 
   const loadMusic = () => {
+    dispatch(handleSelectMyPlayList(selectedMyPlayList));
     dialogCtx.showAlarm(confirmMessage.PlayListLoad);
   };
   const saveMusic = async () => {

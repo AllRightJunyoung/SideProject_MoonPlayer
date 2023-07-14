@@ -1,12 +1,13 @@
 import * as Styled from './AddPlayListLayout.styled';
 
 import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
-import AddPlayListHeader from '../../CustomPlayListHeader/CustomPlayListHeader';
+
 import { Music, Flex, IconButton } from 'common/components';
 import { useDialog } from 'common/hooks';
 import { useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
+import CustomPlayListHeader from '../../CustomPlayListHeader';
 
 export const AddPlayListLayout = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +34,7 @@ export const AddPlayListLayout = () => {
 
   return (
     <>
-      <AddPlayListHeader title="나만의 플레이리스트 추가" />
+      <CustomPlayListHeader title="MY P L A Y L I S T ADD" />
       <Styled.Layout direction="column" justifyContent="center">
         <Flex direction="row" justifyContent="space-between" alignItems="center">
           <Styled.InputBox direction="row" alignItems="center" gap="15px">
