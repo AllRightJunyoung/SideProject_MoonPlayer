@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { MyPlayListStateType } from 'common/types/store';
 import type { ThunkApiType } from 'common/store/store';
 import type { MyPlayListType, RequestMyPlayListType, SelectedMyPlayListType } from 'Music/types';
-import { getMyPlayList } from 'Music/api';
+import { getMyPlayList, deleteMyPlayListByTitle } from 'Music/api';
 
 import { PURGE } from 'redux-persist';
 
@@ -16,10 +16,21 @@ const initialState: MyPlayListStateType = {
 };
 
 const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType, ThunkApiType>(
-  'type/myPlayListNameList',
+  'fetch/myPlayListNameList',
   async (token, thunkApi) => {
     try {
       const response = await getMyPlayList(token);
+      return response;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+const deleteMyPlayList = createAsyncThunk<string, string, ThunkApiType>(
+  'delete/myPlayListNameList',
+  async (param, thunkApi) => {
+    try {
+      const response = await deleteMyPlayListByTitle(param);
       return response;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
@@ -36,6 +47,21 @@ export const MyPlayListSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(deleteMyPlayList.pending, (state: MyPlayListStateType) => {
+      state.status = 'Loading';
+    });
+    builder.addCase(deleteMyPlayList.fulfilled, (state: MyPlayListStateType, action: PayloadAction<string>) => {
+      state.status = 'Complete';
+      const filteredPlayList = state.totalPlayList.filter((playList) => playList.title !== action.payload);
+      state.totalPlayList = filteredPlayList.map((playList, idx) => ({
+        ...playList,
+        order: idx + 1,
+      }));
+    });
+
+    builder.addCase(deleteMyPlayList.rejected, (state) => {
+      state.status = 'Fail';
+    });
     builder.addCase(fetchMyPlayList.pending, (state: MyPlayListStateType) => {
       state.status = 'Loading';
     });
@@ -54,5 +80,5 @@ export const MyPlayListSlice = createSlice({
   },
 });
 export default MyPlayListSlice;
-export { fetchMyPlayList };
+export { fetchMyPlayList, deleteMyPlayList };
 export const { selectMyPlayList } = MyPlayListSlice.actions;

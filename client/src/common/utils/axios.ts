@@ -21,7 +21,7 @@ export const Put = async <T>(url: string, data?: any, config?: AxiosRequestConfi
   const response = await client.put<CommonResponse<T>>(url, data, config);
   return response.data.result;
 };
-export const Delete = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const Delete = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
   const response = await client.delete<CommonResponse<T>>(url, config);
   return response.data.result;
 };

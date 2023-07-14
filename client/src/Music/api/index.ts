@@ -6,8 +6,13 @@ import type {
   MyPlayListType,
   RequestMyPlayListType,
 } from 'Music/types';
-import { MyPLAYLIST_CREATE_URI, GenreList_GET_URI, MyPLAYLIST_GET_URI } from 'Music/constants/api';
-import { Get, Post } from 'common/utils/axios';
+import {
+  MyPLAYLIST_CREATE_URI,
+  GenreList_GET_URI,
+  MyPLAYLIST_GET_URI,
+  MyPLAYLIST_DELETE_URI,
+} from 'Music/constants/api';
+import { Get, Post, Delete } from 'common/utils/axios';
 
 export const registerMyPlayList = async (data: RegisterMyPlayListType): Promise<MusicItemType[]> => {
   const playList = await Post<MusicItemType[]>(`${MyPLAYLIST_CREATE_URI}`, data);
@@ -26,4 +31,9 @@ export const getGenreData = async (url: string): Promise<GenreItemType[]> => {
 export const getByMusicListId = async (id: number): Promise<PlayListType> => {
   const genreMusicList = await Get<PlayListType>(`${GenreList_GET_URI}/${id}`);
   return genreMusicList;
+};
+export const deleteMyPlayListByTitle = async (param: String): Promise<string> => {
+  const url = `${MyPLAYLIST_DELETE_URI}/${param}`;
+  const deletedMyPlayListTitle = await Delete<string>(url);
+  return deletedMyPlayListTitle;
 };
