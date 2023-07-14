@@ -26,8 +26,9 @@ const createMyPlayList = async (req, res, next) => {
   }
 
   let newPlayList;
+  let userPlayList;
   try {
-    const userPlayList = await PlayList.find({ userKey });
+    userPlayList = await PlayList.find({ userKey });
     if (!userPlayList.length) {
       newPlayList = new PlayList({
         order: 1,
@@ -36,6 +37,10 @@ const createMyPlayList = async (req, res, next) => {
         title,
       });
     } else {
+      const isPlayList = userPlayList.filter((playList) => playList.title === title);
+      if (isPlayList.length !== 0) {
+        return next(new HttpError("이미 존재하는 플레이리스트 이름 입니다."));
+      }
       newPlayList = new PlayList({
         order: userPlayList.length + 1,
         playList: playerList,
