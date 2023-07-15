@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { DiaLogContext } from 'common/context/dialog';
-import { confirmMessage, confirmFailMessage } from 'common/constants/dialog';
+import { confirmMessage } from 'common/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppDispatch, useAppSelector } from './useReduxStore';
 import { registerMyPlayList } from 'Music/api';
 import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
+import { reportError } from 'common/utils/error';
 
 const useConfirm = () => {
   const dispatch = useAppDispatch();
@@ -63,7 +64,8 @@ const useConfirm = () => {
       if (!result.length) throw new Error();
       dialogCtx.showAlarm(confirmMessage.PlayListSave);
     } catch (err) {
-      dialogCtx.showAlarm(confirmFailMessage.PlayListSaveFail);
+      const errorMessage = reportError(err);
+      dialogCtx.showAlarm(errorMessage);
     }
   };
   const deletePlayList = (title: string) => {

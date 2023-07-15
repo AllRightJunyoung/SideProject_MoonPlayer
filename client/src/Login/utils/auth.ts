@@ -1,8 +1,9 @@
 /* eslint-disable indent */
 import axios from 'axios';
 import { GOOGLE_OAUTH_URL, KAKAO_OAUTH_URL, NAVER_OAUTH_URL } from '../constants/auth';
-
 import type { Oauth_LOOKUP_TABLE_type, Oauth_type } from 'Login/types';
+
+import { reportError } from 'common/utils/error';
 
 const OAUTH_NAME_LOOKUP_TABLE: Oauth_LOOKUP_TABLE_type = {
   google: 'google',
@@ -22,7 +23,7 @@ export const getToken = async (REQUEST_URI: string) => {
     const response = await axios.get(REQUEST_URI);
     return response;
   } catch (error) {
-    console.log(error);
+    return reportError(error);
   }
 };
 export const getCode = (): string => {

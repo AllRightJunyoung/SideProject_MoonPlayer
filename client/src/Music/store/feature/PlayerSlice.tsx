@@ -39,7 +39,7 @@ export const playerSlice = createSlice({
     handleRemoveMusic: (state: PlayerStateType, action: PayloadAction<string>) => {
       state.list = state.list.filter((music) => music.name !== action.payload);
     },
-    handleAddMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
+    handleSetMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
       state.playingMusic = action.payload;
     },
     handlePrevPlayMusic: (state: PlayerStateType, action: PayloadAction<MusicItemType>) => {
@@ -76,7 +76,7 @@ export const playerSlice = createSlice({
 export default playerSlice;
 export const {
   handleAddPlayer,
-  handleAddMusic,
+  handleSetMusic,
   handleRemoveMusic,
   handleShuffleMusics,
   handlePrevPlayMusic,

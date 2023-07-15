@@ -8,7 +8,7 @@ import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
 import { usePlayerController } from 'Music/hooks';
 
 const Footer = ({ player }) => {
-  const { repeatMusic, playMusic, volumeControl, shuffleMusics, selectPrevMusic, selectNextMusic } =
+  const { onRepeatMusic, onPlayMusic, onVolumeControl, onShuffleMusics, onSelectPrevMusic, onSelectNextMusic } =
     usePlayerController();
 
   const { isOpenMusicFooterUI } = useMusicPageUIControl();
@@ -22,14 +22,14 @@ const Footer = ({ player }) => {
       <ProgressBar currentTime={currentTime} endTime={endTime} elapsedTime={elapsedTime} />
       <Info player={player}></Info>
       <Flex direction="row" justifyContent="space-between">
-        <Volume onVolume={volumeControl} volume={playerVolume} />
+        <Volume onVolume={onVolumeControl} volume={playerVolume} />
         <Controller
           player={player}
-          onRepeat={repeatMusic}
-          onPlay={playMusic}
-          onPrevMusic={selectPrevMusic}
-          onNextMusic={selectNextMusic}
-          onShuffleMusic={shuffleMusics}
+          onRepeat={onRepeatMusic}
+          onPlay={onPlayMusic}
+          onPrevMusic={onSelectPrevMusic}
+          onNextMusic={onSelectNextMusic}
+          onShuffleMusic={onShuffleMusics}
         />
       </Flex>
     </Styled.Layout>
