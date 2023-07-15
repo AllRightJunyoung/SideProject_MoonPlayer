@@ -6,7 +6,7 @@ const { decodeToken } = require("../../utils/jwt");
 const createMyPlayList = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return next(new HttpError("유효하지 않은 Input 입니다", 422));
+    return res.status(422).send("유효하지 않은 Input 입니다.");
   }
   const { accessToken, playerList, title } = req.body;
 
@@ -21,8 +21,7 @@ const createMyPlayList = async (req, res, next) => {
     return next(error.meessage);
   }
   if (!user) {
-    const error = new HttpError("DB에 등록되지 않은 사용자 입니다.", 404);
-    return next(error);
+    return res.status(404).send("등록되지 않은 사용자 입니다! ");
   }
 
   let newPlayList;
@@ -39,7 +38,7 @@ const createMyPlayList = async (req, res, next) => {
     } else {
       const isPlayList = userPlayList.filter((playList) => playList.title === title);
       if (isPlayList.length !== 0) {
-        return next(new HttpError("이미 존재하는 플레이리스트 이름 입니다."));
+        return res.status(400).send("중복된 플레이리스트 이름 입니다!");
       }
       newPlayList = new PlayList({
         order: userPlayList.length + 1,
@@ -50,7 +49,7 @@ const createMyPlayList = async (req, res, next) => {
     }
     await newPlayList.save();
   } catch (error) {
-    return next(error.meessage);
+    return res.status(400).send(error.meessage);
   }
   return res.status(200).json({ result: newPlayList.playList });
 };
@@ -58,7 +57,7 @@ const createMyPlayList = async (req, res, next) => {
 const getMyPlayListNameList = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return next(new HttpError("유효하지 않은 Input 입니다", 422));
+    return res.status(422).send("유효하지 않은 Input 입니다.");
   }
   const { accessToken } = req.body;
   const info = decodeToken(accessToken);
@@ -67,8 +66,8 @@ const getMyPlayListNameList = async (req, res, next) => {
   let userPlayList;
   try {
     userPlayList = await PlayList.find({ userKey });
-  } catch (err) {
-    return next(error.meessage);
+  } catch (error) {
+    return res.status(400).send(error.meessage);
   }
   const newUserPlayList = userPlayList.map((playList, idx) => {
     return {
@@ -84,7 +83,7 @@ const getMyPlayListNameList = async (req, res, next) => {
 const deleteMyPlayList = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return next(new HttpError("유효하지 않은 Input 입니다", 422));
+    return res.status(422).send("유효하지 않은 Input 입니다.");
   }
   const { title } = req.params;
 
@@ -92,7 +91,7 @@ const deleteMyPlayList = async (req, res, next) => {
   try {
     userPlayList = await PlayList.findOneAndDelete({ title });
   } catch (err) {
-    return next(error.meessage);
+    return res.status(400).send(error.meessage);
   }
   return res.status(200).json({
     result: userPlayList.title,
