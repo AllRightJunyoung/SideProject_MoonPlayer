@@ -16,6 +16,7 @@ import {
   handleSetMusic,
 } from 'Music/store/feature/PlayerSlice';
 import useMusicPageUIController from './useMusicPageUIController';
+import { PlayerControlModule_INIT } from 'Music/constants/player';
 
 const usePlayerController = () => {
   const dispatch = useAppDispatch();
@@ -75,6 +76,10 @@ const usePlayerController = () => {
     onhandleOpenMusicFooterUI(true);
   };
 
+  const resetPlayerModule = () => {
+    dispatch(handlePlaySelectedMusicModlue(PlayerControlModule_INIT));
+  };
+
   const musicPlayer = (
     <ReactPlayer
       ref={playerRef}
@@ -92,6 +97,7 @@ const usePlayerController = () => {
   return {
     musicPlayer,
     playerModuleSelector,
+    resetPlayerModule,
     onRepeatMusic,
     onPlayMusic,
     onVolumeControl,

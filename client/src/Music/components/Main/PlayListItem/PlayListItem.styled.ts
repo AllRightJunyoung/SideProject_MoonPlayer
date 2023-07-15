@@ -7,16 +7,24 @@ interface LayoutProps {
 }
 
 export const Layout = styled(Flex)<LayoutProps>`
-  padding: 0px 16px;
-  background-color: ${({ isActive }) => (isActive ? 'rgba(0,0,0,0.64)' : 'none')};
   border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  gap: 16px;
-  cursor: pointer;
+  background-color: ${({ isActive }) => (isActive ? 'rgba(0,0,0,0.64)' : 'none')};
   &:hover {
     background-color: rgba(0, 0, 0, 0.4);
   }
-  height: 84px;
+
+  cursor: pointer;
+
+  gap: 5px;
+
+  padding-left: 5px;
+  padding-right: 1px;
+`;
+
+export const MusicInfoBox = styled(Flex)`
   overflow: hidden;
+  gap: 16px;
+  height: 84px;
 `;
 
 export const Number = styled(Text)`
@@ -37,4 +45,5 @@ export const Title = styled(HiddenText)`
 `;
 export const MuiscImage = styled(Image)`
   width: 96px;
+  height: 72px;
 `;

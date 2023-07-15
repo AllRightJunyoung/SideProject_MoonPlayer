@@ -1,3 +1,4 @@
+import { ReactEventHandler } from 'react';
 import styled from 'styled-components';
 import type { CSSObject } from 'styled-components';
 
