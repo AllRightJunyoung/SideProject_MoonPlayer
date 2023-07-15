@@ -1,7 +1,7 @@
 const uuid = require("uuid");
 const axios = require("axios");
 const jwt = require("../../utils/jwt");
-const { User, HttpError } = require("../../models");
+const { User } = require("../../models");
 
 const makeFormData = (params) => {
   const searchParams = new URLSearchParams();
@@ -30,7 +30,6 @@ const kakaoLogin = async (req, res, next) => {
       }),
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).send({ error: error.message });
   }
 
@@ -65,9 +64,8 @@ const kakaoLogin = async (req, res, next) => {
     });
     try {
       await createdUser.save();
-    } catch (err) {
-      const error = new HttpError("DB SAVE ERROR)", 500);
-      return next(error);
+    } catch (error) {
+      return res.status(500).send({ error: error.message });
     }
     const access_token = jwt.createToken({
       userKey,
@@ -88,7 +86,7 @@ const kakaoLogin = async (req, res, next) => {
         expire_in: 1000 * 60 * 60,
       });
     } catch (error) {
-      return next(error.message);
+      return res.status(500).send({ error: error.message });
     }
   }
 };
@@ -144,9 +142,8 @@ const googleLogin = async (req, res, next) => {
     });
     try {
       await createdUser.save();
-    } catch (err) {
-      const error = new HttpError("DB SAVE ERROR)", 500);
-      return next(error);
+    } catch (error) {
+      return res.status(500).send({ error: error.message });
     }
     const access_token = jwt.createToken({
       userKey,
@@ -168,7 +165,7 @@ const googleLogin = async (req, res, next) => {
         expire_in: 1000 * 60 * 60,
       });
     } catch (error) {
-      return next(error.message);
+      return res.status(500).send({ error: error.message });
     }
   }
 };
@@ -229,9 +226,8 @@ const NaverLogin = async (req, res, next) => {
     });
     try {
       await createdUser.save();
-    } catch (err) {
-      const error = new HttpError("DB SAVE ERROR)", 500);
-      return next(error);
+    } catch (error) {
+      return res.status(500).send({ error: error.message });
     }
     const access_token = jwt.createToken({
       userKey,
@@ -252,7 +248,7 @@ const NaverLogin = async (req, res, next) => {
         expire_in: 1000 * 60 * 60,
       });
     } catch (error) {
-      return next(error.message);
+      return res.status(500).send({ error: error.message });
     }
   }
 };

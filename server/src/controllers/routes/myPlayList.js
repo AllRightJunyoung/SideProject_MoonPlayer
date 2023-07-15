@@ -1,5 +1,5 @@
 const { validationResult, param } = require("express-validator");
-const { PlayList, User, HttpError } = require("../../models");
+const { PlayList, User } = require("../../models");
 
 const { decodeToken } = require("../../utils/jwt");
 
@@ -17,8 +17,8 @@ const createMyPlayList = async (req, res, next) => {
 
   try {
     user = await User.findOne({ userKey });
-  } catch (err) {
-    return next(error.meessage);
+  } catch (error) {
+    return res.status(404).send(error.message);
   }
   if (!user) {
     return res.status(404).send("등록되지 않은 사용자 입니다! ");
@@ -90,7 +90,7 @@ const deleteMyPlayList = async (req, res, next) => {
   let userPlayList;
   try {
     userPlayList = await PlayList.findOneAndDelete({ title });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).send(error.meessage);
   }
   return res.status(200).json({
