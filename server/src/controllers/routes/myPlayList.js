@@ -83,10 +83,6 @@ const getMyPlayListNameList = async (req, res, next) => {
   });
 };
 const deleteMyPlayList = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).send("유효하지 않은 Input 입니다.");
-  }
   const { title } = req.params;
 
   let userPlayList;

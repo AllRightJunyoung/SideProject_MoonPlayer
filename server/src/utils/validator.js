@@ -1,4 +1,4 @@
-const { body, param } = require("express-validator");
+const { body } = require("express-validator");
 
 const titleValidation = body("title").trim().isLength({ max: 30 }).withMessage("Input은 30자 이내여야합니다.");
 const playerListValidation = body("playerList")
