@@ -4,9 +4,11 @@ const { PlayList, User } = require("../../models");
 const { decodeToken } = require("../../utils/jwt");
 
 const createMyPlayList = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).send("유효하지 않은 Input 입니다.");
+  const result = validationResult(req);
+  const message = result.array().map((error) => error.msg);
+
+  if (!result.isEmpty()) {
+    return res.status(422).send(message[0]);
   }
   const { accessToken, playerList, title } = req.body;
 
