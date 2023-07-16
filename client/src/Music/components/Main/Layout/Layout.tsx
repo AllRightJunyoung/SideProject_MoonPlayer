@@ -1,9 +1,9 @@
 import * as Styled from './Layout.styled';
 import { useEffect } from 'react';
-import { MusicList } from '../MusicList';
-import { PlayList } from '../PlayList';
 import { useMusicPageUIController } from 'Music/hooks';
 import { useResolution } from 'common/hooks';
+import MusicList from '../MusicList';
+import PlayList from '../PlayList';
 
 const Layout = () => {
   const { isOpenMusicList } = useMusicPageUIController();

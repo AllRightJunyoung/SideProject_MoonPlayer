@@ -1,21 +1,17 @@
 import * as Styled from './Navigation.styled';
 
-import { useContext } from 'react';
-
 import { IconButton } from 'common/components';
-import { DiaLogContext } from 'common/context/dialog';
 import { useMusicPageUIController } from 'Music/hooks';
-import { removeStoreItems } from 'common/utils/redux-persist';
 import useLogin from 'Login/hooks/useLogin';
 
 export const Navigation = () => {
   const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
   const { signOut } = useLogin();
 
-  const handleLogOut = () => {
+  const handleBracketButton = () => {
     signOut();
   };
-  const handleOpenCustomPlayListUI = () => {
+  const handleMusicButton = () => {
     onhandleOpenCustomPlayListUI(true);
     onhandleOpenAddPlayListUI(true);
   };
@@ -27,8 +23,8 @@ export const Navigation = () => {
       </Styled.Header>
       <Styled.FlexBox direction="row">
         <IconButton name="user" color="white" size="1x" />
-        <IconButton name="music" color="white" size="1x" onClick={handleOpenCustomPlayListUI} />
-        <IconButton name="bracket" color="white" size="1x" onClick={handleLogOut} />
+        <IconButton name="music" color="white" size="1x" onClick={handleMusicButton} />
+        <IconButton name="bracket" color="white" size="1x" onClick={handleBracketButton} />
       </Styled.FlexBox>
     </Styled.Layout>
   );

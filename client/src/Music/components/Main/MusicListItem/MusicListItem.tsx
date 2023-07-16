@@ -8,10 +8,9 @@ import type { MusicItemType } from 'Music/types';
 
 const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) => {
   const dispatch = useAppDispatch();
-
   const playerSelector = useAppSelector((state) => state.music.player);
   const isInPlayer = playerSelector.list.find((music: MusicItemType) => music.name === name) ? true : false;
-  const handleAddMusic = () => {
+  const handlePlusButton = () => {
     if (isInPlayer) return;
     const selectedMusic = { id, name, img_url, source_url };
     dispatch(handleAddPlayer(selectedMusic));
@@ -26,7 +25,7 @@ const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) =>
       <IconButton
         color="rgba(255,255,255,0.76)"
         active={isInPlayer}
-        onClick={handleAddMusic}
+        onClick={handlePlusButton}
         name="circlePlus"
         size="2x"
       />

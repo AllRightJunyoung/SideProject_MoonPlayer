@@ -1,1 +1,1 @@
-export { default as PlayListItem } from './PlayListItem';
+export { default } from './PlayListItem';

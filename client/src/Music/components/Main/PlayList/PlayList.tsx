@@ -2,9 +2,9 @@ import * as Styled from './PlayList.styled';
 
 import { useAppSelector } from 'common/hooks/useReduxStore';
 import { MainHeader } from '../Header/MainHeader';
-import { PlayListItem } from '../PlayListItem';
+import PlayListItem from '../PlayListItem';
 
-export const PlayList = () => {
+const PlayList = () => {
   const playerSelector = useAppSelector((state) => state.music.player);
 
   return (
