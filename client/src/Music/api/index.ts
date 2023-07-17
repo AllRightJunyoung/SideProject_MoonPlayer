@@ -16,6 +16,7 @@ import { Get, Post, Delete } from 'common/utils/axios';
 
 export const registerMyPlayList = async (data: RegisterMyPlayListType): Promise<MusicItemType[]> => {
   const playList = await Post<MusicItemType[]>(`${MyPLAYLIST_CREATE_URI}`, data);
+  console.log(playList);
   return playList;
 };
 

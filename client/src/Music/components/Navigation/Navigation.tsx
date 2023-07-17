@@ -22,7 +22,6 @@ export const Navigation = () => {
         <Styled.NavigationAvatar src="images/avatar/login.png" />
       </Styled.Header>
       <Styled.FlexBox direction="row">
-        <IconButton name="user" color="white" size="1x" />
         <IconButton name="music" color="white" size="1x" onClick={handleMusicButton} />
         <IconButton name="bracket" color="white" size="1x" onClick={handleBracketButton} />
       </Styled.FlexBox>
