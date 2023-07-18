@@ -1,5 +1,5 @@
 import * as Styled from './MusicListItem.styled';
-import { IconButton, CircleTooltip } from 'common/components';
+import { IconButton, CircleTooltip, Flex } from 'common/components';
 
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
@@ -19,9 +19,11 @@ const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) =>
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.Number>{id}</Styled.Number>
-      <Styled.MusicImage src={img_url} />
-      <CircleTooltip anchorId={'musicList-title' + id} content={name} />
-      <Styled.Title id={'musicList-title' + id}>{name}</Styled.Title>
+      <Styled.MusicImage id={'musicImage' + id} src={img_url} />
+      <CircleTooltip anchorId={'musicImage' + id} content={name} />
+      <CircleTooltip anchorId={'musicName' + id} content={name} />
+      <Styled.Title id={'musicName' + id}>{name}</Styled.Title>
+
       <IconButton
         color="rgba(255,255,255,0.76)"
         active={isInPlayer}

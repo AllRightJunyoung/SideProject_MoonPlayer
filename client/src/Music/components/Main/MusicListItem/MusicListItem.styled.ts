@@ -29,6 +29,9 @@ export const Title = styled(HiddenText)`
   text-align: center;
   cursor: pointer;
   overflow: hidden;
+  @media (max-width: 414px) {
+    display: none;
+  }
 `;
 export const MusicImage = styled(Image)`
   width: 128px;
