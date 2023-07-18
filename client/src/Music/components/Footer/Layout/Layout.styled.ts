@@ -16,8 +16,14 @@ export const Layout = styled.div<LayoutProps>(
       rgba(36, 18, 95, 1) 73%,
       rgba(38, 64, 92, 1) 100%
     );
-    transform: ${!active ? 'translateY(120px)' : ''};
+    transform: ${!active ? 'translateY(110px)' : ''};
     transition:'0.48s ease';
-    margin-top:${!active ? '-120px' : ''};
+    margin-top:${!active ? '-110px' : ''};
+
+    @media (max-width: 414px) {
+      transform: ${!active ? 'translateY(150px)' : ''};
+      margin-top:${!active ? '-150px' : ''};
+    }
+
     `
 );

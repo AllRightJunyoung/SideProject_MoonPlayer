@@ -21,6 +21,7 @@ const Footer = ({ player }) => {
       <HideButton />
       <ProgressBar currentTime={currentTime} endTime={endTime} elapsedTime={elapsedTime} />
       <Info player={player}></Info>
+
       <Flex direction="row" justifyContent="space-between">
         <Volume onVolume={onVolumeControl} volume={playerVolume} />
         <Controller
