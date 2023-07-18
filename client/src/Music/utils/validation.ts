@@ -12,7 +12,6 @@ export const myPlayListInputValidation = (input: string) => {
 
 export const myPlayListLengthValidation = (playList: MusicItemType[]) => {
   if (playList.length) return true;
-  alert('재생목록에 음악이 존재하지않습니다!');
   return false;
 };
 

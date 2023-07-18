@@ -12,14 +12,19 @@ import CustomPlayListHeader from '../../CustomPlayListHeader';
 export const AddPlayListLayout = () => {
   const dispatch = useAppDispatch();
   const playerList = useAppSelector((state) => state.music.player.list);
-  const { showConfirmMessage } = useDialog();
+  const { showConfirmMessage, showAlarmMessage } = useDialog();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSaveButton = () => {
     if (!inputRef.current?.value) return;
     const inputValue = inputRef.current.value;
-    if (!myPlayListInputValidation(inputValue) || !myPlayListLengthValidation(playerList)) return;
+    if (!myPlayListLengthValidation(playerList)) {
+      showAlarmMessage('재생목록이 존재하지 않습니다.');
+      return;
+    }
+
+    if (!myPlayListInputValidation(inputValue)) return;
 
     dispatch(handleAddPlayListInput(inputValue));
     showConfirmMessage('PlayListSave');
