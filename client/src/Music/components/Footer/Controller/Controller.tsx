@@ -19,7 +19,7 @@ export const Controller = ({ player, onRepeat, onPlay, onPrevMusic, onNextMusic,
         <IconButton onClick={onNextMusic} name="forward" size="2x" color="white" />
       </Styled.PlayBox>
 
-      <Styled.OptionBox direction="row" gap="2px">
+      <Styled.OptionBox direction="row" gap="3px">
         {isRepeat ? (
           <IconButton onClick={onRepeat} name="repeat" size="2x" color="white" />
         ) : (

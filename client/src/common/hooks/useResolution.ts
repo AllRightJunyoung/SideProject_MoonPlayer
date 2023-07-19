@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 
 // 해상도에 맞게 감지하는 훅
 const useResolution = () => {
-  const [resolution, setResolution] = useState<'MOBILE' | 'DESKTOP'>('DESKTOP');
+  const [resolution, setResolution] = useState<'MOBILE' | 'Tablet' | 'DESKTOP'>('DESKTOP');
   useEffect(() => {
     const ev = () => {
       if (window.innerWidth >= 1200) {
         return setResolution('DESKTOP');
+      } else if (window.innerWidth >= 768) {
+        return setResolution('Tablet');
       } else {
         return setResolution('MOBILE');
       }

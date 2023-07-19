@@ -10,7 +10,11 @@ const Layout = () => {
   const { resolution, setResolution } = useResolution();
 
   useEffect(() => {
-    return window.innerWidth >= 1200 ? setResolution('DESKTOP') : setResolution('MOBILE');
+    return window.innerWidth >= 1200
+      ? setResolution('DESKTOP')
+      : window.innerWidth >= 768
+      ? setResolution('Tablet')
+      : setResolution('MOBILE');
   }, [resolution]);
 
   return (

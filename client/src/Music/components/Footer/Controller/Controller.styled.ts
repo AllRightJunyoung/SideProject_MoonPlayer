@@ -8,6 +8,9 @@ export const Layout = styled(Flex)`
 
   > :nth-child(2) {
     justify-content: center;
+    @media (max-width: 414px) {
+      gap: 5px;
+    }
   }
 `;
 export const PlayBox = styled(Flex)`

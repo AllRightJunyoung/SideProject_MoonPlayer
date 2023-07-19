@@ -18,13 +18,13 @@ export const Layout = styled(Flex)`
 
 export const MusicNumber = styled(Text)`
   color: rgba(255, 255, 255, 0.64);
-  font-size: 16px;
+  font-size: 14px;
   width: 16px;
 `;
 
 export const MusicTitle = styled(HiddenText)`
   flex: 1;
-  font-size: 14px;
+  font-size: 12px;
   max-height: 48px;
   color: rgba(255, 255, 255, 0.84);
   font-weight: bold;

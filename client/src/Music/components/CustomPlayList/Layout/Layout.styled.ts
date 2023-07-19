@@ -29,6 +29,10 @@ export const Layout = styled(Flex)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 600px) {
+    width: 350px;
+  }
 `;
 export const CustomIconButtom = styled(IconButton)`
   position: absolute;
