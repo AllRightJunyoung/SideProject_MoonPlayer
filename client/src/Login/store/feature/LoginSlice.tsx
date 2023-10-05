@@ -5,10 +5,6 @@ import { getToken } from 'Login/utils/auth';
 
 // 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
 const initialState: LoginStateType = {
-  kakao: {
-    profile_image: '',
-    nickname: '',
-  },
   token: {
     access_token: '',
     expire_in: 0,

@@ -32,7 +32,7 @@ export const getByMusicListId = async (id: number): Promise<PlayListType> => {
   const genreMusicList = await Get<PlayListType>(`${GenreList_GET_URI}/${id}`);
   return genreMusicList;
 };
-export const deleteMyPlayListByTitle = async (param: String): Promise<string> => {
+export const deleteMyPlayListByTitle = async (param: string): Promise<string> => {
   const url = `${MyPLAYLIST_DELETE_URI}/${param}`;
   const deletedMyPlayListTitle = await Delete<string>(url);
   return deletedMyPlayListTitle;

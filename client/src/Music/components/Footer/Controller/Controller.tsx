@@ -1,8 +1,6 @@
 import { IconButton } from 'common/components';
 import type { ControllerProps } from './Controller.types';
 import * as Styled from './Controller.styled';
-import Volume from '../Volume';
-
 export const Controller = ({ player, onRepeat, onPlay, onPrevMusic, onNextMusic, onShuffleMusic }: ControllerProps) => {
   const isRepeat = player.isrepeat;
   const isPlaying = player.playing;
