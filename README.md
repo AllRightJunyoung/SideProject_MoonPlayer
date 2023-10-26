@@ -1,44 +1,33 @@
 # Moon-Player
 
-무료로 음원 들려주는 사이트
+## 프로젝트 소개
 
-현재진행사항
+무료로 음원을 들려주는 사이트 입니다.
 
-- 50% 정도 진행...
+## Features
 
-## 프로젝트를 통해 얻고 싶은 목표
+- 소셜 로그인 (구글,네이버,카카오)
+- 음악 장르 목록 및 그에 맞는 음악리스트들을 제공
+- 멜론 플레이어와 같은 음악 플레이어 기능 제공
+- 나만의 재생 목록들을 저장하고 삭제 할수있는 커스텀 플레이어 기능 제공
 
-1. 유지보수하기 쉬운 컴포넌트 유연한 설계
-2. Node.js로 간단한 서버 구축
-3. 다양한 기능 구현 (음악 검색기능 , 나만의 플레이리스트 목록)
-4. 테스트 도구 사용
-5. TypeScript를 활용하여 , 재사용가능한 타입 고려하며 유지보수하기 쉬운 프로젝트 관리
+## Demo
 
 ## 주요 기술스택
-
-서버
-
-- Node.js (Express로 변경할 예정)
 
 클라이언트
 
 - Redux-Toolkit
 - React (TypeScript)
 - Styled-Component (CSS)
+- React-Player (플레이어 구현)
+
+기능 구현만을 위한 서버 (서브)
+
+- express
+- mongoose
 
 테스팅 도구:
 
 - React-testing-library
-- PlayWright (E2E)
 - MSW
-
-기능 구현에 필요한 주요 도구
-
-- React-Slick
-- React-Player
-- Redux-Persist
-- FireBase
-
-DB
-
-- MongoDB

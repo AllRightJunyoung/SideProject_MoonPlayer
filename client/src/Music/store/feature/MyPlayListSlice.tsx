@@ -58,7 +58,6 @@ export const MyPlayListSlice = createSlice({
         order: idx + 1,
       }));
     });
-
     builder.addCase(deleteMyPlayList.rejected, (state) => {
       state.status = 'Fail';
     });
