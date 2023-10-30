@@ -73,3 +73,5 @@
 // // 2. 페이지 새로고침후에 getCode 호출해서 oauth url에 있는 일부값을 가져옴
 // // 3. logininfo와 getCode를 기반으로 fetchUserToken을 하여 소셜로그인 서버에 필요한 정보에대해 전달해주고 소셜로그인서버는 토큰을 사용자에게 준다.
 // // 4. musicpage로 이동
+
+export {};
