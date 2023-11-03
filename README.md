@@ -29,6 +29,6 @@
 
 ![jy 2](https://github.com/AllRightJunyoung/SideProject_MoonPlayer/assets/100929485/8e2bf9ed-ef2a-4cd7-922f-cb8ad94da442)
 
-## 배포 주소
+## 배포 (aws amplify)
 
 - https://main.d27tnnu5vws3my.amplifyapp.com/
