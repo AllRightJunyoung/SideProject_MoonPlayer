@@ -16,7 +16,7 @@ export const initialState: PlayListStateType = {
 
 const getMusicList = createAsyncThunk<PlayListType, number, ThunkApiType>('musicList', async (id, thunkApi) => {
   try {
-    const response = await getByMusicListId(id);
+    const response = getByMusicListId(id);
     return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);

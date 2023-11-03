@@ -1,9 +1,9 @@
-import { forwardRef } from 'react';
+import React from 'react';
 import type { IconButtonProps, ButtonProps } from './IconButton.types';
 import Icon from '../Icon';
 import styled from 'styled-components';
 
-const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ onClick, name, size, color, active, className }, ref) => {
     return (
       <Button ref={ref} className={className} onClick={onClick} active={active}>
@@ -12,6 +12,8 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     );
   }
 );
+
+IconButton.displayName = 'IconButton';
 
 const Button = styled.button<ButtonProps>(
   ({ active = false }) => `

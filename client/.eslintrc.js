@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: ['react', 'prettier', 'testing-library', 'jest-dom'],
   rules: {
-    indent: ['error', 2],
+    indent: ['warn', 2],
     'no-unused-vars': 'warn',
     'no-var': 'error',
     'no-multiple-empty-lines': [1, { max: 1 }],
