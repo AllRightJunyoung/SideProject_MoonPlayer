@@ -4,8 +4,10 @@
   "description": "### 무료로 음악을 들려주는 사이트 입니다.",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild": "cd client && npm ci && npm run build && mv build ../server",
-    "start": "cd server && npm ci && npm run dev",
+    "client-build": "cd client && npm ci && npm run build && cd ../",
+    "server-build": "cd server && npm ci --dev && cd ../",
+    "heroku-prebuild": "npm run client-build && npm run server-build && mv ./client/build ./server/build",
+    "start": "cd server && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

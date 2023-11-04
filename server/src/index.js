@@ -11,8 +11,9 @@ dotenv.config();
 const { genreRoutes, authRoutes, myPlayListRoutes } = require("./routes");
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.set("port", process.env.PORT);
+app.set("port", PORT);
 app.use(morgan("dev")); //에러로그 트래킹
 app.use(
   cors({
