@@ -3,8 +3,6 @@ const bodyParser = require("body-parser"); //ajax 요청의 데이터를 req.bod
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
-const session = require("express-session"); //세션을 구현하거나 특정 사용자를 위한 데이터를 임시적으로 저장 , req.sesstion객체에 유지
 const morgan = require("morgan");
 dotenv.config();
 
@@ -23,19 +21,6 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser(process.env.COOKIE_SECRET)); // 요청에 동봉된쿠키를 해석하여 req.cookies객체로만듬
-// 세션 관리시 클라이언트에 쿠키 전송
-app.use(
-  session({
-    resave: false, // false로해놔야 세션에 수정 사항이 생기지 않더라도 세션을 다시 저장
-    saveUninitialized: false, // 세션에 저장할내역이없더라도 다시 젖아할지 설정
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-      httpOnly: true, //클라이언트에서 쿠키를 확인못함
-      secure: false, // https가 아닌환경에서도 사용가능
-    },
-  })
-);
 
 app.use("/api/music", genreRoutes);
 app.use("/api/auth", authRoutes);
