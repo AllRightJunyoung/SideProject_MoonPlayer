@@ -29,6 +29,8 @@
 
 ![jy 2](https://github.com/AllRightJunyoung/SideProject_MoonPlayer/assets/100929485/8e2bf9ed-ef2a-4cd7-922f-cb8ad94da442)
 
-## 배포 (aws amplify)
+## 배포
 
-- https://main.d27tnnu5vws3my.amplifyapp.com/
+- 클라이언트 배포는 AWS amplify를 사용하였고 서버 배포는 Heroku를 사용 했습니다.
+
+https://main.d1oeszmmzb4ksm.amplifyapp.com/
