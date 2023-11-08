@@ -5,7 +5,7 @@ export interface MusicItemType {
   readonly id: number;
 }
 
-export interface GenreItemType {
+export interface GenreListItemType {
   genre_name: string;
   image_url: string;
   genre_id: number;

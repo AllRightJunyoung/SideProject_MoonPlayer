@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { ThunkApiType } from 'common/store/store';
 import { PURGE } from 'redux-persist';
-import { GenreStateType } from 'common/types/store';
-import type { GenreItemType } from 'Music/types';
+import { GenreListStateType } from 'common/types/store';
+import type { GenreListItemType } from 'Music/types';
 import { getGenreData } from 'Music/api';
-const initialState: GenreStateType = {
+const initialState: GenreListStateType = {
   list: [],
   status: '',
 };
 
-const getMusicGenre = createAsyncThunk<GenreItemType[], string, ThunkApiType>('genre', async (url, thunkApi) => {
+const getMusicGenre = createAsyncThunk<GenreListItemType[], string, ThunkApiType>('genre', async (url, thunkApi) => {
   try {
     const response = await getGenreData(url);
     return response;
@@ -18,18 +18,21 @@ const getMusicGenre = createAsyncThunk<GenreItemType[], string, ThunkApiType>('g
   }
 });
 // Reducer
-export const genreSlice = createSlice({
+export const genreListSlice = createSlice({
   name: 'genre',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getMusicGenre.pending, (state: GenreStateType) => {
+    builder.addCase(getMusicGenre.pending, (state: GenreListStateType) => {
       state.status = 'Loading';
     });
-    builder.addCase(getMusicGenre.fulfilled, (state: GenreStateType, action: PayloadAction<GenreItemType[]>) => {
-      state.status = 'Complete';
-      state.list = action.payload;
-    });
+    builder.addCase(
+      getMusicGenre.fulfilled,
+      (state: GenreListStateType, action: PayloadAction<GenreListItemType[]>) => {
+        state.status = 'Complete';
+        state.list = action.payload;
+      }
+    );
 
     builder.addCase(getMusicGenre.rejected, (state) => {
       state.status = 'Fail';
@@ -37,5 +40,5 @@ export const genreSlice = createSlice({
     builder.addCase(PURGE, () => initialState);
   },
 });
-export default genreSlice;
+export default genreListSlice;
 export { getMusicGenre };

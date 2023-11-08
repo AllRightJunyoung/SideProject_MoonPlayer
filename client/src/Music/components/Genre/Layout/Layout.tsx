@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getMusicGenre } from 'Music/store/feature/GenreSlice';
+import { getMusicGenre } from 'Music/store/feature/GenreListSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
 import { GenreList_GET_URI } from 'Music/constants/api';
 

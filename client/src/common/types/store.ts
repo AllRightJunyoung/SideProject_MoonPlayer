@@ -1,6 +1,6 @@
 import type {
   MusicItemType,
-  GenreItemType,
+  GenreListItemType,
   PlayerControlModuleType,
   GenreMusicType,
   MyPlayListType,
@@ -12,8 +12,8 @@ export interface PlayerStateType {
 }
 
 //  비동기 데이터
-export interface GenreStateType {
-  list: GenreItemType[];
+export interface GenreListStateType {
+  list: GenreListItemType[];
   status: string;
 }
 

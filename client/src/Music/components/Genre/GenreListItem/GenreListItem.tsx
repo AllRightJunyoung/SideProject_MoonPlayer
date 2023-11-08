@@ -1,10 +1,10 @@
 import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
-import type { GenreItemProps } from './GernreItem.types';
+import type { GenreListItemProps } from './GenreListItem.types';
 
-import * as Styled from './GenreItem.styled';
+import * as Styled from './GenreListItem.styled';
 
-export const GenreItem = ({ image_url, genre_id }: GenreItemProps) => {
+export const GenreListItem = ({ image_url, genre_id }: GenreListItemProps) => {
   const dispatch = useAppDispatch();
   const isInGenre = useAppSelector((state) => state.music.genreMusic.genre.genre_id) === genre_id ? true : false;
 
@@ -15,4 +15,4 @@ export const GenreItem = ({ image_url, genre_id }: GenreItemProps) => {
   return <Styled.CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} />;
 };
 
-export default GenreItem;
+export default GenreListItem;

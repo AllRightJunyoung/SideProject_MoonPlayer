@@ -2,15 +2,15 @@ import * as Styled from './GenreSlider.styled';
 
 import { useAppSelector } from 'common/hooks/useReduxStore';
 import { SwiperSlide } from 'swiper/react';
-import { GenreItem } from '../GenreItem';
 import { useSwiper } from 'Music/hooks';
+import GenreListItem from '../GenreListItem';
 
 export const GenreSlider = () => {
-  const genreItems = useAppSelector((state) => state.music.genre.list);
+  const genreItems = useAppSelector((state) => state.music.genreList.list);
 
   const slideItems = genreItems.map(({ image_url, genre_id }) => (
     <SwiperSlide key={genre_id}>
-      <GenreItem image_url={image_url} key={genre_id} genre_id={genre_id}></GenreItem>
+      <GenreListItem image_url={image_url} key={genre_id} genre_id={genre_id}></GenreListItem>
     </SwiperSlide>
   ));
 

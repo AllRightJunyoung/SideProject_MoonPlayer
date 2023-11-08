@@ -1,7 +1,7 @@
 import type {
   RegisterMyPlayListType,
   MusicItemType,
-  GenreItemType,
+  GenreListItemType,
   GenreMusicType,
   MyPlayListType,
   RequestMyPlayListType,
@@ -24,8 +24,8 @@ export const getMyPlayList = async (token: RequestMyPlayListType): Promise<MyPla
   return myPlayListNameList;
 };
 
-export const getGenreData = async (url: string): Promise<GenreItemType[]> => {
-  const genreList = await Get<GenreItemType[]>(url);
+export const getGenreData = async (url: string): Promise<GenreListItemType[]> => {
+  const genreList = await Get<GenreListItemType[]>(url);
   return genreList;
 };
 export const getByMusicListId = async (id: number): Promise<GenreMusicType> => {
