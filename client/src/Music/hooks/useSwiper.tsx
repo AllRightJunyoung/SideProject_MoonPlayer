@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper } from 'swiper/react';
 import { SWIPER_SETTING } from 'Music/constants/swiper';
-import { getMusicList } from 'Music/store/feature/PlayListSlice';
+import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch } from 'common/hooks/useReduxStore';
 
 const useSwiper = (slideitems) => {

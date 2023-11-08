@@ -1,4 +1,10 @@
-import type { MusicItemType, GenreItemType, PlayerControlModuleType, PlayListType, MyPlayListType } from 'Music/types';
+import type {
+  MusicItemType,
+  GenreItemType,
+  PlayerControlModuleType,
+  GenreMusicType,
+  MyPlayListType,
+} from 'Music/types';
 export interface PlayerStateType {
   list: MusicItemType[];
   playingMusic: MusicItemType;
@@ -11,8 +17,8 @@ export interface GenreStateType {
   status: string;
 }
 
-export interface PlayListStateType {
-  genre: PlayListType;
+export interface GenreMusicStateType {
+  genre: GenreMusicType;
   status: string;
 }
 export interface MyPlayListStateType {

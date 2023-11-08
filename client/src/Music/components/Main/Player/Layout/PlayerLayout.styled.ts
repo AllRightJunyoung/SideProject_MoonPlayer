@@ -13,7 +13,7 @@ export const Layout = styled(ScrollBox)`
     width: 100%;
   }
 `;
-export const PlayListText = styled(Text)`
+export const PlayerText = styled(Text)`
   color: rgba(255, 255, 255, 0.64);
   padding-left: 5px;
   font-size: 18px;

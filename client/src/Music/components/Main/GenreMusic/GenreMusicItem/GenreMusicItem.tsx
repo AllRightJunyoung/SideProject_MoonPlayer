@@ -1,19 +1,19 @@
-import * as Styled from './MusicListItem.styled';
-import { IconButton, CircleTooltip, Flex } from 'common/components';
-
+import * as Styled from './GenreMusicItem.styled';
+import { IconButton, CircleTooltip } from 'common/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
-import type { MusicListItemProps } from './MusicListItem.types';
+import type { GenreMusicItemProps } from './GenreMusicItem.types';
 import type { MusicItemType } from 'Music/types';
 import { useResolution } from 'common/hooks';
 
-const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) => {
+const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) => {
   const dispatch = useAppDispatch();
 
   const { resolution } = useResolution();
 
   const playerSelector = useAppSelector((state) => state.music.player);
   const isInPlayer = playerSelector.list.find((music: MusicItemType) => music.name === name) ? true : false;
+
   const handlePlusButton = () => {
     if (isInPlayer) return;
     const selectedMusic = { id, name, img_url, source_url };
@@ -45,4 +45,4 @@ const MusicListItem = ({ id, name, img_url, source_url }: MusicListItemProps) =>
   );
 };
 
-export default MusicListItem;
+export default GenreMusicItem;

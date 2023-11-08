@@ -2,7 +2,7 @@ import type {
   RegisterMyPlayListType,
   MusicItemType,
   GenreItemType,
-  PlayListType,
+  GenreMusicType,
   MyPlayListType,
   RequestMyPlayListType,
 } from 'Music/types';
@@ -28,8 +28,8 @@ export const getGenreData = async (url: string): Promise<GenreItemType[]> => {
   const genreList = await Get<GenreItemType[]>(url);
   return genreList;
 };
-export const getByMusicListId = async (id: number): Promise<PlayListType> => {
-  const genreMusicList = await Get<PlayListType>(`${GenreList_GET_URI}/${id}`);
+export const getByMusicListId = async (id: number): Promise<GenreMusicType> => {
+  const genreMusicList = await Get<GenreMusicType>(`${GenreList_GET_URI}/${id}`);
   return genreMusicList;
 };
 export const deleteMyPlayListByTitle = async (param: string): Promise<string> => {

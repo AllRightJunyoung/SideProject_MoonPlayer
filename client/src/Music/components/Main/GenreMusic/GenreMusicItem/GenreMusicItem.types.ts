@@ -1,2 +1,2 @@
 import type { MusicItemType } from 'Music/types';
-export type MusicListItemProps = MusicItemType;
+export type GenreMusicItemProps = MusicItemType;

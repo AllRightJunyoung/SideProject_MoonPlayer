@@ -25,7 +25,7 @@ export interface PlayerControlModuleType {
   currentTime: string;
   endTime: string;
 }
-export interface PlayListType {
+export interface GenreMusicType {
   genre_title: string;
   genre_id: number;
   music_list: MusicItemType[];

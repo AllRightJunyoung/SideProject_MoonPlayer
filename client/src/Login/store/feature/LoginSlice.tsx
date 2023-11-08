@@ -23,7 +23,7 @@ type TokenType = {
 
 const getAccessToken = createAsyncThunk('user', async (obj: providerType, thunkApi: any) => {
   try {
-    const response = await getToken(`http://localhost:4001/api/auth/${obj.provider}?code=${obj.code}`);
+    const response = await getToken(`${process.env.REACT_APP_SERVER_URI}/api/auth/${obj.provider}?code=${obj.code}`);
     if (!response) throw new Error();
     return response.data;
   } catch (error: any) {

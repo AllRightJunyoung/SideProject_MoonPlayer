@@ -2,8 +2,8 @@ import * as Styled from './Layout.styled';
 import { useEffect } from 'react';
 import { useMusicPageUIController } from 'Music/hooks';
 import { useResolution } from 'common/hooks';
-import MusicList from '../MusicList';
-import PlayList from '../PlayList';
+import GenreMusicLayout from '../GenreMusic/Layout';
+import PlayerLayout from '../Player/Layout';
 
 const Layout = () => {
   const { isOpenMusicList } = useMusicPageUIController();
@@ -21,11 +21,13 @@ const Layout = () => {
     <>
       {resolution === 'DESKTOP' ? (
         <Styled.DeskTopLayout direction="row" alignItems="center" justifyContent="center">
-          <MusicList />
-          <PlayList />
+          <GenreMusicLayout />
+          <PlayerLayout />
         </Styled.DeskTopLayout>
       ) : (
-        <Styled.MobileLayout direction="column">{isOpenMusicList ? <MusicList /> : <PlayList />}</Styled.MobileLayout>
+        <Styled.MobileLayout direction="column">
+          {isOpenMusicList ? <GenreMusicLayout /> : <PlayerLayout />}
+        </Styled.MobileLayout>
       )}
     </>
   );

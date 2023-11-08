@@ -1,12 +1,11 @@
-import * as Styled from './PlayListItem.styled';
+import * as Styled from './PlayerItem.styled';
 import type { MusicItemType } from 'Music/types';
-
 import { handleRemoveMusic, handleSetMusic } from 'Music/store/feature/PlayerSlice';
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import { CircleTooltip, IconButton } from 'common/components';
+import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
 import { useMusicPageUIController, usePlayerController } from 'Music/hooks';
 
-const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
+const PlayerItem = ({ name, img_url, id, source_url }: MusicItemType) => {
   const dispatch = useAppDispatch();
   const { onSetMusic, resetPlayerModule } = usePlayerController();
   const { onhandleOpenMusicFooterUI } = useMusicPageUIController();
@@ -42,4 +41,4 @@ const PlayListItem = ({ name, img_url, id, source_url }: MusicItemType) => {
     </Styled.Layout>
   );
 };
-export default PlayListItem;
+export default PlayerItem;
