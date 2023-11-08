@@ -11,7 +11,10 @@ const useDialog = () => {
   const showConfirmMessage = (type: ConfirmType) => {
     dialogCtx.showConfirm(type);
   };
+  const setDeletePlayListTitle = (title: string) => {
+    dialogCtx.setDeletePlayList(title);
+  };
 
-  return { showAlarmMessage, showConfirmMessage };
+  return { showAlarmMessage, showConfirmMessage, setDeletePlayListTitle };
 };
 export default useDialog;

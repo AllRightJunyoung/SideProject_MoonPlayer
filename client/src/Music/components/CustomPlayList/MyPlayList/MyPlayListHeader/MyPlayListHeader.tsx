@@ -1,15 +1,14 @@
 import * as Styled from './MyPlayListHeader.styled';
-import { useContext } from 'react';
-import { DiaLogContext } from 'common/context/dialog';
-import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { IconButton } from 'common/components';
+import { useDialog } from 'common/hooks';
+import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 
 const MyPlayListHeader = ({ title }) => {
-  const dialogCtx = useContext(DiaLogContext);
+  const { showConfirmMessage } = useDialog();
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
 
   const handleSpinnerButton = () => {
-    dialogCtx.showConfirm('PlayListLoad');
+    showConfirmMessage('PlayListLoad');
   };
 
   return (

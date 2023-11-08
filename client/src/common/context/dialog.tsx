@@ -29,7 +29,7 @@ export const DiaLogContext = createContext({
   closeAlarm: function () {},
   showConfirm: function (type: ConfirmType) {},
   closeConfirm: function () {},
-  setDeletePlayListDialog: function (title: string) {},
+  setDeletePlayList: function (title: string) {},
 });
 export const DiaLogContextProvider = (props) => {
   const [activeDialog, setActiveDialog] = useState<DialogState>(DEFAULT_STATE);
@@ -75,7 +75,7 @@ export const DiaLogContextProvider = (props) => {
       },
     }));
   };
-  const setDeletePlayListDialogHandler = (title: string) => {
+  const setDeletePlayListHandler = (title: string) => {
     setActiveDialog((prev) => ({
       ...prev,
       deletePlayList: {
@@ -89,7 +89,7 @@ export const DiaLogContextProvider = (props) => {
     closeAlarm: closeAlarmHandler,
     showConfirm: showConfirmHandler,
     closeConfirm: closeConfirmHandler,
-    setDeletePlayListDialog: setDeletePlayListDialogHandler,
+    setDeletePlayList: setDeletePlayListHandler,
   };
   return <DiaLogContext.Provider value={context}>{props.children}</DiaLogContext.Provider>;
 };
