@@ -14,11 +14,6 @@ export type DialogState = {
     message: string;
     type: ConfirmType | '';
   };
-  music: {
-    isOpen: boolean;
-    name: string;
-    img_url: string;
-  };
   deletePlayList: {
     title: string;
   };

@@ -12,11 +12,6 @@ const DEFAULT_STATE: DialogState = {
     message: '',
     type: '',
   },
-  music: {
-    isOpen: false,
-    name: '',
-    img_url: '',
-  },
   deletePlayList: {
     title: '',
   },
@@ -34,8 +29,6 @@ export const DiaLogContext = createContext({
   closeAlarm: function () {},
   showConfirm: function (type: ConfirmType) {},
   closeConfirm: function () {},
-  showMusicDialog: function (name: string, img_url: string) {},
-  closeMusicDialog: function () {},
   setDeletePlayListDialog: function (title: string) {},
 });
 export const DiaLogContextProvider = (props) => {
@@ -50,6 +43,7 @@ export const DiaLogContextProvider = (props) => {
       },
     }));
   };
+
   const closeAlarmHandler = () => {
     setActiveDialog((prev) => ({
       ...prev,
@@ -81,26 +75,6 @@ export const DiaLogContextProvider = (props) => {
       },
     }));
   };
-  const showMusicDialogHandler = (name: string, img_url: string) => {
-    setActiveDialog((prev) => ({
-      ...prev,
-      music: {
-        isOpen: true,
-        name,
-        img_url,
-      },
-    }));
-  };
-  const closeMusicDialogHandler = () => {
-    setActiveDialog((prev) => ({
-      ...prev,
-      music: {
-        isOpen: false,
-        name: '',
-        img_url: '',
-      },
-    }));
-  };
   const setDeletePlayListDialogHandler = (title: string) => {
     setActiveDialog((prev) => ({
       ...prev,
@@ -115,8 +89,6 @@ export const DiaLogContextProvider = (props) => {
     closeAlarm: closeAlarmHandler,
     showConfirm: showConfirmHandler,
     closeConfirm: closeConfirmHandler,
-    showMusicDialog: showMusicDialogHandler,
-    closeMusicDialog: closeMusicDialogHandler,
     setDeletePlayListDialog: setDeletePlayListDialogHandler,
   };
   return <DiaLogContext.Provider value={context}>{props.children}</DiaLogContext.Provider>;
