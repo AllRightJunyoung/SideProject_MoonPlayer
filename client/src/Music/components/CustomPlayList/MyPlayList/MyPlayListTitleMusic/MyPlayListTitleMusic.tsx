@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import * as Styled from './MyPlayListTitleMusic.styled';
-import { useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppSelector } from 'shared/hooks/useReduxStore';
 import uuid from 'react-uuid';
 import MyPlayListMusicHeader from '../MyPlayListHeader';
-import { Music } from 'common/components';
+import { Music } from 'shared/components';
 
 const MyPlayListTitleMusic = () => {
   const selectedPlayListStore = useAppSelector((state) => state.music.myPlayList.selected);

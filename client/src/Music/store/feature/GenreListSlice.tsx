@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { ThunkApiType } from 'common/store/store';
+import type { ThunkApiType } from 'shared/store/store';
 import { PURGE } from 'redux-persist';
-import { GenreListStateType } from 'common/types/store';
+import { GenreListStateType } from 'shared/types/store';
 import type { GenreListItemType } from 'Music/types';
 import { getGenreData } from 'Music/api';
 const initialState: GenreListStateType = {

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { DiaLogContext } from 'common/context/dialog';
-import type { ConfirmType } from 'common/types/dialog';
+import { DiaLogContext } from 'shared/context/dialog';
+import type { ConfirmType } from 'shared/types/dialog';
 
 const useDialog = () => {
   const dialogCtx = useContext(DiaLogContext);

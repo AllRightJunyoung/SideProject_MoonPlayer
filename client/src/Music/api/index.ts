@@ -12,7 +12,7 @@ import {
   MyPLAYLIST_GET_URI,
   MyPLAYLIST_DELETE_URI,
 } from 'Music/constants/api';
-import { Get, Post, Delete } from 'common/utils/axios';
+import { Get, Post, Delete } from 'shared/utils/axios';
 
 export const registerMyPlayList = async (data: RegisterMyPlayListType): Promise<MusicItemType[]> => {
   const playList = await Post<MusicItemType[]>(`${MyPLAYLIST_CREATE_URI}`, data);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, IconButton } from 'common/components';
+import { Flex, IconButton } from 'shared/components';
 
 export const Overlay = styled.div`
   position: fixed;

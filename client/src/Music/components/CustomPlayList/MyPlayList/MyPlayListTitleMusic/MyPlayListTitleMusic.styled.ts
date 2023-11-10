@@ -1,4 +1,4 @@
-import { ScrollBox } from 'common/components';
+import { ScrollBox } from 'shared/components';
 import styled from 'styled-components';
 
 export const Layout = styled(ScrollBox)`

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, Text } from 'common/components';
+import { Flex, Text } from 'shared/components';
 
 export const Layout = styled(Flex)`
   padding: 0px 16px;

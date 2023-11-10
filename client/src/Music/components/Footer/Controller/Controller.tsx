@@ -1,4 +1,4 @@
-import { IconButton } from 'common/components';
+import { IconButton } from 'shared/components';
 import type { ControllerProps } from './Controller.types';
 import * as Styled from './Controller.styled';
 export const Controller = ({ player, onRepeat, onPlay, onPrevMusic, onNextMusic, onShuffleMusic }: ControllerProps) => {

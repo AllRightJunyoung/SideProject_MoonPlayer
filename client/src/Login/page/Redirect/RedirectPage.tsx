@@ -1,10 +1,10 @@
 import { getCode } from 'Login/utils/auth';
 import { useEffect } from 'react';
 import { getAccessToken } from 'Login/store/feature/LoginSlice';
-import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 
 import useLogin from 'Login/hooks/useLogin';
-import { Spinner } from 'common/components';
+import { Spinner } from 'shared/components';
 
 export const RedirectPage = () => {
   const dispatch = useAppDispatch();

@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import type { MusicItemType } from 'Music/types';
 import { selectPrevMusic, selectNextMusic, shuffleMusic } from 'Music/utils/player';
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
+import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import {
   handleRepeatMusicModule,
   handlePlayMusicModule,

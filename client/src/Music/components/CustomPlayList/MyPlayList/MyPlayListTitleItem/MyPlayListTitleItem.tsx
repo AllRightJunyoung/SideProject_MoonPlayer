@@ -1,9 +1,9 @@
 import * as Styled from './MyPlayListTitleItem.styled';
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
-import { IconButton } from 'common/components';
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
+import { IconButton } from 'shared/components';
+import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
-import { useDialog } from 'common/hooks';
+import { useDialog } from 'shared/hooks';
 
 const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);

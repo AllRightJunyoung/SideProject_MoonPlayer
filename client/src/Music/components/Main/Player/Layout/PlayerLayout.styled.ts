@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Text, ScrollBox } from 'common/components';
+import { Text, ScrollBox } from 'shared/components';
 
 export const Layout = styled(ScrollBox)`
   width: 40%;

@@ -1,7 +1,7 @@
 import { LoginForm } from 'Login/components/LoginForm';
 
 import * as Styled from './LoginPage.styled';
-import { Dialog } from 'common/components';
+import { Dialog } from 'shared/components';
 const LoginPage = () => {
   return (
     <>

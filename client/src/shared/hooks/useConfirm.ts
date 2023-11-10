@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { DiaLogContext } from 'common/context/dialog';
-import { confirmMessage } from 'common/constants/dialog';
+import { DiaLogContext } from 'shared/context/dialog';
+import { confirmMessage } from 'shared/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppDispatch, useAppSelector } from './useReduxStore';
 import { registerMyPlayList } from 'Music/api';
 import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
-import { reportError } from 'common/utils/error';
+import { reportError } from 'shared/utils/error';
 
 const useConfirm = () => {
   const dispatch = useAppDispatch();

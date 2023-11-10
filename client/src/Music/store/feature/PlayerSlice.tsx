@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { PlayerStateType } from 'common/types/store';
+import { PlayerStateType } from 'shared/types/store';
 import type { PlayerControlModuleType, MusicItemType } from 'Music/types';
 import { PlayerControlModule_INIT } from 'Music/constants/player';
 

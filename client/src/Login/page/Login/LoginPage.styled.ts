@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, Avatar, Text } from 'common/components';
+import { Flex, Avatar, Text } from 'shared/components';
 
 export const Layout = styled(Flex)`
   background: linear-gradient(

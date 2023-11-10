@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DiaLogContext } from 'common/context/dialog';
+import { DiaLogContext } from 'shared/context/dialog';
 import * as Styled from './Alarm.styled';
 
 const Alarm = () => {

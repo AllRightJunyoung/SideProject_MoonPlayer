@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
-import { MusicUIStateType } from 'common/types/store';
+import { MusicUIStateType } from 'shared/types/store';
 
 export const initialState: MusicUIStateType = {
   main: {

@@ -1,6 +1,6 @@
-import { Flex } from 'common/components/';
+import { Flex } from 'shared/components';
 import * as Styled from './Confirm.styled';
-import { useConfirm } from 'common/hooks';
+import { useConfirm } from 'shared/hooks';
 
 const Confirm = () => {
   const { isOpen, confirmState, handleYesButton, handleNoButton } = useConfirm();

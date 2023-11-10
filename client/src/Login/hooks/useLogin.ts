@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppSelector } from 'shared/hooks/useReduxStore';
 import { useEffect } from 'react';
-import { useDialog } from 'common/hooks';
-import { removeStoreItems } from 'common/utils/redux-persist';
+import { useDialog } from 'shared/hooks';
+import { removeStoreItems } from 'shared/utils/redux-persist';
 
 let signOutTimer;
 export const useLogin = () => {

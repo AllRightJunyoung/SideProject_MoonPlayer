@@ -1,7 +1,7 @@
 import * as Styled from './Layout.styled';
 import { useEffect } from 'react';
 import { useMusicPageUIController } from 'Music/hooks';
-import { useResolution } from 'common/hooks';
+import { useResolution } from 'shared/hooks';
 import GenreMusicLayout from '../GenreMusic/Layout';
 import PlayerLayout from '../Player/Layout';
 

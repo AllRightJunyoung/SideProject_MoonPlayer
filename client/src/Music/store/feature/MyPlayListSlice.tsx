@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { MyPlayListStateType } from 'common/types/store';
-import type { ThunkApiType } from 'common/store/store';
+import type { MyPlayListStateType } from 'shared/types/store';
+import type { ThunkApiType } from 'shared/store/store';
 import type { MyPlayListType, RequestMyPlayListType, SelectedMyPlayListType } from 'Music/types';
 import { getMyPlayList, deleteMyPlayListByTitle } from 'Music/api';
 

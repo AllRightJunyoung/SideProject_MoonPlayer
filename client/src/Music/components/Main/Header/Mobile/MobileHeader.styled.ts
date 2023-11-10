@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Flex, Text } from 'common/components';
+import { Flex, Text } from 'shared/components';
 
 export const Layout = styled(Flex)`
   margin: 0 auto;

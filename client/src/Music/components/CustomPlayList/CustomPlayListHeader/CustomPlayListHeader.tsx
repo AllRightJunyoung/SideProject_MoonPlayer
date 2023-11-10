@@ -1,6 +1,6 @@
 import { useMusicPageUIController } from 'Music/hooks';
 import * as Styled from './CustomPlayListHeader.styled';
-import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import { fetchMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
 const CustomPlayListHeader = ({ title }) => {

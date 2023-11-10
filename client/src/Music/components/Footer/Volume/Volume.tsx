@@ -1,6 +1,6 @@
 import * as Styled from './Volume.styled';
 
-import { IconButton } from 'common/components';
+import { IconButton } from 'shared/components';
 import type { VolumeProps } from './Volume.types';
 
 export const Volume = ({ onVolume, volume }: VolumeProps) => {

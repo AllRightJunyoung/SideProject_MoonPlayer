@@ -1,4 +1,4 @@
-import type { ConfirmMessageType } from 'common/types/dialog';
+import type { ConfirmMessageType } from 'shared/types/dialog';
 export const confirmMessage: ConfirmMessageType = {
   Logout: '로그아웃되었습니다.',
   PlayListLoad: '재생목록을 가져왔습니다.',

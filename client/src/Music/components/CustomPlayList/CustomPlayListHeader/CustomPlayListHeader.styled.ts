@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, Text, IconButton } from 'common/components';
+import { Flex, Text, IconButton } from 'shared/components';
 
 export const Layout = styled(Flex)`
   margin: 15px;

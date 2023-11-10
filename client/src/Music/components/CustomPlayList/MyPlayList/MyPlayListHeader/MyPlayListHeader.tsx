@@ -1,6 +1,6 @@
 import * as Styled from './MyPlayListHeader.styled';
-import { IconButton } from 'common/components';
-import { useDialog } from 'common/hooks';
+import { IconButton } from 'shared/components';
+import { useDialog } from 'shared/hooks';
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 
 const MyPlayListHeader = ({ title }) => {

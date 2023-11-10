@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import type { CustomAxiosInterface } from 'common/types/axiosInterface';
-import type { CommonResponse } from 'common/types/axios';
+import type { CustomAxiosInterface } from 'shared/types/axiosInterface';
+import type { CommonResponse } from 'shared/types/axios';
 
 const SERVER_URI = process.env.REACT_APP_SERVER_URI;
 

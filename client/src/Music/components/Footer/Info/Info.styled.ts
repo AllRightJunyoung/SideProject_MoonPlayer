@@ -1,4 +1,4 @@
-import { Flex, Text, Image } from 'common/components';
+import { Flex, Text, Image } from 'shared/components';
 import styled from 'styled-components';
 
 export const Layout = styled(Flex)`

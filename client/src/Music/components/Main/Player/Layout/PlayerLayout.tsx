@@ -1,6 +1,6 @@
 import * as Styled from './PlayerLayout.styled';
 
-import { useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppSelector } from 'shared/hooks/useReduxStore';
 import { MainHeader } from '../../Header/MainHeader';
 import PlayerItem from '../PlayerItem';
 

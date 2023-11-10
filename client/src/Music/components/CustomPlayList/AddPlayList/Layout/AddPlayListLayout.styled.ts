@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ScrollBox, Flex, Text, Music } from 'common/components';
+import { ScrollBox, Flex, Text, Music } from 'shared/components';
 
 export const PlayListBox = styled(ScrollBox)`
   height: 30vh;

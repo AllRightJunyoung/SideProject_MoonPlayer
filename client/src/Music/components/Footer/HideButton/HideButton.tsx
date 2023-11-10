@@ -1,5 +1,5 @@
 import * as Styled from './HideButton.styled';
-import { IconButton } from 'common/components';
+import { IconButton } from 'shared/components';
 import { useMusicPageUIController } from 'Music/hooks';
 
 export const HideButton = () => {

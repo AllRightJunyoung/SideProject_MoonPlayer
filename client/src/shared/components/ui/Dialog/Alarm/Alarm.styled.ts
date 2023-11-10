@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, Button, Avatar, Text } from 'common/components';
+import { Flex, Button, Avatar, Text } from 'shared/components';
 
 export const Layout = styled.div`
   position: fixed;

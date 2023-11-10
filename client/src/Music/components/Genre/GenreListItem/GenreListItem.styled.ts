@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Image } from 'common/components';
+import { Image } from 'shared/components';
 
 interface CardImageProps {
   disabled: boolean;

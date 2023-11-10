@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GOOGLE_OAUTH_URL, KAKAO_OAUTH_URL, NAVER_OAUTH_URL } from '../constants/auth';
 import type { Oauth_LOOKUP_TABLE_type, Oauth_type } from 'Login/types';
 
-import { reportError } from 'common/utils/error';
+import { reportError } from 'shared/utils/error';
 
 const OAUTH_NAME_LOOKUP_TABLE: Oauth_LOOKUP_TABLE_type = {
   google: 'google',

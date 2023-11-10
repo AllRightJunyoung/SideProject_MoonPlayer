@@ -2,7 +2,7 @@ import * as Styled from './Layout.styled';
 
 import { formatMusicTime } from 'Music/utils/player';
 
-import { Flex } from 'common/components';
+import { Flex } from 'shared/components';
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
 import { usePlayerController } from 'Music/hooks';

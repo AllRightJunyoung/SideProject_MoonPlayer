@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Flex, Text, HiddenText, Image } from 'common/components';
+import { Flex, Text, HiddenText, Image } from 'shared/components';
 
 interface LayoutProps {
   isActive: boolean;

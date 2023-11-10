@@ -1,7 +1,7 @@
 import * as Styled from './MyPlayListLayout.styled';
 
 import CustomPlayListHeader from '../../CustomPlayListHeader';
-import { useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppSelector } from 'shared/hooks/useReduxStore';
 
 import MyPlayListTitleItem from '../MyPlayListTitleItem/MyPlayListTitleItem';
 import { useMusicPageUIController } from 'Music/hooks';

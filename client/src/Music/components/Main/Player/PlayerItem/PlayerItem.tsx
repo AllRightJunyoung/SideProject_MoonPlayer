@@ -1,8 +1,8 @@
 import * as Styled from './PlayerItem.styled';
 import type { MusicItemType } from 'Music/types';
 import { handleRemoveMusic, handleSetMusic } from 'Music/store/feature/PlayerSlice';
-import { CircleTooltip, IconButton } from 'common/components';
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
+import { CircleTooltip, IconButton } from 'shared/components';
+import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import { useMusicPageUIController, usePlayerController } from 'Music/hooks';
 
 const PlayerItem = ({ name, img_url, id, source_url }: MusicItemType) => {

@@ -1,5 +1,5 @@
-import { Icon } from 'common/components';
-import { Flex } from 'common/components';
+import { Icon } from 'shared/components';
+import { Flex } from 'shared/components';
 const Spinner = () => {
   return (
     <Flex alignItems="center" direction="column" justifyContent="center">

@@ -1,9 +1,9 @@
 import * as Styled from './AddPlayListLayout.styled';
 
-import { useAppSelector, useAppDispatch } from 'common/hooks/useReduxStore';
+import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 
-import { Music, Flex, IconButton } from 'common/components';
-import { useDialog } from 'common/hooks';
+import { Music, Flex, IconButton } from 'shared/components';
+import { useDialog } from 'shared/hooks';
 import { useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Flex, Avatar } from 'common/components';
+import { Flex, Avatar } from 'shared/components';
 
 export const Layout = styled(Flex)`
   padding: 24px 48px;

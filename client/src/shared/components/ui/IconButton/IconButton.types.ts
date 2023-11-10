@@ -1,5 +1,5 @@
 import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome';
-import { FontAwesomeIcons } from 'common/constants/icon';
+import { FontAwesomeIcons } from 'shared/constants/icon';
 
 type Icontype = keyof typeof FontAwesomeIcons;
 

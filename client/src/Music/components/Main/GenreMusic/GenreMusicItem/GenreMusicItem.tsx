@@ -1,10 +1,10 @@
 import * as Styled from './GenreMusicItem.styled';
-import { IconButton, CircleTooltip } from 'common/components';
+import { IconButton, CircleTooltip } from 'shared/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
-import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreMusicItemProps } from './GenreMusicItem.types';
 import type { MusicItemType } from 'Music/types';
-import { useResolution } from 'common/hooks';
+import { useResolution } from 'shared/hooks';
 
 const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) => {
   const dispatch = useAppDispatch();

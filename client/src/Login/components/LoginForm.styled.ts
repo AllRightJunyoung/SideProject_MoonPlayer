@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Image, Text, Button, Flex } from 'common/components';
+import { Image, Text, Button, Flex } from 'shared/components';
 
 export const FormButton = styled(Button)`
   font-size: 20px;

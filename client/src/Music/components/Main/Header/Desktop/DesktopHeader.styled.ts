@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Text } from 'common/components';
+import { Text } from 'shared/components';
 
 export const Layout = styled(Text)`
   font-size: 16px;

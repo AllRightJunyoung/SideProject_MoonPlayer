@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useResolution from 'common/hooks/useResolution';
+import useResolution from 'shared/hooks/useResolution';
 import DesktopHeader from '../Desktop/DesktopHeader';
 import MobileHeader from '../Mobile/MobileHeader';
 

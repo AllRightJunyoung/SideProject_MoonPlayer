@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ProtectedRoute from 'routes/ProtectedRoute/ProtectedRoute';
-import App from 'common';
+import App from 'shared';
 import { LoginPage, Redirect } from 'Login/page/';
 import { MusicPage } from 'Music/page';
 

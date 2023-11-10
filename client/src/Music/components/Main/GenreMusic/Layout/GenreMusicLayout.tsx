@@ -1,7 +1,7 @@
 import * as Styled from './GenreMusic.styled';
 import { useEffect } from 'react';
 import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
-import { useAppDispatch, useAppSelector } from 'common/hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import { MainHeader } from '../../Header/MainHeader';
 import GenreMusicItem from '../GenreMusicItem';
 

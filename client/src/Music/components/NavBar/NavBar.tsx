@@ -1,6 +1,6 @@
 import * as Styled from './NavBar.styled';
 
-import { IconButton } from 'common/components';
+import { IconButton } from 'shared/components';
 import { useMusicPageUIController } from 'Music/hooks';
 import useLogin from 'Login/hooks/useLogin';
 
