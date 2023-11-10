@@ -1,10 +1,10 @@
-import * as Styled from './Navigation.styled';
+import * as Styled from './NavBar.styled';
 
 import { IconButton } from 'common/components';
 import { useMusicPageUIController } from 'Music/hooks';
 import useLogin from 'Login/hooks/useLogin';
 
-export const Navigation = () => {
+export const NavBar = () => {
   const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
   const { signOut } = useLogin();
 
@@ -29,4 +29,4 @@ export const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavBar;
