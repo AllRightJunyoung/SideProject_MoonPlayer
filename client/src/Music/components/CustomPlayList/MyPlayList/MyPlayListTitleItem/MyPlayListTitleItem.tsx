@@ -3,26 +3,27 @@ import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { IconButton } from 'shared/components';
 import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
-import { useConfirm, useDialog } from 'shared/hooks';
+import { useDialog } from 'shared/hooks';
 
 const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
+  const currentMyPlayList = totalPlayList.filter((playList) => playList.order === order)[0];
+  const newCurrentPlayList = {
+    playList: currentMyPlayList.playList,
+    title: currentMyPlayList.title,
+  };
+
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
   const dispatch = useAppDispatch();
-  const { showConfirmMessage, setDeletePlayListTitle } = useDialog();
+  const { showConfirmMessage } = useDialog();
 
   const handleMyPlayListItem = () => {
     onhandleMyPlayListUI(false);
-    const currentMyPlayList = totalPlayList.filter((playList) => playList.order === order)[0];
-    const newCurrentPlayList = {
-      playList: currentMyPlayList.playList,
-      title: currentMyPlayList.title,
-    };
     dispatch(selectMyPlayList(newCurrentPlayList));
   };
   const handleRemoveButton = () => {
     showConfirmMessage('PlayListDelete');
-    setDeletePlayListTitle(title);
+    dispatch(selectMyPlayList(newCurrentPlayList));
   };
 
   return (

@@ -19,16 +19,12 @@ const useDialog = () => {
   const closeConfirmMessage = () => {
     dialogCtx.closeConfirm();
   };
-  const setDeletePlayListTitle = (title: string) => {
-    dialogCtx.setDeletePlayList(title);
-  };
 
   return {
     showAlarmMessage,
     showConfirmMessage,
     closeAlarmMessage,
     closeConfirmMessage,
-    setDeletePlayListTitle,
     alarm,
     confirm,
   };

@@ -12,7 +12,7 @@ const useConfirm = () => {
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
   const playerList = useAppSelector((state) => state.music.player.list);
   const accessToken = useAppSelector((state) => state.login.token.access_token);
-  const selectedMyPlayList = useAppSelector((state) => state.music.myPlayList.selected.playList);
+  const selectedMyPlayList = useAppSelector((state) => state.music.myPlayList.selected);
 
   const { confirm, showAlarmMessage, closeConfirmMessage } = useDialog();
   const { signOut } = useLogin();
@@ -22,7 +22,7 @@ const useConfirm = () => {
   const handleYesButton = () => {
     closeConfirmMessage();
     const confirmType = confirm.type;
-    const deleteMyPlayListTitle = confirm.deletePlayList.title;
+    const deleteMyPlayListTitle = selectedMyPlayList.title;
     if (confirmType === '') return;
     switch (confirmType) {
       case 'Logout':
@@ -53,7 +53,7 @@ const useConfirm = () => {
   };
 
   const loadMusic = () => {
-    dispatch(handleSelectMyPlayList(selectedMyPlayList));
+    dispatch(handleSelectMyPlayList(selectedMyPlayList.playList));
     showAlarmMessage(confirmMessage.PlayListLoad);
   };
   const saveMusic = async () => {

@@ -11,9 +11,6 @@ const DEFAULT_STATE: DialogState = {
     isOpen: false,
     message: '',
     type: '',
-    deletePlayList: {
-      title: '',
-    },
   },
 };
 const confirmMessage: ConfirmMessageType = {
@@ -29,7 +26,6 @@ export const DiaLogContext = createContext({
   closeAlarm: function () {},
   showConfirm: function (type: ConfirmType) {},
   closeConfirm: function () {},
-  setDeletePlayList: function (title: string) {},
 });
 export const DiaLogContextProvider = (props) => {
   const [activeDialog, setActiveDialog] = useState<DialogState>(DEFAULT_STATE);
@@ -62,9 +58,6 @@ export const DiaLogContextProvider = (props) => {
         isOpen: true,
         message: confirmMsg,
         type: type,
-        deletePlayList: {
-          title: prev.confirm.deletePlayList.title,
-        },
       },
     }));
   };
@@ -75,32 +68,16 @@ export const DiaLogContextProvider = (props) => {
         isOpen: false,
         message: '',
         type: '',
-        deletePlayList: {
-          title: prev.confirm.deletePlayList.title,
-        },
       },
     }));
   };
-  const setDeletePlayListHandler = (title: string) => {
-    setActiveDialog((prev) => ({
-      ...prev,
-      confirm: {
-        isOpen: prev.confirm.isOpen,
-        message: prev.confirm.message,
-        type: prev.confirm.type,
-        deletePlayList: {
-          title: title,
-        },
-      },
-    }));
-  };
+
   const context = {
     state: activeDialog,
     showAlarm: showAlarmHandler,
     closeAlarm: closeAlarmHandler,
     showConfirm: showConfirmHandler,
     closeConfirm: closeConfirmHandler,
-    setDeletePlayList: setDeletePlayListHandler,
   };
   return <DiaLogContext.Provider value={context}>{props.children}</DiaLogContext.Provider>;
 };
