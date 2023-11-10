@@ -3,13 +3,14 @@ import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { IconButton } from 'shared/components';
 import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
-import { useDialog } from 'shared/hooks';
+import { useConfirm, useDialog } from 'shared/hooks';
 
 const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
   const dispatch = useAppDispatch();
-  const { showConfirmMessage, setDeletePlayListTitle } = useDialog();
+  const { showConfirmMessage } = useDialog();
+  const { setDeletePlayListTitle } = useConfirm();
 
   const handleMyPlayListItem = () => {
     onhandleMyPlayListUI(false);

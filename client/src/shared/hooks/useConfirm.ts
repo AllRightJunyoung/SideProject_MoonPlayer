@@ -72,10 +72,23 @@ const useConfirm = () => {
     dispatch(deleteMyPlayList(title));
     dialogCtx.showAlarm(confirmMessage.PlayListDelete);
   };
+  const setDeletePlayListTitle = (title: string) => {
+    dialogCtx.setDeletePlayList(title);
+  };
   const close = () => {
     dialogCtx.closeConfirm();
   };
-  return { close, loadMusic, saveMusic, isOpen, handleYesButton, handleNoButton, confirmState, deletePlayList };
+  return {
+    close,
+    loadMusic,
+    saveMusic,
+    isOpen,
+    handleYesButton,
+    handleNoButton,
+    confirmState,
+    deletePlayList,
+    setDeletePlayListTitle,
+  };
 };
 
 export default useConfirm;
