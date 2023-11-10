@@ -13,8 +13,8 @@ export type DialogState = {
     isOpen: boolean;
     message: string;
     type: ConfirmType | '';
-  };
-  deletePlayList: {
-    title: string;
+    deletePlayList: {
+      title: string;
+    };
   };
 };

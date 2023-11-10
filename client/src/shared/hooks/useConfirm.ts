@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { DiaLogContext } from 'shared/context/dialog';
 import { confirmMessage } from 'shared/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppDispatch, useAppSelector } from './useReduxStore';
@@ -7,6 +5,7 @@ import { registerMyPlayList } from 'Music/api';
 import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 import { reportError } from 'shared/utils/error';
+import useDialog from './useDialog';
 
 const useConfirm = () => {
   const dispatch = useAppDispatch();
@@ -15,17 +14,16 @@ const useConfirm = () => {
   const accessToken = useAppSelector((state) => state.login.token.access_token);
   const selectedMyPlayList = useAppSelector((state) => state.music.myPlayList.selected.playList);
 
-  const dialogCtx = useContext(DiaLogContext);
+  const { confirm, showAlarmMessage, closeConfirmMessage } = useDialog();
   const { signOut } = useLogin();
-  const isOpen = dialogCtx.state.confirm.isOpen;
-  const confirmState = dialogCtx.state.confirm;
+  const isOpen = confirm.isOpen;
+  const message = confirm.message;
 
   const handleYesButton = () => {
-    dialogCtx.closeConfirm();
-    const confirmType = dialogCtx.state.confirm.type;
-    const deleteMyPlayListTitle = dialogCtx.state.deletePlayList.title;
+    closeConfirmMessage();
+    const confirmType = confirm.type;
+    const deleteMyPlayListTitle = confirm.deletePlayList.title;
     if (confirmType === '') return;
-
     switch (confirmType) {
       case 'Logout':
         logOut();
@@ -46,48 +44,45 @@ const useConfirm = () => {
   };
 
   const handleNoButton = () => {
-    dialogCtx.closeConfirm();
+    closeConfirmMessage();
   };
 
   const logOut = () => {
-    dialogCtx.showAlarm(confirmMessage.Logout);
+    showAlarmMessage(confirmMessage.Logout);
     signOut();
   };
 
   const loadMusic = () => {
     dispatch(handleSelectMyPlayList(selectedMyPlayList));
-    dialogCtx.showAlarm(confirmMessage.PlayListLoad);
+    showAlarmMessage(confirmMessage.PlayListLoad);
   };
   const saveMusic = async () => {
     try {
       const result = await registerMyPlayList({ accessToken, playerList, title: addPlayListInput });
       if (!result.length) throw new Error();
-      dialogCtx.showAlarm(confirmMessage.PlayListSave);
+      showAlarmMessage(confirmMessage.PlayListSave);
     } catch (err) {
       const errorMessage = reportError(err);
-      dialogCtx.showAlarm(errorMessage);
+      showAlarmMessage(errorMessage);
     }
   };
   const deletePlayList = (title: string) => {
     dispatch(deleteMyPlayList(title));
-    dialogCtx.showAlarm(confirmMessage.PlayListDelete);
+    showAlarmMessage(confirmMessage.PlayListDelete);
   };
-  const setDeletePlayListTitle = (title: string) => {
-    dialogCtx.setDeletePlayList(title);
-  };
+
   const close = () => {
-    dialogCtx.closeConfirm();
+    closeConfirmMessage();
   };
   return {
     close,
     loadMusic,
     saveMusic,
     isOpen,
+    message,
     handleYesButton,
     handleNoButton,
-    confirmState,
     deletePlayList,
-    setDeletePlayListTitle,
   };
 };
 

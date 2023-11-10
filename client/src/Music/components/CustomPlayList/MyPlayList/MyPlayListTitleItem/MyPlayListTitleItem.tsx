@@ -9,8 +9,7 @@ const MyPlayListTitleItem = ({ title, order }) => {
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
   const dispatch = useAppDispatch();
-  const { showConfirmMessage } = useDialog();
-  const { setDeletePlayListTitle } = useConfirm();
+  const { showConfirmMessage, setDeletePlayListTitle } = useDialog();
 
   const handleMyPlayListItem = () => {
     onhandleMyPlayListUI(false);

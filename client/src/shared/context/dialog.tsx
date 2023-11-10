@@ -11,9 +11,9 @@ const DEFAULT_STATE: DialogState = {
     isOpen: false,
     message: '',
     type: '',
-  },
-  deletePlayList: {
-    title: '',
+    deletePlayList: {
+      title: '',
+    },
   },
 };
 const confirmMessage: ConfirmMessageType = {
@@ -62,6 +62,9 @@ export const DiaLogContextProvider = (props) => {
         isOpen: true,
         message: confirmMsg,
         type: type,
+        deletePlayList: {
+          title: prev.confirm.deletePlayList.title,
+        },
       },
     }));
   };
@@ -72,14 +75,22 @@ export const DiaLogContextProvider = (props) => {
         isOpen: false,
         message: '',
         type: '',
+        deletePlayList: {
+          title: prev.confirm.deletePlayList.title,
+        },
       },
     }));
   };
   const setDeletePlayListHandler = (title: string) => {
     setActiveDialog((prev) => ({
       ...prev,
-      deletePlayList: {
-        title,
+      confirm: {
+        isOpen: prev.confirm.isOpen,
+        message: prev.confirm.message,
+        type: prev.confirm.type,
+        deletePlayList: {
+          title: title,
+        },
       },
     }));
   };

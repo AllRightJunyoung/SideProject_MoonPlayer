@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { DiaLogContext } from 'shared/context/dialog';
 import * as Styled from './Alarm.styled';
+import { useDialog } from 'shared/hooks';
 
 const Alarm = () => {
-  const dialogCtx = useContext(DiaLogContext);
-  const alarm = dialogCtx.state.alarm;
+  const { alarm, closeAlarmMessage } = useDialog();
+
   return alarm.isOpen ? (
     <Styled.Layout>
       <Styled.Box direction="column" justifyContent="center" alignItems="center">
@@ -12,7 +11,7 @@ const Alarm = () => {
         <Styled.AlarmText color="white" textAlign="center">
           {alarm.message}
         </Styled.AlarmText>
-        <Styled.AlarmButton fontColor="white" color="gray" onClick={dialogCtx.closeAlarm}>
+        <Styled.AlarmButton fontColor="white" color="gray" onClick={closeAlarmMessage}>
           확인
         </Styled.AlarmButton>
       </Styled.Box>

@@ -3,14 +3,14 @@ import * as Styled from './Confirm.styled';
 import { useConfirm } from 'shared/hooks';
 
 const Confirm = () => {
-  const { isOpen, confirmState, handleYesButton, handleNoButton } = useConfirm();
+  const { isOpen, message, handleYesButton, handleNoButton } = useConfirm();
 
   return isOpen ? (
     <Styled.OverLay>
       <Styled.Layout direction="column" justifyContent="center" alignItems="center">
         <Styled.ConfirmAvatar src="images/avatar/login.png" />
         <Styled.ConfirmText color="white" textAlign="center">
-          {confirmState.message}
+          {message}
         </Styled.ConfirmText>
         <Flex direction="row" gap="50px">
           <Styled.ConfirmButton fontColor="white" color="gray" onClick={handleYesButton}>
