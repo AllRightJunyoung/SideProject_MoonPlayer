@@ -5,7 +5,7 @@ import { useResolution } from 'shared/hooks';
 import GenreMusicLayout from '../GenreMusic/Layout';
 import PlayerLayout from '../Player/Layout';
 
-const Layout = () => {
+const MainLayout = () => {
   const { isOpenMusicList } = useMusicPageUIController();
   const { resolution, setResolution } = useResolution();
 
@@ -34,4 +34,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default MainLayout;

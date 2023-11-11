@@ -1,6 +1,6 @@
 import * as Styled from './MusicPage.styled';
 
-import { NavBar, Genre, Main, Footer, CustomPlayList } from 'Music/components';
+import { NavBar, GenreLayout, MainLayout, FooterLayout, CustomPlayListLayout } from 'Music/components';
 import { usePlayerController, useMusicPageUIController } from 'Music/hooks';
 import { Dialog } from 'shared/components';
 
@@ -13,11 +13,11 @@ const MusicPage = () => {
       <Dialog />
       <Styled.Layout direction="column">
         <NavBar />
-        <Genre />
-        <Main />
+        <GenreLayout />
+        <MainLayout />
         {playerModuleSelector.music && musicPlayer}
-        <Footer player={playerModuleSelector} />
-        {isOpenCustomPlayListUI ? <CustomPlayList /> : <></>}
+        <FooterLayout player={playerModuleSelector} />
+        {isOpenCustomPlayListUI ? <CustomPlayListLayout /> : <></>}
       </Styled.Layout>
     </>
   );

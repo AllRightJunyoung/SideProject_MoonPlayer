@@ -7,7 +7,7 @@ import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
 import { usePlayerController } from 'Music/hooks';
 
-const Footer = ({ player }) => {
+const FooterLayout = ({ player }) => {
   const { onRepeatMusic, onPlayMusic, onVolumeControl, onShuffleMusics, onSelectPrevMusic, onSelectNextMusic } =
     usePlayerController();
 
@@ -37,4 +37,4 @@ const Footer = ({ player }) => {
   );
 };
 
-export default Footer;
+export default FooterLayout;
