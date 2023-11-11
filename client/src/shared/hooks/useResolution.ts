@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 
-// call in Global Component and inject to Context
-
+const delay = 300;
+let timer;
 // 해상도에 맞게 감지하는 훅
 const useResolution = () => {
   const [resolution, setResolution] = useState<'MOBILE' | 'Tablet' | 'DESKTOP'>('DESKTOP');
+
   useEffect(() => {
     const ev = () => {
+      timer = clearTimeout(timer);
       if (window.innerWidth >= 1200) {
         return setResolution('DESKTOP');
       } else if (window.innerWidth >= 768) {
@@ -15,7 +17,10 @@ const useResolution = () => {
         return setResolution('MOBILE');
       }
     };
-    window.addEventListener('resize', ev);
+
+    window.addEventListener('resize', () => {
+      timer = setTimeout(ev, delay);
+    });
     return () => {
       window.removeEventListener('resize', ev);
     };
