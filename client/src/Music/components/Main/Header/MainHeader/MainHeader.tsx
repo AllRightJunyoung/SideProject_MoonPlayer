@@ -8,7 +8,7 @@ export const MainHeader = ({ title }) => {
   const { resolution, setResolution } = useResolution();
 
   useEffect(() => {
-    // 새로고침시 상태 갱신
+    //  새로고침 발생시 상태값 초기화 되서 넣어줌
     if (window.innerWidth >= 1200) {
       setResolution('DESKTOP');
     } else {

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import * as Styled from './GenreMusicItem.styled';
 import { IconButton, CircleTooltip } from 'shared/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
@@ -9,10 +10,19 @@ import { useResolution } from 'shared/hooks';
 const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) => {
   const dispatch = useAppDispatch();
 
-  const { resolution } = useResolution();
+  const { resolution, setResolution } = useResolution();
 
   const playerSelector = useAppSelector((state) => state.music.player);
   const isInPlayer = playerSelector.list.find((music: MusicItemType) => music.name === name) ? true : false;
+
+  useEffect(() => {
+    // 새로고침 발생시 상태값 초기화 되서 넣어줌
+    return window.innerWidth >= 1200
+      ? setResolution('DESKTOP')
+      : window.innerWidth >= 768
+      ? setResolution('Tablet')
+      : setResolution('MOBILE');
+  }, [resolution]);
 
   const handlePlusButton = () => {
     if (isInPlayer) return;

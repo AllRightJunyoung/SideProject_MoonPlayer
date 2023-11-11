@@ -10,6 +10,7 @@ const Layout = () => {
   const { resolution, setResolution } = useResolution();
 
   useEffect(() => {
+    // 새로고침 발생시 상태값 초기화 되서 넣어줌
     return window.innerWidth >= 1200
       ? setResolution('DESKTOP')
       : window.innerWidth >= 768
