@@ -1,13 +1,11 @@
-import * as Styled from './MyPlayListLayout.styled';
-
-import CustomPlayListHeader from '../../CustomPlayListHeader';
+import * as Styled from './MyPlayListTitleLayout.styled';
 import { useAppSelector } from 'shared/hooks/useReduxStore';
-
-import MyPlayListTitleItem from '../MyPlayListTitleItem/MyPlayListTitleItem';
 import { useMusicPageUIController } from 'Music/hooks';
-import MyPlayListTitleMusic from '../MyPlayListTitleMusic';
+import MyPlayListTitleMusicLayout from './MyPlayListTitleMusicLayout';
+import MyPlayListTitleItem from '../MyPlayListTitleItem/MyPlayListTitleItem';
+import CustomPlayListHeader from '../../CustomPlayListHeader';
 
-const MyPlayListLayout = () => {
+const MyPlayListTitleLayout = () => {
   const { isOpenMyPlayListTitleListUI } = useMusicPageUIController();
   const myPlayListStore = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const myPlayListTitleList = myPlayListStore.map((playList) => ({
@@ -27,10 +25,10 @@ const MyPlayListLayout = () => {
           </Styled.Layout>
         </>
       ) : (
-        <MyPlayListTitleMusic />
+        <MyPlayListTitleMusicLayout />
       )}
     </>
   );
 };
 
-export default MyPlayListLayout;
+export default MyPlayListTitleLayout;
