@@ -1,4 +1,4 @@
-import * as Styled from './AddPlayListLayout.styled';
+import * as Styled from './AddMyPlayListLayout.styled';
 
 import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 
@@ -9,7 +9,7 @@ import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import CustomPlayListHeader from '../../CustomPlayListHeader';
 
-export const AddPlayListLayout = () => {
+export const AddMyPlayListLayout = () => {
   const dispatch = useAppDispatch();
   const playerList = useAppSelector((state) => state.music.player.list);
   const { showConfirmMessage, showAlarmMessage } = useDialog();
@@ -53,4 +53,4 @@ export const AddPlayListLayout = () => {
     </>
   );
 };
-export default AddPlayListLayout;
+export default AddMyPlayListLayout;
