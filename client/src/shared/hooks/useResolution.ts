@@ -8,7 +8,7 @@ const useResolution = () => {
 
   useEffect(() => {
     const ev = () => {
-      timer = clearTimeout(timer);
+      clearTimeout(timer);
       if (window.innerWidth >= 1200) {
         return setResolution('DESKTOP');
       } else if (window.innerWidth >= 768) {
@@ -22,6 +22,7 @@ const useResolution = () => {
       timer = setTimeout(ev, delay);
     });
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('resize', ev);
     };
   }, []);
