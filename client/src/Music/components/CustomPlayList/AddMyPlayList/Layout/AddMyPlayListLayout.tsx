@@ -2,12 +2,13 @@ import * as Styled from './AddMyPlayListLayout.styled';
 
 import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 
-import { Music, Flex, IconButton } from 'shared/components';
+import { Flex, IconButton } from 'shared/components';
 import { useDialog } from 'shared/hooks';
 import { useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import CustomPlayListHeader from '../../CustomPlayListHeader';
+import MusicItem from 'Music/components/MusicItem';
 
 export const AddMyPlayListLayout = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ export const AddMyPlayListLayout = () => {
 
   const currentPlayerMusics =
     playerList.length > 0 ? (
-      playerList.map(({ name, img_url }, index) => <Music name={name} url={img_url} key={index} order={++index} />)
+      playerList.map(({ name, img_url }, index) => <MusicItem name={name} url={img_url} key={index} order={++index} />)
     ) : (
       <Styled.EmptyText>재생 목록이 비어있습니다.</Styled.EmptyText>
     );

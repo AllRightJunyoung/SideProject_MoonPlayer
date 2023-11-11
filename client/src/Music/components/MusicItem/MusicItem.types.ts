@@ -1,4 +1,4 @@
-export interface MusicProps {
+export interface MusicItemProps {
   name: string;
   url: string;
   order: number;

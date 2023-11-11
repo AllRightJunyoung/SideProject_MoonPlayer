@@ -1,11 +1,9 @@
 import uuid from 'react-uuid';
-import CircleTooltip from '../CircleTooltip';
-import * as Styled from './Music.styled';
-import type { MusicProps } from './Music.types';
+import CircleTooltip from '../../../shared/components/ui/CircleTooltip';
+import * as Styled from './MusicItem.styled';
+import type { MusicItemProps } from './MusicItem.types';
 
-const id = uuid();
-
-const Music = ({ name, url, order }: MusicProps) => {
+const MusicItem = ({ name, url, order }: MusicItemProps) => {
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.MusicNumber>{order}</Styled.MusicNumber>
@@ -15,4 +13,4 @@ const Music = ({ name, url, order }: MusicProps) => {
     </Styled.Layout>
   );
 };
-export default Music;
+export default MusicItem;
