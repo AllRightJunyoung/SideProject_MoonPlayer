@@ -4,7 +4,7 @@ import DesktopHeader from '../Desktop/DesktopHeader';
 import MobileHeader from '../Mobile/MobileHeader';
 
 // Header의 상태 값에 따라 어떤 헤더를 렌더링할지 결정한다.
-export const MainHeader = ({ title }) => {
+export const MainHeaderLayout = ({ title }) => {
   const { resolution, setResolution } = useResolution();
 
   useEffect(() => {
@@ -18,4 +18,4 @@ export const MainHeader = ({ title }) => {
 
   return <>{resolution === 'DESKTOP' ? <DesktopHeader title={title} /> : <MobileHeader />}</>;
 };
-export default MainHeader;
+export default MainHeaderLayout;

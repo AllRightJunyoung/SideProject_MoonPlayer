@@ -2,8 +2,8 @@ import * as Styled from './GenreMusic.styled';
 import { useEffect } from 'react';
 import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
-import { MainHeader } from '../../Header/MainHeader';
 import GenreMusicItem from '../GenreMusicItem';
+import MainHeaderLayout from '../../Header/Layout/Layout';
 
 const GenreMusicLayout = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const GenreMusicLayout = () => {
 
   return (
     <Styled.Layout>
-      <MainHeader title="M U S I C" />
+      <MainHeaderLayout title="M U S I C" />
       {music_list &&
         music_list.map(({ name, id, img_url, source_url }) => (
           <GenreMusicItem key={id} id={id} name={name} img_url={img_url} source_url={source_url}></GenreMusicItem>
