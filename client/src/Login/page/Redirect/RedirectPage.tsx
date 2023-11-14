@@ -1,6 +1,6 @@
 import { getCode } from 'Login/utils/auth';
 import { useEffect } from 'react';
-import { getAccessToken } from 'Login/store/feature/LoginSlice';
+import { getToken } from 'Login/store/feature/LoginSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 
 import useLogin from 'Login/hooks/useLogin';
@@ -15,10 +15,10 @@ export const RedirectPage = () => {
 
   useEffect(() => {
     const obj = {
-      provider: userState.provider,
+      provider: userState.token.provider,
       code,
     };
-    dispatch(getAccessToken(obj));
+    dispatch(getToken(obj));
   }, []);
 
   if (access_token) {

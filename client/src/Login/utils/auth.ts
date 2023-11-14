@@ -18,7 +18,7 @@ const OAUTH_URL_LOOKUP_TABLE: Oauth_LOOKUP_TABLE_type = {
   naver: NAVER_OAUTH_URL,
 };
 
-export const getToken = async (REQUEST_URI: string) => {
+export const requestToken = async (REQUEST_URI: string) => {
   try {
     const response = await axios.get(REQUEST_URI);
     return response;
