@@ -3,7 +3,7 @@ import { PURGE } from 'redux-persist';
 import type { LoginStateType, ProviderType, TokenType } from 'Login/types';
 import { requestToken } from 'Login/utils/auth';
 
-// 사용자가 가진 JSON 토큰으로 사용자 정보를 갱신한다.
+// 사용자가 가진 JWT 토큰으로 정보를 가져온다.
 const initialState: LoginStateType = {
   status: '',
   token: {
@@ -45,6 +45,8 @@ export const LoginSlice = createSlice({
       state.token.provider = '';
       state.token.access_token = action.payload.access_token;
       state.token.refresh_token = action.payload.refresh_token;
+      localStorage.setItem('access_token', action.payload.access_token);
+      localStorage.setItem('refresh_token', action.payload.refresh_token);
       state.token.expire_in = new Date().getTime() + action.payload.expire_in;
     });
     builder.addCase(getToken.rejected, (state: LoginStateType) => {
