@@ -59,15 +59,15 @@ const createMyPlayList = async (req, res, next) => {
 const getMyPlayListNameList = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).send("유효하지 않은 Input 입니다.");
+    return res.status(400).send("유효하지 않은 Input 입니다.");
   }
   const { accessToken } = req.body;
   const info = decodeToken(accessToken);
-  const { userKey } = info;
+  const { userId } = info;
 
   let userPlayList;
   try {
-    userPlayList = await PlayList.find({ userKey });
+    userPlayList = await PlayList.find({ userId });
   } catch (error) {
     return res.status(400).send(error.meessage);
   }
