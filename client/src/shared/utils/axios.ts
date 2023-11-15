@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import type { CustomAxiosInterface } from 'shared/types/axiosInterface';
 import type { CommonResponse } from 'shared/types/axios';
+import { getRefreshToken } from 'Login/api';
+import { TokenType } from 'Login/types';
 
 const SERVER_URI = process.env.REACT_APP_SERVER_URI;
 
@@ -49,12 +51,25 @@ client.interceptors.request.use(
   }
 );
 
-// client.interceptors.response.use(
-//   (res) => res,
-//   async (error) => {
-//     const {
-//       config,
-//       response: { status },
-//     } = error;
-//   }
-// );
+client.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    const {
+      config,
+      response: { status },
+    } = error;
+    if (status === 401) {
+      const token = localStorage.getItem('token');
+      if (error.response.data.result.message === 'jwt expired') {
+        if (token) {
+          const response = (await getRefreshToken()) as TokenType; //토큰 refresh
+          //새로 받은 토큰을 헤더에 적용
+          config.headers.authorization = `Bearer ${response.access_token}`;
+          config.headers.refresh = `Bearer ${response.refresh_token}`;
+          return axios(config);
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);

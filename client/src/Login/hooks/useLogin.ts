@@ -30,10 +30,6 @@ export const useLogin = () => {
   const refreshToken = async () => {
     try {
       const response = (await getRefreshToken()) as TokenType;
-      localStorage.setItem(
-        'token',
-        JSON.stringify({ access_token: response.access_token, refresh_token: response.refresh_token })
-      );
       dispatch(handleSetToken(response));
     } catch (error) {
       console.log(error);
