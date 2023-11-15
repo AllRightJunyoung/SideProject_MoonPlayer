@@ -1,13 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'shared/hooks/useReduxStore';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import { useEffect } from 'react';
 import { useDialog } from 'shared/hooks';
 import { removeStoreItems } from 'shared/utils/redux-persist';
+import { getRefreshToken } from '../api/index';
+import { TokenType } from 'Login/types';
+import { handleSetToken } from 'Login/store/feature/LoginSlice';
 
-let signOutTimer;
+let accessTokenTimer;
 export const useLogin = () => {
   const navigate = useNavigate();
   const { showAlarmMessage } = useDialog();
+  const dispatch = useAppDispatch();
 
   const loginState = useAppSelector((state) => state.login);
   const access_token = loginState.token.access_token;
@@ -17,21 +21,33 @@ export const useLogin = () => {
     navigate('/music');
     showAlarmMessage('로그인 하였습니다.');
   };
-  const signOut = () => {
+  const signOut = async () => {
     localStorage.clear();
     removeStoreItems();
     showAlarmMessage('로그아웃 되었습니다.');
   };
-  // 2. 토근 유효시간이 종료되면 로그아웃
+
+  const refreshToken = async () => {
+    try {
+      const response = (await getRefreshToken()) as TokenType;
+      localStorage.setItem(
+        'token',
+        JSON.stringify({ access_token: response.access_token, refresh_token: response.refresh_token })
+      );
+      dispatch(handleSetToken(response));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // 2. 토근 유효시간이 종료되면 리프레쉬 토큰 기반으로 액세스토큰 요청
   useEffect(() => {
     if (access_token) {
       const remainingTime = tokenExpirationTime - new Date().getTime();
-      console.log(remainingTime);
-      signOutTimer = setTimeout(signOut, remainingTime);
+      accessTokenTimer = setTimeout(refreshToken, remainingTime);
     } else {
-      clearTimeout(signOutTimer);
+      clearTimeout(accessTokenTimer);
     }
-  }, [access_token, signOut]);
+  }, [access_token]);
 
   return { access_token, signOut, signIn };
 };

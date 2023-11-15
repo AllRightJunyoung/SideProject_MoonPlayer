@@ -28,16 +28,33 @@ export const Delete = async <T>(url: string, config?: AxiosRequestConfig): Promi
 };
 
 // 인터셉터 정의
-client.interceptors.request.use((config) => {
-  if (!config.headers) return config;
-  let token;
-  if (config.url === `${SERVER_URI}/api/auth/refresh`) {
-    token = localStorage.getItem('refresh-token');
-  } else {
-    token = localStorage.getItem('access_token');
+client.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      config.headers.authorization = null;
+      config.headers.refresh = null;
+    }
+
+    if (config.headers && token) {
+      const { access_token, refresh_token } = JSON.parse(token);
+      config.headers.authorization = `Bearer ${access_token}`;
+      config.headers.refresh = `Bearer ${refresh_token}`;
+      return config;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  if (token !== null) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+);
+
+// client.interceptors.response.use(
+//   (res) => res,
+//   async (error) => {
+//     const {
+//       config,
+//       response: { status },
+//     } = error;
+//   }
+// );

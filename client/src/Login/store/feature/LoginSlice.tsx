@@ -10,8 +10,8 @@ const initialState: LoginStateType = {
     access_token: '',
     refresh_token: '',
     expire_in: 0,
-    provider: '',
   },
+  provider: '',
 };
 
 const getToken = createAsyncThunk('user', async (obj: ProviderType, thunkApi: any) => {
@@ -33,7 +33,13 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {
     handleSoicalLoginProvider: (state: LoginStateType, action: PayloadAction<string>) => {
-      state.token.provider = action.payload;
+      state.provider = action.payload;
+    },
+
+    handleSetToken: (state: LoginStateType, action: PayloadAction<TokenType>) => {
+      state.token.access_token = action.payload.access_token;
+      state.token.refresh_token = action.payload.refresh_token;
+      state.token.expire_in = new Date().getTime() + action.payload.expire_in;
     },
   },
   extraReducers: (builder) => {
@@ -42,11 +48,14 @@ export const LoginSlice = createSlice({
     });
     builder.addCase(getToken.fulfilled, (state: LoginStateType, action: PayloadAction<TokenType>) => {
       state.status = 'Success';
-      state.token.provider = '';
+      state.provider = '';
       state.token.access_token = action.payload.access_token;
       state.token.refresh_token = action.payload.refresh_token;
-      localStorage.setItem('access_token', action.payload.access_token);
-      localStorage.setItem('refresh_token', action.payload.refresh_token);
+
+      localStorage.setItem(
+        'token',
+        JSON.stringify({ access_token: action.payload.access_token, refresh_token: action.payload.refresh_token })
+      );
       state.token.expire_in = new Date().getTime() + action.payload.expire_in;
     });
     builder.addCase(getToken.rejected, (state: LoginStateType) => {
@@ -57,4 +66,4 @@ export const LoginSlice = createSlice({
   },
 });
 export { getToken };
-export const { handleSoicalLoginProvider } = LoginSlice.actions;
+export const { handleSoicalLoginProvider, handleSetToken } = LoginSlice.actions;

@@ -7,8 +7,8 @@ export type LoginStateType = {
     access_token: string;
     refresh_token: string;
     expire_in: number;
-    provider: string;
   };
+  provider: string;
 };
 
 export type ProviderType = {

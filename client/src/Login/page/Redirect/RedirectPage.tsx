@@ -15,7 +15,7 @@ export const RedirectPage = () => {
 
   useEffect(() => {
     const obj = {
-      provider: userState.token.provider,
+      provider: userState.provider,
       code,
     };
     dispatch(getToken(obj));
