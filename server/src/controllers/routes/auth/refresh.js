@@ -28,7 +28,7 @@ const refreshToken = async (req, res) => {
           //1.2  리프레쉬 토큰도 만료
           res.status(401).send({
             result: {
-              message: "다시 로그인 해주세요",
+              message: "refreshToken expired",
             },
           });
         }

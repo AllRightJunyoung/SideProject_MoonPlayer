@@ -12,17 +12,23 @@ const auth = (req, res, next) => {
     } else {
       if (result.message === "jwt expired") {
         res.status(401).send({
-          message: "액세스 토큰이 만료되었습니다.",
+          result: {
+            message: "jwt expired",
+          },
         });
       } else {
         res.status(401).send({
-          message: "권한이 없는 토큰입니다.",
+          result: {
+            message: "권한이 없는 토큰입니다.",
+          },
         });
       }
     }
   } else {
-    res.status(401).send({
-      message: "헤더에 토큰이 존재하지 않습니다.",
+    res.status(400).send({
+      result: {
+        message: "헤더에 액세스 토큰이 존재하지 않습니다.",
+      },
     });
   }
 };
