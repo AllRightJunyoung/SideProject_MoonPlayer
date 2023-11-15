@@ -227,7 +227,7 @@ const googleLogin = async (req, res, next) => {
   }
 };
 
-const NaverLogin = async (req, res, next) => {
+const naverLogin = async (req, res, next) => {
   const { code } = req.query;
 
   let response;
@@ -285,12 +285,14 @@ const NaverLogin = async (req, res, next) => {
     try {
       await createdUser.save();
     } catch (error) {
+      console.log(error.message);
       return res.status(500).send({ error: error.message });
     }
 
     const access_token = jwt.createAccessToken({
       userId,
     });
+
     return res.status(200).json({
       access_token,
       refresh_token,
@@ -344,4 +346,4 @@ const NaverLogin = async (req, res, next) => {
 
 exports.kakaoLogin = kakaoLogin;
 exports.googleLogin = googleLogin;
-exports.NaverLogin = NaverLogin;
+exports.naverLogin = naverLogin;

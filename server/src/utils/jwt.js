@@ -11,7 +11,7 @@ const createAccessToken = (user) => {
   try {
     token = jwt.sign(payload, process.env.JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "1h",
+      expiresIn: "1",
     });
   } catch (error) {
     return next(error);
@@ -29,7 +29,6 @@ const createRefreshToken = () => {
 const verifyRefreshToken = async (refresh_token, userId) => {
   try {
     user = await User.findOne({ userId });
-
     if (user !== null && refresh_token === user.refresh_token) {
       try {
         jwt.verify(refresh_token, process.env.JWT_SECRET);
@@ -43,24 +42,28 @@ const verifyRefreshToken = async (refresh_token, userId) => {
   }
 };
 
-// const verfiyAccessToken = (token) => {
-//   let decoded = null;
-//   try {
-//     decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     return {
-//       ok: true,
-//       id: decoded.id,
-//       role: decoded.role,
-//     };
-//   } catch (error) {
-//     return {
-//       ok: false,
-//       message: error.message,
-//     };
-//   }
-// };
+const verifyAccessToken = (token) => {
+  try {
+    jwt.verify(token, process.env.JWT_SECRET);
+    return {
+      valid: true,
+      message: "success",
+    };
+  } catch (error) {
+    return {
+      valid: false,
+      message: error.message,
+    };
+  }
+};
+
+const decodeAccessToken = (token) => {
+  const decoded = jwt.decode(token);
+  return decoded;
+};
 
 exports.createAccessToken = createAccessToken;
-// exports.verfiyAccessToken = verfiyAccessToken;
+exports.verifyAccessToken = verifyAccessToken;
 exports.createRefreshToken = createRefreshToken;
 exports.verifyRefreshToken = verifyRefreshToken;
+exports.decodeAccessToken = decodeAccessToken;
