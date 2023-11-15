@@ -1,7 +1,7 @@
 const { validationResult, param } = require("express-validator");
-const { PlayList, User } = require("../../models");
+const { PlayList, User } = require("../../../models");
 
-const { decodeToken } = require("../../utils/jwt");
+const { decodeAccessToken } = require("../../../utils/jwt");
 
 const createMyPlayList = async (req, res, next) => {
   const result = validationResult(req);
@@ -14,7 +14,7 @@ const createMyPlayList = async (req, res, next) => {
 
   let user;
 
-  const info = decodeToken(accessToken);
+  const info = decodeAccessToken(accessToken);
   const { userKey } = info;
 
   try {

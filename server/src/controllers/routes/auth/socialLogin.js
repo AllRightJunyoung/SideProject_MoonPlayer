@@ -1,6 +1,6 @@
 const axios = require("axios");
-const jwt = require("../../utils/jwt");
-const { User } = require("../../models");
+const jwt = require("../../../utils/jwt");
+const { User } = require("../../../models/user");
 
 const makeFormData = (params) => {
   const searchParams = new URLSearchParams();
@@ -45,7 +45,7 @@ const kakaoLogin = async (req, res, next) => {
   }
 
   const userId = String(userData.data.id);
-
+  const user_Id = userId;
   let existingUser;
   try {
     existingUser = await User.findOne({ userId });
@@ -54,8 +54,9 @@ const kakaoLogin = async (req, res, next) => {
   }
   if (existingUser === null && userId) {
     const refresh_token = jwt.createRefreshToken();
+
     const createdUser = new User({
-      userId,
+      userId: user_Id,
       refresh_token,
     });
     try {
@@ -63,8 +64,9 @@ const kakaoLogin = async (req, res, next) => {
     } catch (error) {
       return res.status(500).send({ error: error.message });
     }
+
     const access_token = jwt.createAccessToken({
-      userId,
+      user_Id,
     });
     res.status(200).json({
       access_token,
@@ -153,6 +155,7 @@ const googleLogin = async (req, res, next) => {
   }
 
   const userId = String(userData.data.id);
+  const user_Id = userId;
 
   let existingUser;
   try {
@@ -172,10 +175,10 @@ const googleLogin = async (req, res, next) => {
     } catch (error) {
       return res.status(500).send({ error: error.message });
     }
-
     const access_token = jwt.createAccessToken({
-      userId,
+      user_Id,
     });
+
     return res.status(200).json({
       access_token,
       refresh_token,
@@ -269,6 +272,7 @@ const naverLogin = async (req, res, next) => {
     userId = String(userData.data.response.id);
   }
 
+  const user_Id = userId;
   let existingUser;
   try {
     existingUser = await User.findOne({ userId });
@@ -285,12 +289,11 @@ const naverLogin = async (req, res, next) => {
     try {
       await createdUser.save();
     } catch (error) {
-      console.log(error.message);
       return res.status(500).send({ error: error.message });
     }
 
     const access_token = jwt.createAccessToken({
-      userId,
+      user_Id,
     });
 
     return res.status(200).json({

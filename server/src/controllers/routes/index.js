@@ -1,5 +1,6 @@
 module.exports = {
-  ...require("./auth"),
-  ...require("./genre"),
-  ...require("./myPlayList"),
+  ...require("./auth/refresh"),
+  ...require("./auth/socialLogin"),
+  ...require("./music/genre"),
+  ...require("./music/myPlayList"),
 };

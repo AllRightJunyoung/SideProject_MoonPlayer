@@ -5,13 +5,13 @@ const { User } = require("../models");
 const createAccessToken = (user) => {
   let token;
   const payload = {
-    userId: user.userId,
+    userId: user.user_Id,
   };
 
   try {
     token = jwt.sign(payload, process.env.JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "1",
+      expiresIn: "1h",
     });
   } catch (error) {
     return next(error);
@@ -28,7 +28,7 @@ const createRefreshToken = () => {
 };
 const verifyRefreshToken = async (refresh_token, userId) => {
   try {
-    user = await User.findOne({ userId });
+    let user = await User.findOne({ userId });
     if (user !== null && refresh_token === user.refresh_token) {
       try {
         jwt.verify(refresh_token, process.env.JWT_SECRET);
@@ -59,6 +59,7 @@ const verifyAccessToken = (token) => {
 
 const decodeAccessToken = (token) => {
   const decoded = jwt.decode(token);
+
   return decoded;
 };
 
