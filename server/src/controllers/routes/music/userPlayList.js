@@ -1,9 +1,8 @@
-const { validationResult, param } = require("express-validator");
 const { PlayList, User } = require("../../../models");
 
 const { decodeAccessToken } = require("../../../utils/jwt");
 
-const createMyPlayList = async (req, res, next) => {
+const createUserPlayList = async (req, res, next) => {
   const result = validationResult(req);
   const message = result.array().map((error) => error.msg);
 
@@ -56,33 +55,28 @@ const createMyPlayList = async (req, res, next) => {
   return res.status(200).json({ result: newPlayList.playList });
 };
 
-const getMyPlayListNameList = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).send("유효하지 않은 Input 입니다.");
-  }
-  const { accessToken } = req.body;
-  const info = decodeToken(accessToken);
-  const { userId } = info;
-
-  let userPlayList;
-  try {
-    userPlayList = await PlayList.find({ userId });
-  } catch (error) {
-    return res.status(400).send(error.meessage);
-  }
-  const newUserPlayList = userPlayList.map((playList, idx) => {
-    return {
-      order: idx + 1,
-      playList: playList.playList,
-      title: playList.title,
-    };
-  });
-  return res.status(200).json({
-    result: newUserPlayList,
-  });
+const getUserPlayList = async (req, res, next) => {
+  // const { accessToken } = req.body;
+  // const info = decodeToken(accessToken);
+  // const { userId } = info;
+  // let userPlayList;
+  // try {
+  //   userPlayList = await PlayList.find({ userId });
+  // } catch (error) {
+  //   return res.status(400).send(error.meessage);
+  // }
+  // const newUserPlayList = userPlayList.map((playList, idx) => {
+  //   return {
+  //     order: idx + 1,
+  //     playList: playList.playList,
+  //     title: playList.title,
+  //   };
+  // });
+  // return res.status(200).json({
+  //   result: newUserPlayList,
+  // });
 };
-const deleteMyPlayList = async (req, res, next) => {
+const deleteUserPlayList = async (req, res, next) => {
   const { title } = req.params;
 
   let userPlayList;
@@ -96,6 +90,6 @@ const deleteMyPlayList = async (req, res, next) => {
   });
 };
 
-exports.createMyPlayList = createMyPlayList;
-exports.getMyPlayListNameList = getMyPlayListNameList;
-exports.deleteMyPlayList = deleteMyPlayList;
+exports.createUserPlayList = createUserPlayList;
+exports.getUserPlayList = getUserPlayList;
+exports.deleteUserPlayList = deleteUserPlayList;

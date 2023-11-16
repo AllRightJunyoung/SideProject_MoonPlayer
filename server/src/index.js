@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 dotenv.config();
 
-const { genreRoutes, authRoutes, myPlayListRoutes } = require("./routes");
+const { genreRoutes, authRoutes, userPlayListRoutes } = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/music", genreRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/myPlayList", myPlayListRoutes);
+app.use("/api/userPlayList", userPlayListRoutes);
 
 mongoose
   .connect(
