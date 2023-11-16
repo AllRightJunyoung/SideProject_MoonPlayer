@@ -1,10 +1,17 @@
+const { validationResult, param } = require("express-validator");
 const { PlayList, User } = require("../../../models");
 
 const { decodeAccessToken } = require("../../../utils/jwt");
 
 const createUserPlayList = async (req, res, next) => {
-  const { playerList, title } = req.body;
+  const result = validationResult(req);
+  const message = result.array().map((error) => error.msg);
 
+  if (!result.isEmpty()) {
+    return res.status(400).send(message[0]);
+  }
+
+  const { playerList, title } = req.body;
   let user;
   const access_token = req.headers.authorization.split("Bearer ")[1];
   const { userId } = decodeAccessToken(access_token);
