@@ -1,4 +1,3 @@
-import uuid from 'react-uuid';
 import CircleTooltip from '../../../shared/components/ui/CircleTooltip';
 import * as Styled from './MusicItem.styled';
 import type { MusicItemProps } from './MusicItem.types';

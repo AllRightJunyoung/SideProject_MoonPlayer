@@ -37,7 +37,7 @@ export interface PostUserPlayListType {
 }
 
 export interface MyPlayListType {
-  order: Number;
+  order: number;
   playList: MusicItemType[];
   title: string;
 }

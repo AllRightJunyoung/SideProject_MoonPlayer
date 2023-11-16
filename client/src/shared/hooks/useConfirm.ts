@@ -11,7 +11,6 @@ const useConfirm = () => {
   const dispatch = useAppDispatch();
   const addPlayListInput = useAppSelector((state) => state.music.musicUI.customPlayList.addPlayList.input);
   const playerList = useAppSelector((state) => state.music.player.list);
-  const accessToken = useAppSelector((state) => state.login.token.access_token);
   const selectedMyPlayList = useAppSelector((state) => state.music.myPlayList.selected);
 
   const { confirm, showAlarmMessage, closeConfirmMessage } = useDialog();

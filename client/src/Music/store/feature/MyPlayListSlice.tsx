@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { MyPlayListStateType } from 'shared/types/store';
 import type { ThunkApiType } from 'shared/store/store';
-import type { MusicItemType, PostUserPlayListType, SelectedMyPlayListType, MyPlayListType } from 'Music/types';
-import { getUserPlayList, postUserPlayList, deleteMyPlayListByTitle } from 'Music/api';
+import type { SelectedMyPlayListType, MyPlayListType } from 'Music/types';
+import { getUserPlayList, deleteMyPlayListByTitle } from 'Music/api';
 
 import { PURGE } from 'redux-persist';
 

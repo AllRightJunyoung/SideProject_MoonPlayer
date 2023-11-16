@@ -28,7 +28,7 @@
   },
   "scripts": {
     "clear": "jest --clearCache",
-    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .ts,.tsx .",
     "prettier:fix": "prettier .",
     "start": "react-scripts start",
     "build": "react-scripts build",
