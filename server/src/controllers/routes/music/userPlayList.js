@@ -56,25 +56,26 @@ const createUserPlayList = async (req, res, next) => {
 };
 
 const getUserPlayList = async (req, res, next) => {
-  // const { accessToken } = req.body;
-  // const info = decodeToken(accessToken);
-  // const { userId } = info;
-  // let userPlayList;
-  // try {
-  //   userPlayList = await PlayList.find({ userId });
-  // } catch (error) {
-  //   return res.status(400).send(error.meessage);
-  // }
-  // const newUserPlayList = userPlayList.map((playList, idx) => {
-  //   return {
-  //     order: idx + 1,
-  //     playList: playList.playList,
-  //     title: playList.title,
-  //   };
-  // });
-  // return res.status(200).json({
-  //   result: newUserPlayList,
-  // });
+  const access_token = req.headers.authorization.split("Bearer ")[1];
+
+  let userPlayList;
+  try {
+    const { userId } = decodeAccessToken(access_token);
+    userPlayList = await PlayList.find({ userId });
+  } catch (error) {
+    return res.status(400).send(error.meessage);
+  }
+
+  const newUserPlayList = userPlayList.map((playList, idx) => {
+    return {
+      order: idx + 1,
+      playList: playList.playList,
+      title: playList.title,
+    };
+  });
+  return res.status(200).json({
+    result: newUserPlayList,
+  });
 };
 const deleteUserPlayList = async (req, res, next) => {
   const { title } = req.params;
