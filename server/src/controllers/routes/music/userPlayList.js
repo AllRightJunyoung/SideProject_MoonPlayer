@@ -3,21 +3,14 @@ const { PlayList, User } = require("../../../models");
 const { decodeAccessToken } = require("../../../utils/jwt");
 
 const createUserPlayList = async (req, res, next) => {
-  const result = validationResult(req);
-  const message = result.array().map((error) => error.msg);
-
-  if (!result.isEmpty()) {
-    return res.status(422).send(message[0]);
-  }
-  const { accessToken, playerList, title } = req.body;
+  const { playerList, title } = req.body;
 
   let user;
-
-  const info = decodeAccessToken(accessToken);
-  const { userKey } = info;
+  const access_token = req.headers.authorization.split("Bearer ")[1];
+  const { userId } = decodeAccessToken(access_token);
 
   try {
-    user = await User.findOne({ userKey });
+    user = await User.findOne({ userId });
   } catch (error) {
     return res.status(404).send(error.message);
   }
@@ -25,15 +18,14 @@ const createUserPlayList = async (req, res, next) => {
     return res.status(404).send("등록되지 않은 사용자 입니다! ");
   }
 
-  let newPlayList;
-  let userPlayList;
+  let newPlayList, userPlayList;
   try {
-    userPlayList = await PlayList.find({ userKey });
+    userPlayList = await PlayList.find({ userId });
     if (!userPlayList.length) {
       newPlayList = new PlayList({
         order: 1,
         playList: playerList,
-        userKey,
+        userId,
         title,
       });
     } else {
@@ -44,7 +36,7 @@ const createUserPlayList = async (req, res, next) => {
       newPlayList = new PlayList({
         order: userPlayList.length + 1,
         playList: playerList,
-        userKey,
+        userId,
         title,
       });
     }
