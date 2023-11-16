@@ -1,4 +1,4 @@
-export const MyPLAYLIST_CREATE_URI = `/api/myPlayList/create`;
+export const USER_PLAYLIST_POST_URI = `/api/userPlayList/post`;
 export const GenreList_GET_URI = `/api/music/genre`;
-export const MyPLAYLIST_GET_URI = `/api/myPlayList/get`;
-export const MyPLAYLIST_DELETE_URI = `/api/myPlayList/delete`;
+export const USER_PLAYLIST_GET_URI = `/api/userPlayList/get`;
+export const USER_PLAYLIST_DELETE_URI = `/api/userPlayList/delete`;

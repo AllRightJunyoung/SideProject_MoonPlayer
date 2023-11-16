@@ -9,7 +9,7 @@ export const getRefreshToken = async (): Promise<TokenType | void> => {
       JSON.stringify({ access_token: response.access_token, refresh_token: response.refresh_token })
     );
     return response;
-  } catch (error) {
+  } catch (error: any) {
     return;
   }
 };

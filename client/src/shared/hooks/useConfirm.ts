@@ -1,7 +1,7 @@
 import { confirmMessage } from 'shared/constants/dialog';
 import useLogin from 'Login/hooks/useLogin';
 import { useAppDispatch, useAppSelector } from './useReduxStore';
-import { registerMyPlayList } from 'Music/api';
+import { postUserPlayList } from 'Music/api';
 import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 import { reportError } from 'shared/utils/error';
@@ -58,7 +58,7 @@ const useConfirm = () => {
   };
   const saveMusic = async () => {
     try {
-      const result = await registerMyPlayList({ accessToken, playerList, title: addPlayListInput });
+      const result = await postUserPlayList({ playerList, title: addPlayListInput });
       if (!result.length) throw new Error();
       showAlarmMessage(confirmMessage.PlayListSave);
     } catch (err) {

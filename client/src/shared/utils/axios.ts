@@ -29,7 +29,7 @@ export const Delete = async <T>(url: string, config?: AxiosRequestConfig): Promi
   return response.data.result;
 };
 
-// 인터셉터 정의
+// 요청 인터셉터 ,API요청시 공통적으로 accessToken ,refresh토큰 헤더에 넣고 전송함
 client.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -51,6 +51,7 @@ client.interceptors.request.use(
   }
 );
 
+// jwt expired 응답을 받으면 토큰 refresh api에 자동 요청하여 액세스 토큰 갱신
 client.interceptors.response.use(
   (res) => res,
   async (error) => {
@@ -60,6 +61,7 @@ client.interceptors.response.use(
     } = error;
     if (status === 401) {
       const token = localStorage.getItem('token');
+
       if (error.response.data.result.message === 'jwt expired') {
         if (token) {
           const response = (await getRefreshToken()) as TokenType; //토큰 refresh

@@ -32,7 +32,7 @@ export const useLogin = () => {
       const response = (await getRefreshToken()) as TokenType;
       dispatch(handleSetToken(response));
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
   // 2. 토근 유효시간이 종료되면 리프레쉬 토큰 기반으로 액세스토큰 요청

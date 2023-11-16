@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { MyPlayListStateType } from 'shared/types/store';
 import type { ThunkApiType } from 'shared/store/store';
-import type { MyPlayListType, RequestMyPlayListType, SelectedMyPlayListType } from 'Music/types';
-import { getMyPlayList, deleteMyPlayListByTitle } from 'Music/api';
+import type { MusicItemType, PostUserPlayListType, SelectedMyPlayListType, MyPlayListType } from 'Music/types';
+import { getUserPlayList, postUserPlayList, deleteMyPlayListByTitle } from 'Music/api';
 
 import { PURGE } from 'redux-persist';
 
@@ -15,11 +15,11 @@ const initialState: MyPlayListStateType = {
   },
 };
 
-const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType, ThunkApiType>(
-  'fetch/myPlayListNameList',
+const getMyPlayList = createAsyncThunk<MyPlayListType[], void, ThunkApiType>(
+  'get/myPlayList',
   async (token, thunkApi) => {
     try {
-      const response = await getMyPlayList(token);
+      const response = await getUserPlayList();
       return response;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
@@ -27,7 +27,7 @@ const fetchMyPlayList = createAsyncThunk<MyPlayListType[], RequestMyPlayListType
   }
 );
 const deleteMyPlayList = createAsyncThunk<string, string, ThunkApiType>(
-  'delete/myPlayListNameList',
+  'delete/myPlayList',
   async (param, thunkApi) => {
     try {
       const response = await deleteMyPlayListByTitle(param);
@@ -61,23 +61,21 @@ export const MyPlayListSlice = createSlice({
     builder.addCase(deleteMyPlayList.rejected, (state) => {
       state.status = 'Fail';
     });
-    builder.addCase(fetchMyPlayList.pending, (state: MyPlayListStateType) => {
+
+    builder.addCase(getMyPlayList.pending, (state: MyPlayListStateType) => {
       state.status = 'Loading';
     });
-    builder.addCase(
-      fetchMyPlayList.fulfilled,
-      (state: MyPlayListStateType, action: PayloadAction<MyPlayListType[]>) => {
-        state.status = 'Complete';
-        state.totalPlayList = action.payload;
-      }
-    );
+    builder.addCase(getMyPlayList.fulfilled, (state: MyPlayListStateType, action: PayloadAction<MyPlayListType[]>) => {
+      state.status = 'Complete';
+      state.totalPlayList = action.payload;
+    });
 
-    builder.addCase(fetchMyPlayList.rejected, (state) => {
+    builder.addCase(getMyPlayList.rejected, (state) => {
       state.status = 'Fail';
     });
     builder.addCase(PURGE, () => initialState);
   },
 });
 export default MyPlayListSlice;
-export { fetchMyPlayList, deleteMyPlayList };
+export { getMyPlayList, deleteMyPlayList };
 export const { selectMyPlayList } = MyPlayListSlice.actions;

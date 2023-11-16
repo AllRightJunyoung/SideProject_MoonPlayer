@@ -31,14 +31,9 @@ export interface GenreMusicType {
   music_list: MusicItemType[];
 }
 
-export interface RegisterMyPlayListType {
-  accessToken: string;
+export interface PostUserPlayListType {
   playerList: MusicItemType[];
   title: string;
-}
-
-export interface RequestMyPlayListType {
-  accessToken: string;
 }
 
 export interface MyPlayListType {

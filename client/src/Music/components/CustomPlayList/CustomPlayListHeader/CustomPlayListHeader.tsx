@@ -1,7 +1,7 @@
 import { useMusicPageUIController } from 'Music/hooks';
 import * as Styled from './CustomPlayListHeader.styled';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
-import { fetchMyPlayList } from 'Music/store/feature/MyPlayListSlice';
+import { getMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 
 const CustomPlayListHeader = ({ title }) => {
   const { isOpenAddMusicListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
@@ -15,7 +15,7 @@ const CustomPlayListHeader = ({ title }) => {
 
   const handleMusicButton = () => {
     onhandleOpenAddPlayListUI(false);
-    dispatch(fetchMyPlayList({ accessToken }));
+    dispatch(getMyPlayList());
   };
 
   return (
