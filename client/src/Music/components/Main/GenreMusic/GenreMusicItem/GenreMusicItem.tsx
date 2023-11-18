@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, memo, useCallback } from 'react';
 import * as Styled from './GenreMusicItem.styled';
 import { IconButton, CircleTooltip } from 'shared/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
@@ -14,6 +14,7 @@ const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) 
 
   const playerSelector = useAppSelector((state) => state.music.player);
   const isInPlayer = playerSelector.list.find((music: MusicItemType) => music.name === name) ? true : false;
+  const selectedMusic = { id, name, img_url, source_url };
 
   useEffect(() => {
     // 새로고침 발생시 상태값 초기화 되서 넣어줌
@@ -24,11 +25,10 @@ const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) 
       : setResolution('MOBILE');
   }, [resolution]);
 
-  const handlePlusButton = () => {
+  const handlePlusButton = useCallback(() => {
     if (isInPlayer) return;
-    const selectedMusic = { id, name, img_url, source_url };
     dispatch(handleAddPlayer(selectedMusic));
-  };
+  }, [selectedMusic]);
 
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
@@ -55,4 +55,4 @@ const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) 
   );
 };
 
-export default GenreMusicItem;
+export default memo(GenreMusicItem);

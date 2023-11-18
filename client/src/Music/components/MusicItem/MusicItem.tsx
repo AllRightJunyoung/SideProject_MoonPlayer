@@ -1,6 +1,7 @@
 import CircleTooltip from '../../../shared/components/ui/CircleTooltip';
 import * as Styled from './MusicItem.styled';
 import type { MusicItemProps } from './MusicItem.types';
+import { memo } from 'react';
 
 const MusicItem = ({ name, url, order }: MusicItemProps) => {
   return (
@@ -12,4 +13,4 @@ const MusicItem = ({ name, url, order }: MusicItemProps) => {
     </Styled.Layout>
   );
 };
-export default MusicItem;
+export default memo(MusicItem);

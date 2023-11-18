@@ -1,9 +1,8 @@
+import { memo } from 'react';
+import * as Styled from './GenreListItem.styled';
 import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreListItemProps } from './GenreListItem.types';
-
-import * as Styled from './GenreListItem.styled';
-import { memo } from 'react';
 
 export const GenreListItem = ({ image_url, genre_id }: GenreListItemProps) => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,7 @@
 import { Flex } from 'shared/components';
 import * as Styled from './Confirm.styled';
 import { useConfirm } from 'shared/hooks';
+import { memo } from 'react';
 
 const Confirm = () => {
   const { isOpen, message, handleYesButton, handleNoButton } = useConfirm();
@@ -27,4 +28,4 @@ const Confirm = () => {
   );
 };
 
-export default Confirm;
+export default memo(Confirm);

@@ -4,6 +4,7 @@ import { useAppSelector } from 'shared/hooks/useReduxStore';
 import uuid from 'react-uuid';
 import MyPlayListMusicHeader from '../MyPlayListHeader';
 import MusicItem from 'Music/components/MusicItem';
+import { memo } from 'react';
 
 const MyPlayListTitleMusicLayout = () => {
   const selectedPlayListStore = useAppSelector((state) => state.music.myPlayList.selected);
@@ -21,4 +22,4 @@ const MyPlayListTitleMusicLayout = () => {
   );
 };
 
-export default MyPlayListTitleMusicLayout;
+export default memo(MyPlayListTitleMusicLayout);

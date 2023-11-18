@@ -6,6 +6,7 @@ import { Flex } from 'shared/components';
 import useMusicPageUIControl from 'Music/hooks/useMusicPageUIController';
 import { Controller, HideButton, ProgressBar, Volume, Info } from '..';
 import { usePlayerController } from 'Music/hooks';
+import { memo } from 'react';
 
 const FooterLayout = ({ player }) => {
   const { onRepeatMusic, onPlayMusic, onVolumeControl, onShuffleMusics, onSelectPrevMusic, onSelectNextMusic } =
@@ -37,4 +38,4 @@ const FooterLayout = ({ player }) => {
   );
 };
 
-export default FooterLayout;
+export default memo(FooterLayout);

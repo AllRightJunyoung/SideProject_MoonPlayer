@@ -1,6 +1,6 @@
 import * as Styled from './Layout.styled';
 
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import useMusicPageUIController from 'Music/hooks/useMusicPageUIController';
 import { MyPlayListLayout } from '../MyPlayList';
 import { AddMyPlayListLayout } from '../AddMyPlayList/Layout/AddMyPlayListLayout';
@@ -18,4 +18,4 @@ export const CustomPlayListLayout = () => {
     </Styled.Overlay>
   );
 };
-export default CustomPlayListLayout;
+export default memo(CustomPlayListLayout);

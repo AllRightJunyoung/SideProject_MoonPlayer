@@ -27,4 +27,5 @@ const Button = styled.button<ButtonProps>(
   }
   `
 );
+
 export default IconButton;

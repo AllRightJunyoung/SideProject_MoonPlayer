@@ -1,5 +1,5 @@
 import * as Styled from './GenreMusic.styled';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { getMusicList } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import GenreMusicItem from '../GenreMusicItem';
@@ -25,4 +25,4 @@ const GenreMusicLayout = () => {
   );
 };
 
-export default GenreMusicLayout;
+export default memo(GenreMusicLayout);

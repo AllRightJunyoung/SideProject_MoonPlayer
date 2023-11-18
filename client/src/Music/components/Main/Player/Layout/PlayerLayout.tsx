@@ -3,6 +3,7 @@ import * as Styled from './PlayerLayout.styled';
 import { useAppSelector } from 'shared/hooks/useReduxStore';
 import MainHeaderLayout from '../../Header/Layout';
 import PlayerItem from '../PlayerItem';
+import { memo } from 'react';
 
 const PlayerLayout = () => {
   const playerSelector = useAppSelector((state) => state.music.player);
@@ -21,4 +22,4 @@ const PlayerLayout = () => {
   );
 };
 
-export default PlayerLayout;
+export default memo(PlayerLayout);

@@ -4,6 +4,7 @@ import { handleRemoveMusic, handleSetMusic } from 'Music/store/feature/PlayerSli
 import { CircleTooltip, IconButton } from 'shared/components';
 import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 import { useMusicPageUIController, usePlayerController } from 'Music/hooks';
+import { memo } from 'react';
 
 const PlayerItem = ({ name, img_url, id, source_url }: MusicItemType) => {
   const dispatch = useAppDispatch();
@@ -41,4 +42,4 @@ const PlayerItem = ({ name, img_url, id, source_url }: MusicItemType) => {
     </Styled.Layout>
   );
 };
-export default PlayerItem;
+export default memo(PlayerItem);

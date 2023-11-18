@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Alarm from './Alarm/Alarm';
 import Confirm from './Confirm/Confirm';
 
@@ -10,4 +11,4 @@ const Dialog = () => {
   );
 };
 
-export default Dialog;
+export default memo(Dialog);

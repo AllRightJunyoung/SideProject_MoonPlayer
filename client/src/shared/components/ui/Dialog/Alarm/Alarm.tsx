@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import * as Styled from './Alarm.styled';
 import { useDialog } from 'shared/hooks';
 
@@ -20,4 +21,4 @@ const Alarm = () => {
     <></>
   );
 };
-export default Alarm;
+export default memo(Alarm);

@@ -3,6 +3,7 @@ import * as Styled from './NavBar.styled';
 import { IconButton } from 'shared/components';
 import { useMusicPageUIController } from 'Music/hooks';
 import useLogin from 'Login/hooks/useLogin';
+import { memo } from 'react';
 
 export const NavBar = () => {
   const { onhandleOpenCustomPlayListUI, onhandleOpenAddPlayListUI } = useMusicPageUIController();
@@ -29,4 +30,4 @@ export const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default memo(NavBar);

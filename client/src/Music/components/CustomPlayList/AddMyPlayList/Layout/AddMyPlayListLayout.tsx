@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 
 import { Flex, IconButton } from 'shared/components';
 import { useDialog } from 'shared/hooks';
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import CustomPlayListHeader from '../../CustomPlayListHeader';
@@ -54,4 +54,4 @@ export const AddMyPlayListLayout = () => {
     </>
   );
 };
-export default AddMyPlayListLayout;
+export default memo(AddMyPlayListLayout);
