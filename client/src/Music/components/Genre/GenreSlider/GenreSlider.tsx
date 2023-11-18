@@ -4,6 +4,7 @@ import { useAppSelector } from 'shared/hooks/useReduxStore';
 import { SwiperSlide } from 'swiper/react';
 import { useSwiper } from 'Music/hooks';
 import GenreListItem from '../GenreListItem';
+import { memo } from 'react';
 
 export const GenreSlider = () => {
   const genreItems = useAppSelector((state) => state.music.genreList.list);
@@ -25,4 +26,4 @@ export const GenreSlider = () => {
   );
 };
 
-export default GenreSlider;
+export default memo(GenreSlider);

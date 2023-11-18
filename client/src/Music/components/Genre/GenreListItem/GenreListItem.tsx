@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreListItemProps } from './GenreListItem.types';
 
 import * as Styled from './GenreListItem.styled';
+import { memo } from 'react';
 
 export const GenreListItem = ({ image_url, genre_id }: GenreListItemProps) => {
   const dispatch = useAppDispatch();
@@ -12,7 +13,9 @@ export const GenreListItem = ({ image_url, genre_id }: GenreListItemProps) => {
     dispatch(getMusicList(Number(genre_id)));
   };
 
-  return <Styled.CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} />;
+  return (
+    <Styled.CardImage onClick={handleCardImage} src={image_url} key={genre_id} disabled={isInGenre} alt="장르 목록" />
+  );
 };
 
-export default GenreListItem;
+export default memo(GenreListItem);
