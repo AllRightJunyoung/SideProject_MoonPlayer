@@ -6,6 +6,7 @@ import { handleSelectMyPlayList } from 'Music/store/feature/PlayerSlice';
 import { deleteMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 import { reportError } from 'shared/utils/error';
 import useDialog from './useDialog';
+import { useCallback } from 'react';
 
 const useConfirm = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const useConfirm = () => {
   const isOpen = confirm.isOpen;
   const message = confirm.message;
 
-  const handleYesButton = () => {
+  const handleYesButton = useCallback(() => {
     closeConfirmMessage();
     const confirmType = confirm.type;
     const deleteMyPlayListTitle = selectedMyPlayList.title;
@@ -40,22 +41,23 @@ const useConfirm = () => {
         break;
     }
     return;
-  };
+  }, [confirm]);
 
-  const handleNoButton = () => {
+  const handleNoButton = useCallback(() => {
     closeConfirmMessage();
-  };
+  }, [confirm]);
 
-  const logOut = () => {
+  const logOut = useCallback(() => {
     showAlarmMessage(confirmMessage.Logout);
     signOut();
-  };
+  }, [confirm]);
 
-  const loadMusic = () => {
+  const loadMusic = useCallback(() => {
     dispatch(handleSelectMyPlayList(selectedMyPlayList.playList));
     showAlarmMessage(confirmMessage.PlayListLoad);
-  };
-  const saveMusic = async () => {
+  }, [confirm]);
+
+  const saveMusic = useCallback(async () => {
     try {
       const result = await postUserPlayList({ playerList, title: addPlayListInput });
       if (!result.length) throw new Error();
@@ -64,15 +66,18 @@ const useConfirm = () => {
       const errorMessage = reportError(err);
       showAlarmMessage(errorMessage);
     }
-  };
-  const deletePlayList = (title: string) => {
-    dispatch(deleteMyPlayList(title));
-    showAlarmMessage(confirmMessage.PlayListDelete);
-  };
+  }, [confirm]);
+  const deletePlayList = useCallback(
+    (title: string) => {
+      dispatch(deleteMyPlayList(title));
+      showAlarmMessage(confirmMessage.PlayListDelete);
+    },
+    [confirm]
+  );
 
-  const close = () => {
+  const close = useCallback(() => {
     closeConfirmMessage();
-  };
+  }, [confirm]);
   return {
     close,
     loadMusic,

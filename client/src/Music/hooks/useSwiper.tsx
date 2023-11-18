@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper } from 'swiper/react';
 import { SWIPER_SETTING } from 'Music/constants/swiper';
@@ -9,18 +9,18 @@ const useSwiper = (slideitems) => {
   const dispatch = useAppDispatch();
   const [swiperModule, setSwiperModule] = useState<SwiperCore>();
 
-  const handleNextSlide = () => {
+  const handleNextSlide = useCallback(() => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
     const idx = swiperModule.realIndex + 1;
     dispatch(getMusicList(Number(idx)));
-  };
-  const handlePrevSlide = () => {
+  }, [swiperModule]);
+  const handlePrevSlide = useCallback(() => {
     if (!swiperModule) return;
     swiperModule.slidePrev(1000);
     const idx = swiperModule.realIndex + 1;
     dispatch(getMusicList(Number(idx)));
-  };
+  }, [swiperModule]);
 
   const swiper = (
     <Swiper {...SWIPER_SETTING} onSwiper={setSwiperModule}>

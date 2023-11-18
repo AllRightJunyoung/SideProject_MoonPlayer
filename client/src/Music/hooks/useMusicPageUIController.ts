@@ -7,6 +7,7 @@ import {
   handleOpenMusicListUI,
   handleOpenMusicFooterUI,
 } from 'Music/store/feature/MusicUISlice';
+import { useCallback } from 'react';
 
 const useMusicPageUIController = () => {
   const dispatch = useAppDispatch();
@@ -18,28 +19,28 @@ const useMusicPageUIController = () => {
     (state) => state.music.musicUI.customPlayList.myPlayListTitleList.isOpen
   );
 
-  const onhandleOpenMusicListUI = (isActive: boolean) => {
+  const onhandleOpenMusicListUI = useCallback((isActive: boolean) => {
     dispatch(handleOpenMusicListUI(isActive));
-  };
+  }, []);
 
-  const onhandleOpenMusicFooterUI = (isActive: boolean) => {
+  const onhandleOpenMusicFooterUI = useCallback((isActive: boolean) => {
     dispatch(handleOpenMusicFooterUI(isActive));
-  };
-  const onhandleOpenAddPlayListUI = (isActive: boolean) => {
+  }, []);
+  const onhandleOpenAddPlayListUI = useCallback((isActive: boolean) => {
     dispatch(handleOpenAddPlayListUI(isActive));
-  };
+  }, []);
 
-  const onhandleOpenCustomPlayListUI = (isActive: boolean) => {
+  const onhandleOpenCustomPlayListUI = useCallback((isActive: boolean) => {
     dispatch(handleOpenCustomPlayListUI(isActive));
-  };
-  const onhandleCloseCustomPlayListUI = () => {
+  }, []);
+  const onhandleCloseCustomPlayListUI = useCallback(() => {
     onhandleOpenCustomPlayListUI(false);
     onhandleOpenAddPlayListUI(false);
     dispatch(handleOpenMyPlayListTitleListUI(true));
-  };
-  const onhandleMyPlayListUI = (isActive: boolean) => {
+  }, []);
+  const onhandleMyPlayListUI = useCallback((isActive: boolean) => {
     dispatch(handleOpenMyPlayListTitleListUI(isActive));
-  };
+  }, []);
   return {
     isOpenMusicFooterUI,
     isOpenAddMusicListUI,

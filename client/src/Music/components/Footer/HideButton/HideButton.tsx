@@ -1,6 +1,7 @@
 import * as Styled from './HideButton.styled';
 import { IconButton } from 'shared/components';
 import { useMusicPageUIController } from 'Music/hooks';
+import { memo } from 'react';
 
 export const HideButton = () => {
   const { onhandleOpenMusicFooterUI, isOpenMusicFooterUI } = useMusicPageUIController();
@@ -16,4 +17,4 @@ export const HideButton = () => {
   );
 };
 
-export default HideButton;
+export default memo(HideButton);

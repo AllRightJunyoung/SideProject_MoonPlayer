@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import ReactPlayer from 'react-player/lazy';
 import type { MusicItemType } from 'Music/types';
@@ -46,39 +46,44 @@ const usePlayerController = () => {
     );
   }, [playerSelector.playingMusic.id]);
 
-  const onRepeatMusic = () => {
+  const onRepeatMusic = useCallback(() => {
     dispatch(handleRepeatMusicModule({ ...playerModuleSelector, isrepeat: !playerModuleSelector.isrepeat }));
-  };
+  }, [playerModuleSelector.isrepeat]);
 
-  const onPlayMusic = () => {
+  const onPlayMusic = useCallback(() => {
     dispatch(handlePlayMusicModule({ ...playerModuleSelector, playing: !playerModuleSelector.playing }));
-  };
+  }, [playerModuleSelector.playing]);
 
   const onVolumeControl = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(handleVolumeMusicModule({ ...playerModuleSelector, volume: +event.currentTarget.value }));
   };
 
-  const progressBarControl = () => {
+  const progressBarControl = useCallback(() => {
     dispatch(handleProgressBarModule({ ...playerModuleSelector, currentTime, endTime }));
-  };
+  }, [currentTime, endTime]);
 
-  const onSelectPrevMusic = () =>
+  const onSelectPrevMusic = useCallback(() => {
     dispatch(handlePrevPlayMusic(selectPrevMusic(playerSelector.list, playerSelector.playingMusic)));
+  }, [playerSelector.playingMusic]);
 
-  const onSelectNextMusic = () =>
+  const onSelectNextMusic = useCallback(() => {
     dispatch(handleNextPlayMusic(selectNextMusic(playerSelector.list, playerSelector.playingMusic)));
-  const onShuffleMusics = () => dispatch(handleShuffleMusics(shuffleMusic(playerSelector.list)));
+  }, [playerSelector.playingMusic]);
 
-  const handleEndedMusicHandler = () => onSelectNextMusic();
+  const onShuffleMusics = useCallback(() => {
+    dispatch(handleShuffleMusics(shuffleMusic(playerSelector.list)));
+  }, [playerSelector.list]);
 
-  const onSetMusic = (music: MusicItemType) => {
+  const handleEndedMusicHandler = useCallback(() => onSelectNextMusic(), []);
+
+  const onSetMusic = useCallback((music: MusicItemType) => {
     dispatch(handleSetMusic(music));
     onhandleOpenMusicFooterUI(true);
-  };
+  }, []);
 
-  const resetPlayerModule = () => {
+  const resetPlayerModule = useCallback(() => {
     dispatch(handlePlaySelectedMusicModlue(PlayerControlModule_INIT));
-  };
+  }, [PlayerControlModule_INIT]);
 
   const musicPlayer = (
     <ReactPlayer

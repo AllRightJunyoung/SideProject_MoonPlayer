@@ -6,6 +6,7 @@ import { selectMyPlayList } from 'Music/store/feature/MyPlayListSlice';
 import { useDialog } from 'shared/hooks';
 
 const MyPlayListTitleItem = ({ title, order }) => {
+  const dispatch = useAppDispatch();
   const totalPlayList = useAppSelector((state) => state.music.myPlayList.totalPlayList);
   const currentMyPlayList = totalPlayList.filter((playList) => playList.order === order)[0];
   const newCurrentPlayList = {
@@ -14,7 +15,6 @@ const MyPlayListTitleItem = ({ title, order }) => {
   };
 
   const { onhandleMyPlayListUI } = useMusicPageUIControl();
-  const dispatch = useAppDispatch();
   const { showConfirmMessage } = useDialog();
 
   const handleMyPlayListItem = () => {

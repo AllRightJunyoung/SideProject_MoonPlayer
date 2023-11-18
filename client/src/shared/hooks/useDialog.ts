@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { DiaLogContext } from 'shared/context/dialog';
 import type { ConfirmType } from 'shared/types/dialog';
 
@@ -7,18 +7,24 @@ const useDialog = () => {
   const alarm = dialogCtx.state.alarm;
   const confirm = dialogCtx.state.confirm;
 
-  const showAlarmMessage = (message: string) => {
-    dialogCtx.showAlarm(message);
-  };
-  const showConfirmMessage = (type: ConfirmType) => {
-    dialogCtx.showConfirm(type);
-  };
-  const closeAlarmMessage = () => {
+  const showAlarmMessage = useCallback(
+    (message: string) => {
+      dialogCtx.showAlarm(message);
+    },
+    [alarm]
+  );
+  const showConfirmMessage = useCallback(
+    (type: ConfirmType) => {
+      dialogCtx.showConfirm(type);
+    },
+    [alarm]
+  );
+  const closeAlarmMessage = useCallback(() => {
     dialogCtx.closeAlarm();
-  };
-  const closeConfirmMessage = () => {
+  }, [alarm]);
+  const closeConfirmMessage = useCallback(() => {
     dialogCtx.closeConfirm();
-  };
+  }, [alarm]);
 
   return {
     showAlarmMessage,

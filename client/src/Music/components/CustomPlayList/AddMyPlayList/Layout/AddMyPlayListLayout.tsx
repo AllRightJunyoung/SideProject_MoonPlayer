@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from 'shared/hooks/useReduxStore';
 
 import { Flex, IconButton } from 'shared/components';
 import { useDialog } from 'shared/hooks';
-import { memo, useRef } from 'react';
+import { memo, useCallback, useRef } from 'react';
 import { handleAddPlayListInput } from 'Music/store/feature/MusicUISlice';
 import { myPlayListInputValidation, myPlayListLengthValidation } from 'Music/utils/validation';
 import CustomPlayListHeader from '../../CustomPlayListHeader';
@@ -17,7 +17,7 @@ export const AddMyPlayListLayout = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSaveButton = () => {
+  const handleSaveButton = useCallback(() => {
     if (!inputRef.current?.value) return;
     const inputValue = inputRef.current.value;
     if (!myPlayListLengthValidation(playerList)) {
@@ -29,7 +29,7 @@ export const AddMyPlayListLayout = () => {
 
     dispatch(handleAddPlayListInput(inputValue));
     showConfirmMessage('PlayListSave');
-  };
+  }, [inputRef]);
 
   const currentPlayerMusics =
     playerList.length > 0 ? (
