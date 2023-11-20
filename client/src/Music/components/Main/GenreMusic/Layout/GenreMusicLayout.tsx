@@ -17,6 +17,7 @@ const GenreMusicLayout = () => {
   return (
     <Styled.Layout>
       <MainHeaderLayout title="M U S I C" />
+
       {music_list &&
         music_list.map(({ name, id, img_url, source_url }) => (
           <GenreMusicItem key={id} id={id} name={name} img_url={img_url} source_url={source_url}></GenreMusicItem>

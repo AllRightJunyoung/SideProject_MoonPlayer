@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 import { Flex, Text, HiddenText, Image } from 'shared/components';
+import LazyImage from 'shared/components/ui/LazyImage/LazyImage';
 
 export const Layout = styled(Flex)`
   padding: 0px 16px;
+  width: auto;
   border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   gap: 16px;
   cursor: pointer;
@@ -33,6 +35,10 @@ export const Title = styled(HiddenText)`
     display: none;
   }
 `;
-export const MusicImage = styled(Image)`
+
+export const MusicImage = styled(LazyImage)`
   width: 128px;
+  object-fit: fill;
+  max-width: 100%;
+  box-shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px';
 `;
