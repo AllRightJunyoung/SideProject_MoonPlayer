@@ -1,2 +1,5 @@
 import type { MusicItemType } from 'Music/types';
-export type GenreMusicItemProps = MusicItemType;
+import type { RefObject } from 'react';
+export interface GenreMusicItemProps extends MusicItemType {
+  ref?: RefObject<HTMLDivElement>;
+}

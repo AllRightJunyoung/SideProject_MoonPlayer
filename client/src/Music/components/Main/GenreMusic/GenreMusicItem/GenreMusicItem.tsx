@@ -6,11 +6,11 @@ import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreMusicItemProps } from './GenreMusicItem.types';
 import type { MusicItemType } from 'Music/types';
 import { useResolution } from 'shared/hooks';
-import LazyImage from 'shared/components/ui/LazyImage/LazyImage';
+import GenreMusicImage from '../GenreMusicImage/GenreMusicImage';
 
-const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) => {
+const GenreMusicItem = ({ ...props }: GenreMusicItemProps) => {
+  const { id, name, img_url, source_url } = props;
   const dispatch = useAppDispatch();
-
   const { resolution, setResolution } = useResolution();
 
   const playerSelector = useAppSelector((state) => state.music.player);
@@ -34,7 +34,7 @@ const GenreMusicItem = ({ id, name, img_url, source_url }: GenreMusicItemProps) 
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.Number>{id}</Styled.Number>
-      <LazyImage width={128} height="auto" id={'musicImage' + id} src={img_url} alt={name} />
+      <GenreMusicImage width={128} height="auto" id={'musicImage' + id} src={img_url} alt={name} lazy={true} />
       {resolution === 'MOBILE' ? (
         <>
           <CircleTooltip anchorId={'musicImage' + id} content={name} />

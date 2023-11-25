@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { Flex, Text, HiddenText, Image } from 'shared/components';
-import LazyImage from 'shared/components/ui/LazyImage/LazyImage';
 
 export const Layout = styled(Flex)`
   padding: 0px 16px;
@@ -36,7 +35,7 @@ export const Title = styled(HiddenText)`
   }
 `;
 
-export const MusicImage = styled(LazyImage)`
+export const MusicImage = styled(Image)`
   width: 128px;
   object-fit: fill;
   max-width: 100%;

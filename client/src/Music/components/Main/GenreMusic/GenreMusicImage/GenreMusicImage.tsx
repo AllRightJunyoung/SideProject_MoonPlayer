@@ -1,18 +1,10 @@
-import { useImageLoaded } from 'shared/hooks/useImageLoaded';
+import { useGenreMusicImageLoaded } from 'Music/hooks/useGenreMusicImageLoaded';
+import type { GenreMuiscImageProps } from './GenreMusicImage.types';
 
-type Props = {
-  id?: string;
-  src: string;
-  alt: string;
-  width: number | string;
-  height: number | string;
-  lazy?: boolean; //lazy 로딩 유무
-};
-
-export default function LazyImage(props: Props) {
+export default function GenreMusicImage(props: GenreMuiscImageProps) {
   const { src, alt, width, height, lazy, id } = props;
 
-  const { ref, isLoaded } = useImageLoaded(lazy);
+  const { ref, isLoaded } = useGenreMusicImageLoaded(lazy);
 
   return (
     <img

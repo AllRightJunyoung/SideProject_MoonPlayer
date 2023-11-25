@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 export const useElementInViewPort = (option?: IntersectionObserverInit) => {
-  const ref = useRef<HTMLImageElement>(null);
+  const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const callback = (entries: IntersectionObserverEntry[]) => {

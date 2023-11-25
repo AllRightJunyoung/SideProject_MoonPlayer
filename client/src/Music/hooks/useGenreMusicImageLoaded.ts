@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useElementInViewPort } from './useElementInViewPort';
+import { useElementInViewPort } from '../../shared/hooks/useElementInViewPort';
 
-export const useImageLoaded = (lazy?: boolean) => {
+export const useGenreMusicImageLoaded = (lazy?: boolean) => {
   const { ref, isVisible } = useElementInViewPort({
     rootMargin: '0px 0px 500px 0px',
   }); // 이미지 요소가 뷰포트 하단 500에 들어올경우 감지
