@@ -28,7 +28,7 @@ export const getGenreData = async (url: string): Promise<GenreListItemType[]> =>
   return genreList;
 };
 export const getByMusicListId = async (id: number): Promise<GenreMusicType> => {
-  const genreMusicList = await Get<GenreMusicType>(`${GenreList_GET_URI}/${id}`);
+  const genreMusicList = await Get<GenreMusicType>(`${GenreList_GET_URI}/${id}?size=9&page=0`);
   return genreMusicList;
 };
 export const deleteMyPlayListByTitle = async (param: string): Promise<string> => {
