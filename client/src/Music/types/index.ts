@@ -26,7 +26,7 @@ export interface PlayerControlModuleType {
   endTime: string;
 }
 export interface ResponseGenreMusicType {
-  status: string;
+  status: boolean;
   genre_title: string;
   genre_id: number;
   music_list: MusicItemType[];
@@ -35,6 +35,8 @@ export interface ResponseGenreMusicType {
   totalPage: number;
   isFirstPage: boolean;
   isLastPage: boolean;
+  isFetching: boolean;
+  isSpinner: boolean;
 }
 
 export interface PostUserPlayListType {

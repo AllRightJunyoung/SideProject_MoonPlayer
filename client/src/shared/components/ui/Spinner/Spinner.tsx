@@ -1,10 +1,10 @@
-import { Icon } from 'shared/components';
-import { Flex } from 'shared/components';
+import styles from './Spinner.module.css';
+
 const Spinner = () => {
   return (
-    <Flex alignItems="center" direction="column" justifyContent="center">
-      <Icon name="spinner" color="purple" size="10x" />;
-    </Flex>
+    <div className={styles.loading}>
+      <div className={styles.spinner}></div>
+    </div>
   );
 };
 export default Spinner;

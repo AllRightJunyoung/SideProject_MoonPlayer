@@ -19,7 +19,6 @@ export interface GenreListStateType {
 
 export interface GenreMusicStateType {
   store: ResponseGenreMusicType;
-  isFetching: boolean;
 }
 
 export interface MyPlayListStateType {

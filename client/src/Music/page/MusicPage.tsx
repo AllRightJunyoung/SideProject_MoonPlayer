@@ -3,7 +3,7 @@ import * as Styled from './MusicPage.styled';
 import { NavBar, GenreLayout, MainLayout, FooterLayout, CustomPlayListLayout } from 'Music/components';
 import { usePlayerController, useMusicPageUIController } from 'Music/hooks';
 import { memo } from 'react';
-import { Dialog } from 'shared/components';
+import { Dialog, Spinner } from 'shared/components';
 
 const MusicPage = () => {
   const { musicPlayer, playerModuleSelector } = usePlayerController();
