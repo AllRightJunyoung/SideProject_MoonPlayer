@@ -24,7 +24,7 @@ const getGenreMusicById = async (req, res, next) => {
   const totalPage = Math.round(totalCount / size);
 
   const music_list = genreData.music_list.slice(page * size, (page + 1) * size);
-  await sleep(1000);
+  await sleep(500);
   res.status(200).json({
     result: {
       status: "Success",
