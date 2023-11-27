@@ -13,13 +13,17 @@ const useSwiper = (slideitems) => {
     if (!swiperModule) return;
     swiperModule.slideNext(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(getMusicList(Number(idx)));
+
+    const req = { id: Number(idx), size: 11, page: 0 };
+    dispatch(getMusicList(req));
   }, [swiperModule]);
   const handlePrevSlide = useCallback(() => {
     if (!swiperModule) return;
     swiperModule.slidePrev(1000);
     const idx = swiperModule.realIndex + 1;
-    dispatch(getMusicList(Number(idx)));
+    const req = { id: Number(idx), size: 11, page: 0 };
+
+    dispatch(getMusicList(req));
   }, [swiperModule]);
 
   const swiper = (

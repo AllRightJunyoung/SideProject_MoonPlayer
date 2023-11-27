@@ -2,7 +2,8 @@ import type {
   PostUserPlayListType,
   MusicItemType,
   GenreListItemType,
-  GenreMusicType,
+  RequestGenreMusicType,
+  ResponseGenreMusicType,
   MyPlayListType,
 } from 'Music/types';
 import {
@@ -27,8 +28,9 @@ export const getGenreData = async (url: string): Promise<GenreListItemType[]> =>
   const genreList = await Get<GenreListItemType[]>(url);
   return genreList;
 };
-export const getByMusicListId = async (id: number): Promise<GenreMusicType> => {
-  const genreMusicList = await Get<GenreMusicType>(`${GenreList_GET_URI}/${id}?size=9&page=0`);
+export const getByMusicListId = async (obj: RequestGenreMusicType): Promise<ResponseGenreMusicType> => {
+  const { id, size, page } = obj;
+  const genreMusicList = await Get<ResponseGenreMusicType>(`${GenreList_GET_URI}/${id}?size=${size}&page=${page}`);
   return genreMusicList;
 };
 export const deleteMyPlayListByTitle = async (param: string): Promise<string> => {

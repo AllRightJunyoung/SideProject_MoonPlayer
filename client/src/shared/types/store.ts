@@ -2,7 +2,7 @@ import type {
   MusicItemType,
   GenreListItemType,
   PlayerControlModuleType,
-  GenreMusicType,
+  ResponseGenreMusicType,
   MyPlayListType,
 } from 'Music/types';
 export interface PlayerStateType {
@@ -18,9 +18,10 @@ export interface GenreListStateType {
 }
 
 export interface GenreMusicStateType {
-  genre: GenreMusicType;
-  status: string;
+  store: ResponseGenreMusicType;
+  isFetching: boolean;
 }
+
 export interface MyPlayListStateType {
   status: string;
   totalPlayList: MyPlayListType[];

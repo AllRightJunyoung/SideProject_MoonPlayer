@@ -25,10 +25,16 @@ export interface PlayerControlModuleType {
   currentTime: string;
   endTime: string;
 }
-export interface GenreMusicType {
+export interface ResponseGenreMusicType {
+  status: string;
   genre_title: string;
   genre_id: number;
   music_list: MusicItemType[];
+  page: number;
+  size: number;
+  totalPage: number;
+  isFirstPage: boolean;
+  isLastPage: boolean;
 }
 
 export interface PostUserPlayListType {
@@ -44,4 +50,10 @@ export interface MyPlayListType {
 export interface SelectedMyPlayListType {
   playList: MusicItemType[];
   title: string;
+}
+
+export interface RequestGenreMusicType {
+  id: number;
+  size: number;
+  page: number;
 }
