@@ -33,25 +33,16 @@ const getMusicList = createAsyncThunk<ResponseGenreMusicType, RequestGenreMusicT
   }
 );
 
-const getFirstMusicList = createAsyncThunk<ResponseGenreMusicType, number, ThunkApiType>(
-  'first/musicList',
-  async (id, thunkApi) => {
-    try {
-      const obj = { id, size: 11, page: 0 };
-      const response = getByMusicListId(obj);
-      return response;
-    } catch (error: any) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const genreMusicSlice = createSlice({
   name: 'genreMusic',
   initialState,
   reducers: {
     handleFetching: (state: GenreMusicStateType, action: PayloadAction<boolean>) => {
       state.store.isFetching = action.payload;
+    },
+
+    handleSpinner: (state: GenreMusicStateType, action: PayloadAction<boolean>) => {
+      state.store.isSpinner = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -68,31 +59,13 @@ export const genreMusicSlice = createSlice({
         state.store.size = action.payload.size;
         state.store.status = action.payload.status;
         state.store.totalPage = action.payload.totalPage;
-        state.store.music_list = state.store.music_list.concat(action.payload.music_list);
-        state.store.isFirstPage = action.payload.isFirstPage;
-        state.store.isLastPage = action.payload.isLastPage;
-        state.store.status = true;
-        state.store.isFetching = false;
-      }
-    );
 
-    builder.addCase(getMusicList.rejected, (state: GenreMusicStateType) => {
-      state.store.status = false;
-    });
+        if (!action.payload.isFirstPage) {
+          state.store.music_list = state.store.music_list.concat(action.payload.music_list);
+        } else {
+          state.store.music_list = action.payload.music_list;
+        }
 
-    builder.addCase(getFirstMusicList.pending, (state: GenreMusicStateType) => {
-      state.store.isSpinner = true;
-    });
-    builder.addCase(
-      getFirstMusicList.fulfilled,
-      (state: GenreMusicStateType, action: PayloadAction<ResponseGenreMusicType>) => {
-        state.store.genre_id = action.payload.genre_id;
-        state.store.genre_title = action.payload.genre_title;
-        state.store.page = action.payload.page;
-        state.store.size = action.payload.size;
-        state.store.status = action.payload.status;
-        state.store.totalPage = action.payload.totalPage;
-        state.store.music_list = action.payload.music_list;
         state.store.isFirstPage = action.payload.isFirstPage;
         state.store.isLastPage = action.payload.isLastPage;
         state.store.status = true;
@@ -100,12 +73,14 @@ export const genreMusicSlice = createSlice({
         state.store.isSpinner = false;
       }
     );
-    builder.addCase(getFirstMusicList.rejected, (state: GenreMusicStateType) => {
-      state.store.isSpinner = true;
+
+    builder.addCase(getMusicList.rejected, (state: GenreMusicStateType) => {
+      state.store.status = false;
     });
+
     builder.addCase(PURGE, () => initialState);
   },
 });
 export default genreMusicSlice;
-export { getMusicList, getFirstMusicList };
-export const { handleFetching } = genreMusicSlice.actions;
+export { getMusicList };
+export const { handleFetching, handleSpinner } = genreMusicSlice.actions;

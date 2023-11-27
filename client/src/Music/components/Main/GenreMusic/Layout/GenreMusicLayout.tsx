@@ -1,7 +1,7 @@
 import uuid from 'react-uuid';
 import * as Styled from './GenreMusic.styled';
 import { memo, useCallback, useEffect, useMemo } from 'react';
-import { getFirstMusicList, getMusicList, handleFetching } from 'Music/store/feature/GenreMusicSlice';
+import { getMusicList, handleFetching } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import GenreMusicItem from '../GenreMusicItem';
 import MainHeaderLayout from '../../Header/Layout/Layout';
@@ -11,11 +11,11 @@ import GenreMusicSpinner from '../GenreMusicSpinner';
 const GenreMusicLayout = () => {
   const dispatch = useAppDispatch();
   const genreMusicStore = useAppSelector((state) => state.music.genreMusic);
-  const { page, size, genre_id, isLastPage, music_list, isFetching, isSpinner } = genreMusicStore.store;
+  const { page, size, isLastPage, music_list, isFetching, isSpinner, genre_id } = genreMusicStore.store;
 
   const fetchMusics = useCallback(async () => {
     dispatch(getMusicList({ id: genre_id, size, page: page + 1 }));
-  }, [page]);
+  }, [page, genre_id]);
 
   const ref = useGenreMusicObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -27,9 +27,8 @@ const GenreMusicLayout = () => {
   }, [music_list]);
 
   useEffect(() => {
-    if (musics.length) return;
-    dispatch(getFirstMusicList(genre_id));
-  }, []);
+    dispatch(getMusicList({ id: genre_id, size, page: 0 }));
+  }, [genre_id, size]);
 
   useEffect(() => {
     if (isFetching && !isLastPage) {
@@ -37,7 +36,7 @@ const GenreMusicLayout = () => {
     } else if (isLastPage) {
       dispatch(handleFetching(true));
     }
-  }, [isFetching]);
+  }, [isFetching, isLastPage]);
 
   return (
     <Styled.Layout>
