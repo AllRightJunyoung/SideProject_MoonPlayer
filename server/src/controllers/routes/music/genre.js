@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const { sleep } = require("../../../utils/sleep");
 
 const getGenreMusic = (req, res, next) => {
   let musicGenreData = fs.readFileSync(path.join(process.cwd(), "src/files/music/music_genre.json"), "utf-8");
@@ -10,7 +11,7 @@ const getGenreMusic = (req, res, next) => {
   });
 };
 
-const getGenreMusicById = (req, res, next) => {
+const getGenreMusicById = async (req, res, next) => {
   const genre_id = req.params.genre_id;
   let { size, page } = req.query;
 
@@ -23,10 +24,10 @@ const getGenreMusicById = (req, res, next) => {
   const totalPage = Math.round(totalCount / size);
 
   const music_list = genreData.music_list.slice(page * size, (page + 1) * size);
-
+  await sleep(1000);
   res.status(200).json({
     result: {
-      status: "success",
+      status: "Success",
       genre_title: genreData.genre_title,
       genre_id: genreData.genre_id,
       music_list,
