@@ -1,6 +1,6 @@
 import { useEffect, memo, useCallback } from 'react';
 import * as Styled from './GenreMusicItem.styled';
-import { IconButton, CircleTooltip } from 'shared/components';
+import { IconButton, CircleTooltip, Image } from 'shared/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreMusicItemProps } from './GenreMusicItem.types';

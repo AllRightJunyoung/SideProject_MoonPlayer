@@ -1,7 +1,7 @@
 import uuid from 'react-uuid';
 import * as Styled from './GenreMusic.styled';
 import { memo, useCallback, useEffect, useMemo } from 'react';
-import { getMusicList, handleFetching } from 'Music/store/feature/GenreMusicSlice';
+import { getFirstMusicList, getMusicList, handleFetching } from 'Music/store/feature/GenreMusicSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import GenreMusicItem from '../GenreMusicItem';
 import MainHeaderLayout from '../../Header/Layout/Layout';
@@ -28,7 +28,7 @@ const GenreMusicLayout = () => {
 
   useEffect(() => {
     if (musics.length) return;
-    dispatch(getMusicList({ id: genre_id, size, page }));
+    dispatch(getFirstMusicList(genre_id));
   }, []);
 
   useEffect(() => {
