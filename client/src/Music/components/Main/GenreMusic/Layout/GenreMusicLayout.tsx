@@ -7,6 +7,7 @@ import GenreMusicItem from '../GenreMusicItem';
 import MainHeaderLayout from '../../Header/Layout/Layout';
 import { useGenreMusicObserver } from 'Music/hooks/useGenreMusicObserver';
 import GenreMusicSpinner from '../GenreMusicSpinner';
+import { Spinner } from 'shared/components';
 
 const GenreMusicLayout = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +56,7 @@ const GenreMusicLayout = () => {
                 source_url={source_url}
               ></GenreMusicItem>
             ))}
-
+          {isFetching && !isLastPage && <Spinner />}
           <div ref={ref} style={{ opacity: 0 }} />
         </>
       )}
