@@ -1,6 +1,6 @@
 import { useEffect, memo, useCallback } from 'react';
 import * as Styled from './GenreMusicItem.styled';
-import { IconButton, CircleTooltip, Image } from 'shared/components';
+import { IconButton, CircleTooltip } from 'shared/components';
 import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreMusicItemProps } from './GenreMusicItem.types';
@@ -34,7 +34,7 @@ const GenreMusicItem = ({ ...props }: GenreMusicItemProps) => {
   return (
     <Styled.Layout direction="row" justifyContent="space-between" alignItems="center">
       <Styled.Number>{id}</Styled.Number>
-      <GenreMusicImage width={128} height="auto" id={'musicImage' + id} src={img_url} alt={name} lazy={true} />
+      <GenreMusicImage width={128} height="auto" id={'musicImage' + id} src={img_url} alt={name} />
       {resolution === 'MOBILE' ? (
         <>
           <CircleTooltip anchorId={'musicImage' + id} content={name} />

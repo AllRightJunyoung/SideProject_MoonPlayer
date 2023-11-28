@@ -1,18 +1,27 @@
-import { useGenreMusicImageLoaded } from 'Music/hooks/useGenreMusicImageLoaded';
+import { useGenreMusicImageObserver } from 'Music/hooks/useGenreMusicImageObserver';
 import type { GenreMuiscImageProps } from './GenreMusicImage.types';
+import { memo } from 'react';
 
-export default function GenreMusicImage(props: GenreMuiscImageProps) {
-  const { src, alt, width, height, lazy, id } = props;
+const GenreMusicImage = (props: GenreMuiscImageProps) => {
+  const { src, alt, width, height, id } = props;
 
-  const { ref, isLoaded } = useGenreMusicImageLoaded(lazy);
+  const { imageRef, imageSrc } = useGenreMusicImageObserver(src);
 
   return (
     <img
       id={id}
-      ref={ref}
+      ref={imageRef}
       alt={alt}
-      src={isLoaded ? src : 'https://via.placeholder.com/128x72/FFF'}
-      style={{ width, height, maxWidth: '100%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', objectFit: 'fill' }}
+      src={imageSrc.length > 0 ? imageSrc : 'https://picsum.photos/128/72/?blur'}
+      style={{
+        width,
+        height,
+        maxWidth: '100%',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        objectFit: 'fill',
+      }}
     />
   );
-}
+};
+
+export default memo(GenreMusicImage);
