@@ -27,10 +27,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/userPlayList", userPlayListRoutes);
 
 mongoose
-  .connect(
-    process.env.MONGODB_CONNECTION_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } //https://mongodb.github.io/node-mongodb-native/3.3/reference/unified-topology/ 참고하기 나중에
-  )
+  .connect(process.env.MONGODB_CONNECTION_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => {
     app.listen(app.get("port"), () => {
       console.log(app.get("port"), "번에서 동작중");

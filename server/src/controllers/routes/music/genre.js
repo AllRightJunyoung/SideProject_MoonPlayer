@@ -20,6 +20,7 @@ const getGenreMusicById = async (req, res, next) => {
 
   size = Number(size); // 사용자가 요청한 size 양
   page = Number(page); //사용자의 현재 page
+
   const totalCount = genreData.music_list.length;
   const totalPage = Math.round(totalCount / size);
 
