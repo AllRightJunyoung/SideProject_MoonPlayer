@@ -78,16 +78,30 @@ const getUserPlayList = async (req, res, next) => {
 };
 const deleteUserPlayList = async (req, res, next) => {
   const { title } = req.params;
+  const access_token = req.headers.authorization.split("Bearer ")[1];
 
-  let userPlayList;
+  let userInfo;
   try {
-    userPlayList = await PlayList.findOneAndDelete({ title });
+    const { userId } = decodeAccessToken(access_token);
+    userInfo = await PlayList.find({ userId });
   } catch (error) {
     return res.status(400).send(error.meessage);
   }
-  return res.status(200).json({
-    result: userPlayList.title,
-  });
+
+  // 플레이리스트 제목 존재하는지 검증
+  const isPlayListTitle = userInfo.filter((userInfo) => userInfo.title === title);
+  if (isPlayListTitle.length !== 0) {
+    try {
+      userPlayList = await PlayList.findOneAndDelete({ title });
+      return res.status(200).json({
+        result: userPlayList.title,
+      });
+    } catch (error) {
+      return res.status(400).send(error.meessage);
+    }
+  } else {
+    return res.status(400).send("존재하지 않는 플레이리스트 제목 입니다.");
+  }
 };
 
 exports.createUserPlayList = createUserPlayList;
