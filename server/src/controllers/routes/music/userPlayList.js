@@ -89,6 +89,7 @@ const deleteUserPlayList = async (req, res, next) => {
   }
 
   // 플레이리스트 제목 존재하는지 검증
+  let userPlayList;
   const isPlayListTitle = userInfo.filter((userInfo) => userInfo.title === title);
   if (isPlayListTitle.length !== 0) {
     try {

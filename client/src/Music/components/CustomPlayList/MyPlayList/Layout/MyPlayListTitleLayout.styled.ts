@@ -1,4 +1,4 @@
-import { ScrollBox } from 'shared/components';
+import { ScrollBox, Text } from 'shared/components';
 import styled from 'styled-components';
 
 export const Layout = styled(ScrollBox)`
@@ -15,4 +15,10 @@ export const Layout = styled(ScrollBox)`
     width: 64px;
     height: 64px;
   }
+`;
+
+export const MyPlayListTitleText = styled(Text)`
+  color: rgba(255, 255, 255, 0.64);
+  padding-left: 5px;
+  font-size: 18px;
 `;

@@ -13,15 +13,20 @@ const MyPlayListTitleLayout = () => {
     title: playList.title,
   }));
 
+  console.log(myPlayListTitleList);
   return (
     <>
       {isOpenMyPlayListTitleListUI ? (
         <>
           <CustomPlayListHeader title="MY  P L A Y L I S T" />
           <Styled.Layout>
-            {myPlayListTitleList.map((playList) => (
-              <MyPlayListTitleItem title={playList.title} key={String(playList.order)} order={playList.order} />
-            ))}
+            {myPlayListTitleList.length > 0 ? (
+              myPlayListTitleList.map((playList) => (
+                <MyPlayListTitleItem title={playList.title} key={String(playList.order)} order={playList.order} />
+              ))
+            ) : (
+              <Styled.MyPlayListTitleText>목록이 비어있습니다.</Styled.MyPlayListTitleText>
+            )}
           </Styled.Layout>
         </>
       ) : (
