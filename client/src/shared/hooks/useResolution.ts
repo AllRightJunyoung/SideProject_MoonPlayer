@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useMemo } from 'react';
 const delay = 300;
 let timer;
 // 해상도에 맞게 감지하는 훅
@@ -27,7 +26,7 @@ const useResolution = () => {
     };
   }, []);
 
-  return { resolution, setResolution };
+  return useMemo(() => ({ resolution, setResolution }), [resolution, setResolution]);
 };
 
 export default useResolution;
