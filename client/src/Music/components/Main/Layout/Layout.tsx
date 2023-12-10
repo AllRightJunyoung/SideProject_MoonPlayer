@@ -4,7 +4,6 @@ import { useMusicPageUIController } from 'Music/hooks';
 import { useResolution } from 'shared/hooks';
 import GenreMusicLayout from '../GenreMusic/Layout';
 import PlayerLayout from '../Player/Layout';
-import { Spinner } from 'shared/components';
 
 const MainLayout = () => {
   const { isOpenMusicList } = useMusicPageUIController();

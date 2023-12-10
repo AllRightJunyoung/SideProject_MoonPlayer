@@ -1,4 +1,3 @@
-import uuid from 'react-uuid';
 import * as Styled from './GenreMusic.styled';
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import { getMusicList, handleFetching } from 'Music/store/feature/GenreMusicSlice';
@@ -48,13 +47,7 @@ const GenreMusicLayout = () => {
         <>
           {musics &&
             musics.map(({ name, id, img_url, source_url }) => (
-              <GenreMusicItem
-                key={uuid()}
-                id={id}
-                name={name}
-                img_url={img_url}
-                source_url={source_url}
-              ></GenreMusicItem>
+              <GenreMusicItem key={id} id={id} name={name} img_url={img_url} source_url={source_url}></GenreMusicItem>
             ))}
           {isFetching && !isLastPage && <Spinner />}
           <div ref={ref} style={{ opacity: 0 }} />

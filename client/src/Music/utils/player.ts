@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 import type { MusicItemType } from 'Music/types';
 
 export const selectPrevMusic = (playerItems: readonly MusicItemType[], music: MusicItemType) => {
