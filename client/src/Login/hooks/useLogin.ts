@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { useDialog } from 'shared/hooks';
 import { removeStoreItems } from 'shared/utils/redux-persist';
 import { getRefreshToken } from '../api/index';
@@ -36,7 +36,7 @@ export const useLogin = () => {
     }
   };
   // 2. 토근 유효시간이 종료되면 리프레쉬 토큰 기반으로 액세스토큰 요청
-  useEffect(() => {
+  useMemo(() => {
     if (access_token) {
       const remainingTime = tokenExpirationTime - new Date().getTime();
       accessTokenTimer = setTimeout(refreshToken, remainingTime);

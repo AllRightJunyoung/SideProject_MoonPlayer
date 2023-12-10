@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import ReactPlayer from 'react-player/lazy';
 import type { MusicItemType } from 'Music/types';
@@ -32,8 +32,7 @@ const usePlayerController = () => {
   const endTime = playerRef && playerRef.current ? Math.floor(playerRef.current.getDuration()).toString() : '00:00';
   const volume = parseFloat((playerModuleSelector.volume / 100).toString());
 
-  useEffect(() => {
-    // 음악이 바뀌면 재생모듈안에있는 음악도 바껴야함
+  useMemo(() => {
     if (!playerSelector.playingMusic.id) return;
     dispatch(
       handlePlaySelectedMusicModlue({
@@ -48,11 +47,11 @@ const usePlayerController = () => {
 
   const onRepeatMusic = useCallback(() => {
     dispatch(handleRepeatMusicModule({ ...playerModuleSelector, isrepeat: !playerModuleSelector.isrepeat }));
-  }, [playerModuleSelector.isrepeat]);
+  }, [playerModuleSelector]);
 
   const onPlayMusic = useCallback(() => {
     dispatch(handlePlayMusicModule({ ...playerModuleSelector, playing: !playerModuleSelector.playing }));
-  }, [playerModuleSelector.playing]);
+  }, [playerModuleSelector]);
 
   const onVolumeControl = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(handleVolumeMusicModule({ ...playerModuleSelector, volume: +event.currentTarget.value }));
@@ -60,30 +59,33 @@ const usePlayerController = () => {
 
   const progressBarControl = useCallback(() => {
     dispatch(handleProgressBarModule({ ...playerModuleSelector, currentTime, endTime }));
-  }, [currentTime, endTime]);
+  }, [playerModuleSelector]);
 
   const onSelectPrevMusic = useCallback(() => {
     dispatch(handlePrevPlayMusic(selectPrevMusic(playerSelector.list, playerSelector.playingMusic)));
-  }, [playerSelector.playingMusic]);
+  }, [playerModuleSelector]);
 
   const onSelectNextMusic = useCallback(() => {
     dispatch(handleNextPlayMusic(selectNextMusic(playerSelector.list, playerSelector.playingMusic)));
-  }, [playerSelector.playingMusic]);
+  }, [playerModuleSelector]);
 
   const onShuffleMusics = useCallback(() => {
     dispatch(handleShuffleMusics(shuffleMusic(playerSelector.list)));
-  }, [playerSelector.list]);
+  }, [playerModuleSelector]);
 
   const handleEndedMusicHandler = useCallback(() => onSelectNextMusic(), []);
 
-  const onSetMusic = useCallback((music: MusicItemType) => {
-    dispatch(handleSetMusic(music));
-    onhandleOpenMusicFooterUI(true);
-  }, []);
+  const onSetMusic = useCallback(
+    (music: MusicItemType) => {
+      dispatch(handleSetMusic(music));
+      onhandleOpenMusicFooterUI(true);
+    },
+    [playerModuleSelector]
+  );
 
   const resetPlayerModule = useCallback(() => {
     dispatch(handlePlaySelectedMusicModlue(PlayerControlModule_INIT));
-  }, [PlayerControlModule_INIT]);
+  }, [playerModuleSelector]);
 
   const musicPlayer = (
     <ReactPlayer

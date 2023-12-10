@@ -1,5 +1,5 @@
 import { getCode } from 'Login/utils/auth';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { getToken } from 'Login/store/feature/LoginSlice';
 import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 
@@ -13,7 +13,7 @@ export const RedirectPage = () => {
 
   const { signIn, access_token } = useLogin();
 
-  useEffect(() => {
+  useMemo(() => {
     const obj = {
       provider: userState.provider,
       code,
