@@ -21,7 +21,7 @@ export const useLogin = () => {
     navigate('/music');
     showAlarmMessage('로그인 하였습니다.');
   };
-  const signOut = async () => {
+  const signOut = () => {
     localStorage.clear();
     removeStoreItems();
     showAlarmMessage('로그아웃 되었습니다.');

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 export const useGenreMusicImageObserver = (src: string) => {
   const [imageSrc, setImageSrc] = useState('');
@@ -24,5 +24,5 @@ export const useGenreMusicImageObserver = (src: string) => {
       observer && observer.disconnect();
     };
   }, [imageRef, imageSrc, src]);
-  return { imageRef, imageSrc, src };
+  return useMemo(() => ({ imageRef, imageSrc, src }), [imageRef, imageSrc, src]);
 };

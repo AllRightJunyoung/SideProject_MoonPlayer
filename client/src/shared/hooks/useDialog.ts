@@ -1,11 +1,11 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import { DiaLogContext } from 'shared/context/dialog';
 import type { ConfirmType } from 'shared/types/dialog';
 
 const useDialog = () => {
   const dialogCtx = useContext(DiaLogContext);
-  const alarm = dialogCtx.state.alarm;
-  const confirm = dialogCtx.state.confirm;
+  const alarm = useMemo(() => dialogCtx.state.alarm, [dialogCtx.state.alarm]);
+  const confirm = useMemo(() => dialogCtx.state.confirm, [dialogCtx.state.confirm]);
 
   const showAlarmMessage = useCallback(
     (message: string) => {
