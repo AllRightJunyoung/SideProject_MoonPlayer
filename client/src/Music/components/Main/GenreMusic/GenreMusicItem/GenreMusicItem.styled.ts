@@ -15,6 +15,11 @@ export const Layout = styled(Flex)`
   overflow: hidden;
 `;
 
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const Number = styled(Text)`
   color: rgba(255, 255, 255, 0.64);
   font-size: 16px;

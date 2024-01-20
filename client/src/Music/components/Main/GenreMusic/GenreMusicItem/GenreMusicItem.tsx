@@ -1,12 +1,14 @@
-import { memo, useCallback } from 'react';
 import * as Styled from './GenreMusicItem.styled';
-import { IconButton, CircleTooltip } from 'shared/components';
-import { handleAddPlayer } from 'Music/store/feature/PlayerSlice';
-import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import type { GenreMusicItemProps } from './GenreMusicItem.types';
 import type { MusicItemType } from 'Music/types';
+
+import { memo, useCallback } from 'react';
+import { IconButton, CircleTooltip } from 'shared/components';
+import { handleAddPlayer, handleSetMusic } from 'Music/store/feature/PlayerSlice';
+import { useAppDispatch, useAppSelector } from 'shared/hooks/useReduxStore';
 import { useResolution } from 'shared/hooks';
 import GenreMusicImage from '../GenreMusicImage/GenreMusicImage';
+import { handleOpenMusicFooterUI } from 'Music/store/feature/MusicUISlice';
 
 const GenreMusicItem = ({ ...props }: GenreMusicItemProps) => {
   const { id, name, img_url, source_url } = props;
@@ -20,6 +22,11 @@ const GenreMusicItem = ({ ...props }: GenreMusicItemProps) => {
   const handlePlusButton = useCallback(() => {
     if (isInPlayer) return;
     dispatch(handleAddPlayer(selectedMusic));
+  }, [selectedMusic]);
+
+  const handlePlayButton = useCallback(() => {
+    dispatch(handleSetMusic(selectedMusic));
+    dispatch(handleOpenMusicFooterUI(true));
   }, [selectedMusic]);
 
   return (
@@ -36,13 +43,16 @@ const GenreMusicItem = ({ ...props }: GenreMusicItemProps) => {
       )}
       <Styled.Title id={'musicName' + id}>{name}</Styled.Title>
 
-      <IconButton
-        color="rgba(255,255,255,0.76)"
-        active={isInPlayer}
-        onClick={handlePlusButton}
-        name="circlePlus"
-        size="2x"
-      />
+      <Styled.Box>
+        <IconButton color="rgba(255,255,255,0.76)" onClick={handlePlayButton} name="play" size="2x" />
+        <IconButton
+          color="rgba(255,255,255,0.76)"
+          active={isInPlayer}
+          onClick={handlePlusButton}
+          name="circlePlus"
+          size="2x"
+        />
+      </Styled.Box>
     </Styled.Layout>
   );
 };
