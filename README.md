@@ -2,6 +2,11 @@
 
 ### 무료로 음악을 들려주는 사이트 입니다.
 
+### Next 14 버전으로 마이그레이션 중입니다.
+- Express 통합 
+- 서버 액션 사용
+- 불필요한 컴포넌트 개선
+  
 ## Features
 
 | 기능            | 설명                                                                                 |
@@ -29,13 +34,3 @@
 
 ![jy 2](https://github.com/AllRightJunyoung/SideProject_MoonPlayer/assets/100929485/8e2bf9ed-ef2a-4cd7-922f-cb8ad94da442)
 
-## 배포
-
-- 클라이언트 배포는 AWS amplify를 사용하였고 서버 배포는 Heroku를 사용 했습니다.
-  - Heroku 해외서버에 있는 이슈로 인해 너무 느려서 다른 플랫폼으로 변경 중입니다.
-  - 번거롭지만 실행방법을 통해서 서버와 클라이언트가 둘다 실행되게 끔 만들었습니다.
-  
-
-## 실행 방법
-1. npm install
-2. npm run dev
