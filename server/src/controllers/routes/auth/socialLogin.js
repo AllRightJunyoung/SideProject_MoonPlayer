@@ -23,7 +23,7 @@ const kakaoLogin = async (req, res, next) => {
       data: makeFormData({
         grant_type: "authorization_code",
         client_id: process.env.KAKAO_ID,
-        redirect_uri: "http://localhost:3000/oauth",
+        redirect_uri: process.env.REDIRECT_OAUTH_URI,
         code: code,
         client_secret: process.env.KAKAO_SECRET_ID,
       }),
@@ -132,7 +132,7 @@ const googleLogin = async (req, res, next) => {
       data: makeFormData({
         grant_type: "authorization_code",
         client_id: process.env.GOOGLE_ID,
-        redirect_uri: "http://localhost:3000/oauth",
+        redirect_uri: process.env.REDIRECT_OAUTH_URI,
         code: code,
         client_secret: process.env.GOOGLE_SECRET_ID,
       }),
@@ -244,7 +244,7 @@ const naverLogin = async (req, res, next) => {
       data: makeFormData({
         grant_type: "authorization_code",
         client_id: process.env.NAVER_ID,
-        redirect_uri: "http://localhost:3000/oauth",
+        redirect_uri: process.env.REDIRECT_OAUTH_URI,
         code: code,
         client_secret: process.env.NAVER_SECRET_ID,
         state: "gasp",

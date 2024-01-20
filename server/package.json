@@ -30,7 +30,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.25.0",
-    "nodemon": "^2.0.20"
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.3"
   }
 }

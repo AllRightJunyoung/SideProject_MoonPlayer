@@ -32,5 +32,10 @@
 ## 배포
 
 - 클라이언트 배포는 AWS amplify를 사용하였고 서버 배포는 Heroku를 사용 했습니다.
+  - Heroku 해외서버에 있는 이슈로 인해 너무 느려서 다른 플랫폼으로 변경 중입니다.
+  - 번거롭지만 실행방법을 통해서 서버와 클라이언트가 둘다 실행되게 끔 만들었습니다.
+  
 
-https://main.d1oeszmmzb4ksm.amplifyapp.com/
+## 실행 방법
+1. npm install
+2. npm run dev
