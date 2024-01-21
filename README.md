@@ -4,15 +4,15 @@
 
 
 ## 배포 주소
-- https://www.moonplayer.shop/
-- 배포 플랫폼 : (vercel , AWS EC2)
-  - Heroku 너무 느려서 EC2로 변경
+- https://www.moonplayer.shop/ (vercel , AWS EC2)
+- Heroku 속도 문제로 인해 AWS EC2서버로 돌리는중입니다.
+  - 원인 : CDN 문제 
 
 
 ### Next 14 버전으로 마이그레이션 할 예정
+- 모바일 UI 개선
 - Express 통합 
-- 서버 액션 사용
-- 불필요한 컴포넌트 개선
+- 서버 액션 학습
   
 ## Features
 
