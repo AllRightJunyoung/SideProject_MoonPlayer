@@ -9,10 +9,11 @@
   - 원인 : CDN 문제 
 
 
-### Next 14 버전으로 마이그레이션 할 예정
-- 모바일 UI 개선
-- Express 통합 
-- 서버 액션 학습
+### Next 14 버전으로 마이그레이션중 입니다.
+- 모바일 UI 및 데스크톱 UI 개선
+- 기존에 Express로 만든 서버 API 하나로 API Routes로 통합 (가장 큰 요소)
+- 서버 액션 코드 적용
+- MongoDB대신에 SupaBase 사용
   
 ## Features
 
